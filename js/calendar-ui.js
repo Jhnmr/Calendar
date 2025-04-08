@@ -785,6 +785,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Configurar el botón "Hoy"
     setupTodayButton();
+    setupThemeToggle();
 });
 
 /**
@@ -980,7 +981,7 @@ function setupExportEvents() {
 
 /**
  * Configura el selector de idioma
- */
+ */// Corregir en js/calendar-ui.js
 function setupLanguageSelector() {
     document.querySelectorAll('.dropdown-item[data-lang]').forEach(item => {
         item.addEventListener('click', function(e) {
@@ -995,48 +996,50 @@ function setupLanguageSelector() {
                 // Actualizar la interfaz
                 document.documentElement.lang = currentLanguage;
                 
-                // Actualizar menú de idiomas
-                document.querySelectorAll('.dropdown-item').forEach(langItem => {
-                    langItem.classList.remove('active');
+                // Marcar el idioma activo en el menú
+                document.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.classList.remove('active');
                 });
                 this.classList.add('active');
                 
                 // Actualizar texto del botón
                 let langText = 'Español';
                 switch (newLang) {
-                    case 'en':
-                        langText = 'English';
-                        break;
-                    case 'tl':
-                        langText = 'Tagalog';
-                        break;
-                    case 'he':
-                        langText = 'עברית';
-                        break;
+                    case 'en': langText = 'English'; break;
+                    case 'tl': langText = 'Tagalog'; break;
+                    case 'he': langText = 'עברית'; break;
                 }
                 
                 document.getElementById('languageDropdown').innerHTML = `<i class="fas fa-globe"></i> ${langText}`;
                 
-                // Actualizar dirección del texto para hebreo
-                if (newLang === 'he') {
-                    document.body.setAttribute('dir', 'rtl');
-                } else {
-                    document.body.setAttribute('dir', 'ltr');
-                }
+                // Actualizar todos los elementos traducibles
+                updateAllTranslations();
                 
                 // Recargar el calendario con el nuevo idioma
                 loadCalendar();
-                
-                // Actualizar la fase lunar
-                if (typeof MoonPhases !== 'undefined' && MoonPhases.updateCurrentPhase) {
-                    MoonPhases.updateCurrentPhase(currentLanguage);
-                }
-                
-                // Actualizar la visualización de la fecha actual
-                updateCurrentDateDisplay();
             }
         });
     });
+}
+
+// Añadir esta nueva función para actualizar todas las traducciones
+function updateAllTranslations() {
+    const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
+    
+    // Actualizar textos de navegación
+    document.getElementById('navCalendar').innerHTML = `<i class="fas fa-calendar-days me-1"></i> ${translations.calendar || 'Calendario'}`;
+    document.getElementById('navFestivals').innerHTML = `<i class="fas fa-menorah me-1"></i> ${translations.festivals || 'Festividades'}`;
+    
+    // Actualizar título del calendario
+    document.getElementById('calendarTitle').innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario'}`;
+    
+    // Actualizar botones
+    document.getElementById('todayBtn').innerHTML = `<i class="fas fa-calendar-day"></i> ${translations.today || 'Hoy'}`;
+    document.getElementById('prevMonthBtn').textContent = translations.previous || 'Anterior';
+    document.getElementById('nextMonthBtn').textContent = translations.next || 'Siguiente';
+    
+    // Actualizar más elementos según sea necesario
+    updateCurrentDateDisplay();
 }
 
 /**
@@ -1343,9 +1346,6 @@ function loadCalendar() {
     // Actualizar la lista de festividades
     updateFestivalsList(currentMonth);
     
-    // Actualizar la lista de eventos personalizados
-    updateCustomEventsList(currentMonth);
-    
     // Actualizar la cita bíblica
     updateScripture(currentMonth);
     
@@ -1623,3 +1623,26 @@ function setupDayEvents() {
         });
     });
 }
+// Añadir al final de js/calendar-ui.js
+function setupThemeToggle() {
+    const themeBtn = document.createElement('button');
+    themeBtn.className = 'btn btn-outline-light ms-2';
+    themeBtn.innerHTML = '<i class="fas fa-adjust"></i>';
+    themeBtn.title = 'Cambiar tema claro/oscuro';
+    
+    themeBtn.addEventListener('click', function() {
+        document.body.classList.toggle('light-theme');
+        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+    });
+    
+    // Añadir botón al navbar
+    document.querySelector('.dropdown').before(themeBtn);
+    
+    // Cargar tema guardado
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-theme');
+    }
+}
+
+
+

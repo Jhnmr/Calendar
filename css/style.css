@@ -1,542 +1,703 @@
 /**
- * Estilos personalizados para el Calendario Hebreo
+ * Estilos personalizados para el Calendario Hebreo - Versión mejorada
  */
+
+/* Variables globales de colores en paleta pastel */
+:root {
+  --primary-color: #78a9d1; /* Azul pastel */
+  --primary-dark: #5d8cb6; /* Azul pastel oscuro */
+  --secondary-color: #f6c0a9; /* Durazno/melocotón pastel */
+  --accent-color: #badc98; /* Verde pastel */
+  --accent-dark: #9fc382; /* Verde pastel oscuro */
+  --warning-color: #f9e6a8; /* Amarillo pastel */
+  --warning-dark: #f1d787; /* Amarillo pastel oscuro */
+  --danger-color: #eda5a5; /* Rojo pastel */
+  --danger-dark: #e27777; /* Rojo pastel oscuro */
+  --light-color: #f8f9fa; /* Blanco hueso */
+  --gray-color: #e9ecef; /* Gris muy claro */
+  --dark-color: #495057; /* Gris oscuro */
+  --text-color: #343a40; /* Casi negro */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
 
 /* Estilos generales */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    background-color: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: var(--light-color);
+  line-height: 1.6;
 }
 
 .hebrew-text {
-    font-family: 'David Libre', serif;
-    direction: rtl;
-    unicode-bidi: embed;
+  font-family: "David Libre", serif;
+  direction: rtl;
+  unicode-bidi: embed;
 }
 
 [dir="rtl"] {
-    text-align: right;
+  text-align: right;
+}
+
+/* Contenedores y layout */
+.container {
+  padding: 0 15px;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 /* Estilos para el calendario */
 .calendar-month {
-    margin-bottom: 2rem;
-    background-color: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 3px 10px var(--shadow-color);
 }
 
 .month-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: linear-gradient(135deg, #3174ad, #0d6efd);
-    color: white;
-    border-radius: 0.5rem 0.5rem 0 0;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  );
+  color: white;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .month-header .month-name {
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .month-header .hebrew-name {
-    color: #ffeb3b;
-    font-weight: 700;
-    font-size: 1.2rem;
+  color: var(--warning-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.month-header .gregorian-dates {
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 
 /* Cuadrícula del calendario */
 .calendar-grid {
-    border: 1px solid #dee2e6;
-    border-radius: 0 0 0.25rem 0.25rem;
-    overflow: hidden;
+  border: 1px solid var(--gray-color);
+  border-radius: 0 0 0.25rem 0.25rem;
+  overflow: hidden;
 }
 
 .weekdays {
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    border-bottom: 1px solid #dee2e6;
-    font-weight: 600;
-    text-align: center;
+  background: linear-gradient(to right, var(--light-color), var(--gray-color));
+  border-bottom: 1px solid var(--gray-color);
+  font-weight: 600;
+  text-align: center;
 }
 
 .weekdays .col {
-    padding: 0.75rem 0.25rem;
+  padding: 0.75rem 0.25rem;
 }
 
 .weekdays .sabbath {
-    color: #0d6efd;
+  color: var(--primary-dark);
 }
 
 .week {
-    border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--gray-color);
 }
 
 .week:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .day {
-    min-height: 100px;
-    padding: 0.5rem;
-    border-right: 1px solid #dee2e6;
-    position: relative;
-    background-color: #fff;
-    transition: all 0.2s ease;
+  min-height: 100px;
+  padding: 0.5rem;
+  border-right: 1px solid var(--gray-color);
+  position: relative;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  overflow: hidden; /* Evitar desbordamiento del contenido */
 }
 
 .day:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 .day.empty {
-    background-color: #f8f9fa;
+  background-color: var(--light-color);
 }
 
 .day.sabbath {
-    background-color: #e6f3ff;
+  background-color: #e6f3ff;
 }
 
 .day.festival {
-    background-color: #fff8e6;
+  background-color: var(--warning-color);
 }
 
 .day.high-importance {
-    background-color: #ffe6e6;
+  background-color: var(--danger-color);
 }
 
 .day.new-moon {
-    border: 2px solid #6c757d;
+  border: 2px solid var(--dark-color);
 }
 
 .day.current-day {
-    background-color: #e8f4ff;
-    box-shadow: inset 0 0 0 2px #0d6efd;
+  background-color: #e8f4ff;
+  box-shadow: inset 0 0 0 2px var(--primary-color);
 }
 
 .day.custom-event {
-    background-color: #e6fff2;
+  background-color: var(--accent-color);
 }
 
 .day:hover {
-    background-color: #f8f9fa;
-    cursor: pointer;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+  background-color: var(--light-color);
+  cursor: pointer;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+  z-index: 10;
 }
 
 .day-number {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
 .hebrew-date {
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: #a83232;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--danger-dark);
 }
 
 .gregorian-date {
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: #3174ad;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--primary-dark);
 }
 
 /* Indicadores de eventos */
-.indicator {
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
-    margin-bottom: 0.25rem;
-    font-size: 0.8rem;
-}
-
 .new-moon-indicator {
-    background-color: #6c757d;
-    color: white;
-    display: inline-block;
+  background-color: var(--dark-color);
+  color: white;
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .festival-indicator {
-    background-color: #ffc107;
-    color: #212529;
-    padding: 0.2rem 0.4rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.8rem;
-    display: block;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  background-color: var(--warning-color);
+  color: var(--text-color);
+  padding: 0.2rem 0.4rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  display: block;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .festival-indicator:hover {
-    background-color: #e0a800;
-}
-
-.astronomical-event-indicator {
-    background-color: #6f42c1;
-    color: white;
-    padding: 0.2rem 0.4rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.8rem;
-    display: block;
+  background-color: var(--warning-dark);
 }
 
 .custom-event-indicator {
-    background-color: #20c997;
-    color: white;
-    padding: 0.2rem 0.4rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.8rem;
-    display: block;
-    transition: background-color 0.2s ease;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 0.2rem 0.4rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  display: block;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .custom-event-indicator:hover {
-    background-color: #1ba87e;
+  background-color: var(--accent-dark);
 }
 
 /* Cita bíblica */
 .scripture-container {
-    background-color: #f8f9fa;
-    border-left: 4px solid #3174ad;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    margin-top: 1.5rem;
-    position: relative;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background-color: var(--light-color);
+  border-left: 4px solid var(--primary-color);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+  box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 .scripture-container::before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 3rem;
-    color: #3174ad;
-    opacity: 0.2;
-    font-family: Georgia, serif;
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 3rem;
+  color: var(--primary-color);
+  opacity: 0.2;
+  font-family: Georgia, serif;
 }
 
 .scripture-text {
-    font-style: italic;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
+  font-style: italic;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .scripture-ref {
-    font-weight: 600;
-    text-align: right;
-    color: #3174ad;
-    margin-bottom: 0;
+  font-weight: 600;
+  text-align: right;
+  color: var(--primary-color);
+  margin-bottom: 0;
 }
 
 /* Navegación y menús */
 .navbar {
-    background: linear-gradient(135deg, #3174ad, #0d6efd) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  ) !important;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  margin-bottom: 2rem;
 }
 
 .nav-item .active {
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 0.25rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
 }
 
 /* Tarjetas especiales */
 .card {
-    border: none;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 3px 6px var(--shadow-color);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .card-header {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: var(--light-color);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem;
 }
 
 .card-header.bg-primary {
-    background: linear-gradient(135deg, #3174ad, #0d6efd) !important;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  ) !important;
+  color: white;
+}
+
+.card-body {
+  padding: 1.25rem;
 }
 
 /* Leyenda del calendario */
 .calendar-legend-item {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .calendar-legend-item.sabbath {
-    background-color: #e6f3ff;
-    border: 1px solid #0d6efd;
+  background-color: #e6f3ff;
+  border: 1px solid var(--primary-color);
 }
 
 .calendar-legend-item.current-day {
-    background-color: #e8f4ff;
-    border: 2px solid #0d6efd;
+  background-color: #e8f4ff;
+  border: 2px solid var(--primary-color);
 }
 
 .calendar-legend-item.new-moon {
-    background-color: #fff;
-    border: 2px solid #6c757d;
+  background-color: #fff;
+  border: 2px solid var(--dark-color);
 }
 
 .calendar-legend-item.festival {
-    background-color: #fff8e6;
-    border: 1px solid #ffc107;
+  background-color: var(--warning-color);
+  border: 1px solid var(--warning-dark);
 }
 
 .calendar-legend-item.high-importance {
-    background-color: #ffe6e6;
-    border: 1px solid #dc3545;
+  background-color: var(--danger-color);
+  border: 1px solid var(--danger-dark);
 }
 
 .calendar-legend-item.custom-event {
-    background-color: #e6fff2;
-    border: 1px solid #20c997;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-dark);
 }
 
 /* Festival cards */
 .festival-card {
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    height: 100%;
-    border: none;
-    border-radius: 0.5rem;
-    overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 3px 6px var(--shadow-color);
 }
 
 .festival-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .festival-image {
-    height: 180px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .festival-card:hover .festival-image {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* Fases lunares */
 .moon-phase {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0 auto;
-    background-color: #f0f0f0;
-    position: relative;
-    box-shadow: inset -20px 0 rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  position: relative;
+  box-shadow: inset -20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .moon-phase svg {
-    width: 100%;
-    height: 100%;
-}
-
-.moon-phase-new {
-    background-color: #6c757d;
-    box-shadow: none;
-}
-
-.moon-phase-waxing-crescent {
-    background-color: #f0f0f0;
-    box-shadow: inset -30px 0 rgba(0, 0, 0, 0.9);
-}
-
-.moon-phase-first-quarter {
-    background-color: #f0f0f0;
-    box-shadow: inset -50px 0 rgba(0, 0, 0, 0.9);
-}
-
-.moon-phase-waxing-gibbous {
-    background-color: #f0f0f0;
-    box-shadow: inset -20px 0 rgba(0, 0, 0, 0.9);
-}
-
-.moon-phase-full {
-    background-color: #f0f0f0;
-    box-shadow: none;
-}
-
-.moon-phase-waning-gibbous {
-    background-color: #f0f0f0;
-    box-shadow: inset 20px 0 rgba(0, 0, 0, 0.9);
-}
-
-.moon-phase-last-quarter {
-    background-color: #f0f0f0;
-    box-shadow: inset 50px 0 rgba(0, 0, 0, 0.9);
-}
-
-.moon-phase-waning-crescent {
-    background-color: #f0f0f0;
-    box-shadow: inset 30px 0 rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
 }
 
 /* Eventos personalizados */
 .custom-event-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem;
-    border-bottom: 1px solid #dee2e6;
-    transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--gray-color);
+  transition: background-color 0.2s ease;
 }
 
 .custom-event-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .custom-event-item:hover {
-    background-color: #f8f9fa;
+  background-color: var(--light-color);
 }
 
 .custom-event-item .event-title {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 .custom-event-item .event-date {
-    font-size: 0.8rem;
-    color: #6c757d;
+  font-size: 0.8rem;
+  color: var(--dark-color);
 }
 
 .custom-event-type {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 600;
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .custom-event-type.personal {
-    background-color: #20c997;
-    color: white;
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 .custom-event-type.family {
-    background-color: #0d6efd;
-    color: white;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .custom-event-type.work {
-    background-color: #6c757d;
-    color: white;
+  background-color: var(--dark-color);
+  color: white;
 }
 
 .custom-event-type.other {
-    background-color: #6f42c1;
-    color: white;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 /* Alerta fecha actual */
 #currentDateDisplay {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border: none;
-    border-left: 4px solid #0d6efd;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border: none;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 /* Tribus en la vista About */
 .tribe-card {
-    text-align: center;
-    margin-bottom: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  transition: transform 0.2s;
+}
+
+.tribe-card:hover {
+  transform: translateY(-5px);
 }
 
 .tribe-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
-    background-color: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #3174ad;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background-color: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--primary-color);
 }
 
 .tribe-name {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
 .tribe-hebrew-name {
+  font-size: 0.9rem;
+  color: var(--dark-color);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 991.98px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .calendar-month {
+    margin-bottom: 1rem;
+  }
+
+  .day {
+    min-height: 80px;
+    padding: 0.25rem;
+  }
+
+  .day-number {
+    margin-bottom: 0.25rem;
+  }
+
+  .festival-indicator,
+  .custom-event-indicator,
+  .new-moon-indicator {
+    padding: 0.1rem 0.3rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .month-header .month-name {
+    font-size: 1.25rem;
+  }
+
+  .day {
+    min-height: 60px;
+    font-size: 0.8rem;
+  }
+
+  .day-number {
+    flex-direction: column;
+  }
+
+  .hebrew-date,
+  .gregorian-date {
+    font-size: 0.8rem;
+  }
+
+  .scripture-container {
+    padding: 1rem;
+  }
+
+  .scripture-text {
     font-size: 0.9rem;
-    color: #6c757d;
+  }
+
+  .moon-phase {
+    width: 80px;
+    height: 80px;
+  }
+
+  .tribe-card {
+    padding: 0.5rem;
+  }
+
+  .tribe-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .month-header {
+    padding: 1rem 0.5rem;
+  }
+
+  .month-header .month-name {
+    font-size: 1.1rem;
+  }
+
+  .hebrew-name {
+    font-size: 1rem;
+  }
+
+  .weekdays .col {
+    padding: 0.5rem 0.1rem;
+    font-size: 0.7rem;
+  }
+
+  .day {
+    min-height: 50px;
+    font-size: 0.7rem;
+    padding: 0.1rem;
+  }
+
+  .day-number {
+    margin-bottom: 0.1rem;
+  }
+
+  .hebrew-date,
+  .gregorian-date {
+    font-size: 0.7rem;
+  }
+
+  .festival-indicator,
+  .custom-event-indicator,
+  .new-moon-indicator {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .scripture-container {
+    padding: 0.75rem;
+  }
+
+  .scripture-text {
+    font-size: 0.8rem;
+  }
+
+  .scripture-ref {
+    font-size: 0.8rem;
+  }
+
+  .moon-phase {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* Estilos para impresión */
 @media print {
-    .no-print {
-        display: none !important;
-    }
-    
-    .container {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .calendar-grid {
-        width: 100%;
-        page-break-inside: avoid;
-    }
-    
-    .day {
-        border: 1px solid #dee2e6 !important;
-        min-height: auto;
-    }
-    
-    .scripture-container {
-        page-break-inside: avoid;
-        border: 1px solid #dee2e6;
-    }
-}
+  .no-print {
+    display: none !important;
+  }
 
-/* Estilos para pantallas pequeñas */
-@media (max-width: 767.98px) {
-    .day {
-        min-height: 80px;
-    }
-    
-    .day-number {
-        flex-direction: column;
-    }
-    
-    .festival-indicator,
-    .astronomical-event-indicator,
-    .custom-event-indicator {
-        font-size: 0.7rem;
-        padding: 0.1rem 0.3rem;
-    }
-    
-    .scripture-container {
-        padding: 1rem;
-    }
-    
-    .moon-phase {
-        width: 80px;
-        height: 80px;
-    }
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .calendar-grid {
+    width: 100%;
+    page-break-inside: avoid;
+  }
+
+  .day {
+    border: 1px solid var(--gray-color) !important;
+    min-height: auto;
+  }
+
+  .scripture-container {
+    page-break-inside: avoid;
+    border: 1px solid var(--gray-color);
+  }
 }
