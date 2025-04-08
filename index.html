@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co YHWH</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts para el hebreo -->
+    <link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-calendar-alt me-2"></i>
+                Calendario Hebreo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="navCalendar">
+                            <i class="fas fa-calendar-days me-1"></i> Calendario
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navFestivals">
+                            <i class="fas fa-menorah me-1"></i> Festividades
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navCustomEvents">
+                            <i class="fas fa-bookmark me-1"></i> Mis Eventos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="navAbout">
+                            <i class="fas fa-info-circle me-1"></i> Acerca de
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Selector de idioma -->
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-globe"></i> Español
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item active" href="#" data-lang="es">Español</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="tl">Tagalog</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="he">עברית</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Contenedor principal -->
+    <main class="container mt-4">
+        <!-- Vista del calendario (página principal) -->
+        <div id="calendarView" class="view-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 id="calendarTitle" class="d-flex align-items-center">
+                    <i class="fas fa-calendar-alt me-2"></i> Calendario Hebreo
+                </h1>
+                <div class="btn-group">
+                    <button id="todayBtn" class="btn btn-primary">
+                        <i class="fas fa-calendar-day"></i> Hoy
+                    </button>
+                    <button id="exportBtn" class="btn btn-outline-primary">
+                        <i class="fas fa-download"></i> Exportar PDF
+                    </button>
+                    <button id="printBtn" class="btn btn-outline-secondary">
+                        <i class="fas fa-print"></i> Imprimir
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Selector de meses -->
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2 col-md-4 mb-2 mb-md-0">
+                            <button id="prevMonthBtn" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-chevron-left"></i> Anterior
+                            </button>
+                        </div>
+                        <div class="col-lg-8 col-md-4 mb-2 mb-md-0">
+                            <select id="monthSelector" class="form-select">
+                                <!-- Opciones de meses se cargarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-4">
+                            <button id="nextMonthBtn" class="btn btn-outline-primary w-100">
+                                Siguiente <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visualización del calendario -->
+            <div class="row">
+                <div class="col-lg-9">
+                    <!-- Fecha actual destacada -->
+                    <div id="currentDateDisplay" class="alert alert-info mb-3 d-flex justify-content-between align-items-center">
+                        <span id="currentDateText">
+                            <i class="fas fa-calendar-day me-2"></i>
+                            <strong>Fecha actual:</strong> Cargando...
+                        </span>
+                        <span id="currentHebrewDate" class="hebrew-text">Cargando...</span>
+                    </div>
+                    
+                    <div id="calendarContainer" class="calendar-month shadow">
+                        <!-- El calendario se generará dinámicamente aquí -->
+                    </div>
+                    
+                    <!-- Leyenda del calendario -->
+                    <div class="card mt-3 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title mb-3">Leyenda:</h6>
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="calendar-legend-item sabbath"></div>
+                                    <span class="ms-2">Sábado</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="calendar-legend-item current-day"></div>
+                                    <span class="ms-2">Día actual</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="calendar-legend-item new-moon"></div>
+                                    <span class="ms-2">Luna nueva</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="calendar-legend-item festival"></div>
+                                    <span class="ms-2">Festividad</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="calendar-legend-item high-importance"></div>
+                                    <span class="ms-2">Festividad importante</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="calendar-legend-item custom-event"></div>
+                                    <span class="ms-2">Evento personal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cita bíblica del mes -->
+                    <div class="scripture-container mt-4 shadow-sm">
+                        <h5 class="mb-3" id="scriptureTitle">Escritura del Mes</h5>
+                        <p class="scripture-text" id="scriptureText">Cargando...</p>
+                        <p class="scripture-ref" id="scriptureRef">Cargando...</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <!-- Información del mes -->
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Información del Mes</h5>
+                        </div>
+                        <div class="card-body" id="monthInfo">
+                            <!-- Información del mes se generará dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <!-- Fase lunar actual -->
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-moon me-2"></i>Fase Lunar Actual</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <div id="currentMoonPhase" class="moon-phase mb-2">
+                                <!-- La fase lunar se mostrará aquí -->
+                            </div>
+                            <p id="moonPhaseText" class="mb-0">Cargando...</p>
+                            <p id="moonPhaseDate" class="text-muted small">Cargando...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Festividades del mes -->
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-menorah me-2"></i>Festividades Este Mes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="festivalsList">
+                                <!-- Lista de festividades se generará dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Eventos personalizados -->
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-bookmark me-2"></i>Mis Eventos</h5>
+                            <button class="btn btn-sm btn-light" id="addEventBtn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="customEventsList">
+                                <!-- Lista de eventos personalizados se generará dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vista de festividades (oculta por defecto) -->
+        <div id="festivalsView" class="view-section d-none">
+            <h1 class="mb-4"><i class="fas fa-menorah me-2"></i>Festividades Bíblicas</h1>
+            <div class="row" id="festivalsContainer">
+                <!-- Lista de todas las festividades se generará dinámicamente -->
+            </div>
+        </div>
+        
+        <!-- Vista de eventos personalizados (oculta por defecto) -->
+        <div id="customEventsView" class="view-section d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1><i class="fas fa-bookmark me-2"></i>Mis Eventos</h1>
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="addEventBtnPage">
+                        <i class="fas fa-plus"></i> Añadir Evento
+                    </button>
+                    <button class="btn btn-outline-primary" id="importEventsBtn">
+                        <i class="fas fa-file-import"></i> Importar
+                    </button>
+                    <button class="btn btn-outline-primary" id="exportEventsBtn">
+                        <i class="fas fa-file-export"></i> Exportar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customEventsTable">
+                                <!-- Tabla de eventos personalizados se generará dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vista de Acerca de (oculta por defecto) -->
+        <div id="aboutView" class="view-section d-none">
+            <h1 class="mb-4"><i class="fas fa-info-circle me-2"></i>Acerca del Calendario Hebreo</h1>
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5>¿Qué es el Calendario Hebreo?</h5>
+                            <p>El calendario hebreo es un calendario lunisolar utilizado para las festividades religiosas en el judaísmo y en algunas comunidades mesiánicas. Se basa en el ciclo lunar pero realiza ajustes para alinearse con el año solar.</p>
+                            
+                            <h5>Meses del Calendario Hebreo</h5>
+                            <p>El calendario hebreo consta de 12 meses en años regulares y 13 meses en años bisiestos. Cada mes comienza con la luna nueva y tiene 29 o 30 días.</p>
+                            
+                            <h5>Festividades Bíblicas</h5>
+                            <p>Las festividades bíblicas principales incluyen Pascua, Panes Sin Levadura, Pentecostés (Shavuot), Fiesta de Trompetas (Yom Teruah), Día de Expiación (Yom Kippur) y Tabernáculos (Sukkot).</p>
+                            
+                            <h5>Sobre Esta Aplicación</h5>
+                            <p>Esta aplicación te permite visualizar el calendario hebreo, sus festividades y añadir tus propios eventos importantes. Los datos se guardan localmente en tu navegador.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">Año Actual</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Año:</strong> <span id="aboutYearName">2025-2026</span></p>
+                                    <p><strong>Inicio:</strong> <span id="aboutYearStart">30 de marzo de 2025</span></p>
+                                    <p><strong>Fin:</strong> <span id="aboutYearEnd">20 de marzo de 2026</span></p>
+                                    <hr>
+                                    <p class="mb-0"><strong>Total de meses:</strong> <span id="aboutMonthsCount">12</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4 shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Las Doce Tribus de Israel</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row" id="tribesContainer">
+                        <!-- Las 12 tribus se mostrarán aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal para añadir/editar eventos personalizados -->
+    <div class="modal fade" id="eventModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalTitle">Añadir Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="eventForm">
+                        <input type="hidden" id="eventId">
+                        <div class="mb-3">
+                            <label for="eventTitle" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="eventTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDate" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="eventDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventType" class="form-label">Tipo</label>
+                            <select class="form-select" id="eventType">
+                                <option value="personal">Personal</option>
+                                <option value="family">Familiar</option>
+                                <option value="work">Trabajo</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventNotes" class="form-label">Notas</label>
+                            <textarea class="form-control" id="eventNotes" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="eventRepeatYearly">
+                            <label class="form-check-label" for="eventRepeatYearly">Repetir anualmente</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger d-none" id="deleteEventBtn">Eliminar</button>
+                    <button type="button" class="btn btn-primary" id="saveEventBtn">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para detalles de festividad -->
+    <div class="modal fade" id="festivalModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="festivalModalTitle">Detalles de Festividad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="festivalModalBody">
+                    <!-- Contenido de la festividad se generará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para importar eventos -->
+    <div class="modal fade" id="importModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar Eventos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="importForm">
+                        <div class="mb-3">
+                            <label for="importFile" class="form-label">Seleccionar archivo JSON</label>
+                            <input type="file" class="form-control" id="importFile" accept=".json">
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="overwriteEvents">
+                                <label class="form-check-label" for="overwriteEvents">
+                                    Sobrescribir eventos existentes
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="importSubmitBtn">Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input oculto para importar archivo -->
+    <input type="file" id="fileImport" accept=".json" style="display: none;">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/calendar-data.js"></script>
+    <script src="js/moon-phases.js"></script>
+    <script src="js/calendar-ui.js"></script>
+    <script src="js/custom-events.js"></script>
+</body>
+</html>
