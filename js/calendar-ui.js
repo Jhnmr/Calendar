@@ -1161,6 +1161,7 @@ function updateCurrentDateDisplay() {
 /**
  * Carga el calendario para el mes seleccionado
  */
+// Reemplaza la parte de generación de la cuadrícula del calendario con este código:
 function loadCalendar() {
     // Obtener el mes actual
     const currentMonth = CalendarData.months.find(month => month.id === currentMonthId);
@@ -1207,7 +1208,7 @@ function loadCalendar() {
     ];
     
     // Añadir fila de días de la semana
-    calendarGridHTML += '<div class="row weekdays">';
+    calendarGridHTML += '<div class="row weekdays g-0">';
     weekdays.forEach((day, index) => {
         const className = index === 6 ? 'col sabbath' : 'col';
         calendarGridHTML += `<div class="${className}">${day}</div>`;
@@ -1224,7 +1225,7 @@ function loadCalendar() {
     // Generar las semanas
     let dayCounter = 1;
     for (let week = 0; week < numWeeks; week++) {
-        calendarGridHTML += '<div class="row week">';
+        calendarGridHTML += '<div class="row week g-0">';
         
         for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
             // Determinar si el día está dentro del mes
@@ -1264,7 +1265,7 @@ function loadCalendar() {
                 });
                 
                 // Determinar la clase CSS para el día
-                let dayClass = 'day';
+                let dayClass = 'day col';
                 if (isSabbath) dayClass += ' sabbath';
                 if (isNewMoon) dayClass += ' new-moon';
                 if (isCurrentDay) dayClass += ' current-day';
@@ -1324,7 +1325,7 @@ function loadCalendar() {
                 dayCounter++;
             } else {
                 // Día vacío
-                calendarGridHTML += '<div class="day empty"></div>';
+                calendarGridHTML += '<div class="day empty col"></div>';
             }
         }
         
