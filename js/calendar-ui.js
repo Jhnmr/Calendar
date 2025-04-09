@@ -1168,11 +1168,11 @@ function loadCalendar() {
     if (!currentMonth) return;
     
     // Actualizar título del calendario según el idioma
-    const translations = CalendarData.translations[currentLanguage];
-    const calendarTitle = document.getElementById('calendarTitle');
-    if (calendarTitle) {
-        calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario Hebreo'}`;
-    }
+const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
+const calendarTitle = document.getElementById('calendarTitle');
+if (calendarTitle) {
+    calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario Hebreo'}`;
+}
     
     // Actualizar el contenedor del calendario
     const calendarContainer = document.getElementById('calendarContainer');
@@ -1380,7 +1380,8 @@ function updateMonthInfo(month) {
     );
     
     // Obtener el nombre del día de inicio según el idioma
-    const startDayName = translations[getDayNameFromIndex(month.start_weekday)] || getDayNameFromIndex(month.start_weekday);
+    const dayNameKey = getDayNameFromIndex(month.start_weekday);
+    const startDayName = translations[dayNameKey] || CalendarData.translations.es[dayNameKey] || dayNameKey;
     
     // Preparar la información del mes
     const monthInfoHTML = `
