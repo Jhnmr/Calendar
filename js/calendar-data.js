@@ -252,7 +252,7 @@ CalendarData.festivals = [
         ],
         biblical_refs: "Éxodo 12:1-28, Levítico 23:5, Números 28:16, Deuteronomio 16:1-8",
         importance: "high",
-        image_url: "img/festivals/passover.jpg"
+        image_url: "img/festivals/passover.png"
     },
     {
         id: 2,
@@ -271,7 +271,7 @@ CalendarData.festivals = [
         ],
         biblical_refs: "Éxodo 12:15-20, Levítico 23:6-8, Números 28:17-25",
         importance: "high",
-        image_url: "img/festivals/unleavened_bread.jpg"
+        image_url: "img/festivals/unleavened_bread.jpeg"
     },
     {
         id: 3,
@@ -289,7 +289,7 @@ CalendarData.festivals = [
         ],
         biblical_refs: "Levítico 23:9-14",
         importance: "medium",
-        image_url: "img/festivals/firstfruits.jpg"
+        image_url: "img/festivals/firstfruits.jpeg"
     },
     {
         id: 4,
@@ -308,7 +308,7 @@ CalendarData.festivals = [
         ],
         biblical_refs: "Éxodo 34:22, Levítico 23:15-22, Deuteronomio 16:9-12, Hechos 2:1-4",
         importance: "high",
-        image_url: "img/festivals/shavuot.jpg"
+        image_url: "img/festivals/shavuot.jpeg"
     },
     {
         id: 5,
@@ -346,7 +346,7 @@ CalendarData.festivals = [
         ],
         biblical_refs: "Levítico 16:1-34, Levítico 23:26-32, Números 29:7-11",
         importance: "high",
-        image_url: "img/festivals/yom_kippur.jpg"
+        image_url: "img/festivals/yom_kippur.jpeg"
     },
     {
         id: 7,
@@ -385,7 +385,7 @@ CalendarData.festivals = [
         ],
         biblical_refs: "Levítico 23:36, Números 29:35-38, Juan 7:37-39",
         importance: "high",
-        image_url: "img/festivals/last_great_day.jpg"
+        image_url: "img/festivals/last_great_day.jpeg"
     }
 ];
 
