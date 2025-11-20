@@ -301,7 +301,7 @@ CalendarData.festivals = [
         end_date: null,
         start_at_sunset: true,
         description_short: "Celebración de la entrega de la Instrucción de ELOHIM - Pentecostés, SIEMPRE en domingo (50 días después de Primicias)",
-        description_long": "Shavuot, también conocido como la Fiesta de las Semanas o Pentecostés, es un mandamiento de ELOHIM que se celebra exactamente 50 días después de la Fiesta de los Primeros Frutos (contando Primicias como día 1). Como Primicias siempre es domingo, Shavuot también SIEMPRE cae en domingo. Conmemora la entrega de la Instrucción (Torah) de ELOHIM en el Monte Sinaí para toda la humanidad, y marca el final de la cosecha de cebada y el comienzo de la cosecha de trigo. Proféticamente, esta festividad también marca el derramamiento del Espíritu Santo. Este mandamiento es para todos los hijos de ELOHIM en todas las generaciones.",
+        description_long: "Shavuot, también conocido como la Fiesta de las Semanas o Pentecostés, es un mandamiento de ELOHIM que se celebra exactamente 50 días después de la Fiesta de los Primeros Frutos (contando Primicias como día 1). Como Primicias siempre es domingo, Shavuot también SIEMPRE cae en domingo. Conmemora la entrega de la Instrucción (Torah) de ELOHIM en el Monte Sinaí para toda la humanidad, y marca el final de la cosecha de cebada y el comienzo de la cosecha de trigo. Proféticamente, esta festividad también marca el derramamiento del Espíritu Santo. Este mandamiento es para todos los hijos de ELOHIM en todas las generaciones.",
         preparations: [
             "Decorar con flores y plantas",
             "Preparar alimentos a base de lácteos",
@@ -457,6 +457,15 @@ CalendarData.translations = {
         export: "Exportar",
         print: "Imprimir",
         add_event: "Añadir Evento",
+
+        // Días de la semana
+        sunday: "Domingo",
+        monday: "Lunes",
+        tuesday: "Martes",
+        wednesday: "Miércoles",
+        thursday: "Jueves",
+        friday: "Viernes",
+        saturday: "Sábado",
         no_festivals: "No hay festividades este mes",
         no_events: "No hay eventos personalizados",
         hebrew_name: "Nombre en Hebreo",
@@ -531,7 +540,37 @@ CalendarData.translations = {
         no_events_to_export: "No hay eventos para exportar",
         sample_events_exist: "Ya existen eventos de ejemplo",
         sample_events_added: "Eventos de ejemplo añadidos correctamente",
-        no_preparation_steps: "No hay pasos de preparación específicos"
+        no_preparation_steps: "No hay pasos de preparación específicos",
+
+        // Leyenda del calendario
+        legend: "Leyenda:",
+        legend_saturday: "Sábado",
+        legend_current_day: "Día actual",
+        legend_new_moon: "Luna nueva",
+        legend_festival: "Festividad",
+        legend_important_festival: "Festividad importante",
+        legend_personal_event: "Evento personal",
+
+        // Vista Acerca de
+        about_title: "Acerca del Calendario de ELOHIM",
+        about_what_is: "¿Qué es el Calendario de ELOHIM?",
+        about_what_is_text: "El Calendario de ELOHIM es un calendario lunisolar mandado por ELOHIM para toda la humanidad. No es exclusivo de un pueblo, sino que es el calendario sagrado que ELOHIM estableció para que toda la creación observe Sus tiempos señalados. Se basa en el ciclo lunar y se alinea con el año solar según los mandamientos establecidos en las Escrituras.",
+        about_months: "Meses del Calendario de ELOHIM",
+        about_months_text: "El Calendario de ELOHIM consta de 12 meses en años regulares y 13 meses en años bisiestos. Cada mes comienza con la observación de la luna nueva y tiene 29 o 30 días. Estos meses fueron ordenados por ELOHIM mismo para marcar Sus tiempos señalados.",
+        about_festivals_title: "Festividades Mandadas por ELOHIM",
+        about_festivals_text: "Las festividades mandadas por ELOHIM para toda la humanidad incluyen: Pascua, Panes Sin Levadura, Primeros Frutos, Pentecostés (Shavuot), Fiesta de Trompetas (Yom Teruah), Día de Expiación (Yom Kippur), Tabernáculos (Sukkot) y el Último Gran Día. Estas no son festividades \"judías\" sino mandamientos de ELOHIM para todos Sus hijos.",
+        about_app: "Sobre Esta Aplicación",
+        about_app_text: "Esta aplicación te permite visualizar el Calendario de ELOHIM, Sus tiempos señalados y añadir tus propios eventos importantes. Los datos se guardan localmente en tu navegador. Recuerda que es responsabilidad de cada persona estar atenta a los tiempos de ELOHIM.",
+        current_year: "Año Actual",
+        year_start: "Inicio:",
+        year_end: "Fin:",
+        total_months: "Total de meses:",
+        twelve_tribes_title: "Las Doce Tribus de Israel",
+
+        // Títulos de secciones
+        month_phase_title: "Fase Lunar Actual",
+        close: "Cerrar",
+        festival_details: "Detalles de Festividad"
     },
     // Traducciones en inglés
     en: {
@@ -621,7 +660,46 @@ CalendarData.translations = {
         no_events_to_export: "No events to export",
         sample_events_exist: "Sample events already exist",
         sample_events_added: "Sample events added successfully",
-        no_preparation_steps: "No specific preparation steps"
+        no_preparation_steps: "No specific preparation steps",
+
+        // Days of the week
+        sunday: "Sunday",
+        monday: "Monday",
+        tuesday: "Tuesday",
+        wednesday: "Wednesday",
+        thursday: "Thursday",
+        friday: "Friday",
+        saturday: "Saturday",
+
+        // Calendar legend
+        legend: "Legend:",
+        legend_saturday: "Saturday",
+        legend_current_day: "Current day",
+        legend_new_moon: "New moon",
+        legend_festival: "Festival",
+        legend_important_festival: "Important festival",
+        legend_personal_event: "Personal event",
+
+        // About view
+        about_title: "About ELOHIM's Calendar",
+        about_what_is: "What is ELOHIM's Calendar?",
+        about_what_is_text: "ELOHIM's Calendar is a lunisolar calendar commanded by ELOHIM for all humanity. It is not exclusive to one people, but is the sacred calendar that ELOHIM established for all creation to observe His appointed times. It is based on the lunar cycle and aligns with the solar year according to the commandments established in Scripture.",
+        about_months: "Months of ELOHIM's Calendar",
+        about_months_text: "ELOHIM's Calendar consists of 12 months in regular years and 13 months in leap years. Each month begins with the observation of the new moon and has 29 or 30 days. These months were ordained by ELOHIM Himself to mark His appointed times.",
+        about_festivals_title: "Festivals Commanded by ELOHIM",
+        about_festivals_text: "The festivals commanded by ELOHIM for all humanity include: Passover, Unleavened Bread, Firstfruits, Pentecost (Shavuot), Feast of Trumpets (Yom Teruah), Day of Atonement (Yom Kippur), Tabernacles (Sukkot) and the Last Great Day. These are not \"Jewish\" festivals but commandments of ELOHIM for all His children.",
+        about_app: "About This Application",
+        about_app_text: "This application allows you to visualize ELOHIM's Calendar, His appointed times, and add your own important events. Data is saved locally in your browser. Remember that it is each person's responsibility to be attentive to ELOHIM's times.",
+        current_year: "Current Year",
+        year_start: "Start:",
+        year_end: "End:",
+        total_months: "Total months:",
+        twelve_tribes_title: "The Twelve Tribes of Israel",
+
+        // Section titles
+        month_phase_title: "Current Moon Phase",
+        close: "Close",
+        festival_details: "Festival Details"
     },
     // Traducciones en tagalog
     tl: {
@@ -711,7 +789,46 @@ CalendarData.translations = {
         no_events_to_export: "Walang mga kaganapan na i-export",
         sample_events_exist: "Ang mga halimbawang kaganapan ay umiiral na",
         sample_events_added: "Matagumpay na naidagdag ang mga halimbawang kaganapan",
-        no_preparation_steps: "Walang tiyak na mga hakbang sa paghahanda"
+        no_preparation_steps: "Walang tiyak na mga hakbang sa paghahanda",
+
+        // Mga araw ng linggo
+        sunday: "Linggo",
+        monday: "Lunes",
+        tuesday: "Martes",
+        wednesday: "Miyerkules",
+        thursday: "Huwebes",
+        friday: "Biyernes",
+        saturday: "Sabado",
+
+        // Leyenda ng kalendaryo
+        legend: "Leyenda:",
+        legend_saturday: "Sabado",
+        legend_current_day: "Kasalukuyang araw",
+        legend_new_moon: "Bagong buwan",
+        legend_festival: "Kapistahan",
+        legend_important_festival: "Mahalagang kapistahan",
+        legend_personal_event: "Personal na kaganapan",
+
+        // Tungkol sa view
+        about_title: "Tungkol sa Kalendaryo ng ELOHIM",
+        about_what_is: "Ano ang Kalendaryo ng ELOHIM?",
+        about_what_is_text: "Ang Kalendaryo ng ELOHIM ay isang kalendaryo na lunisolar na iniutos ng ELOHIM para sa buong sangkatauhan. Hindi ito eksklusibo sa isang bansa, kundi ito ang banal na kalendaryo na itinakda ng ELOHIM para sa lahat ng nilikha upang obserbahan ang Kanyang mga itinakdang panahon. Ito ay batay sa siklo ng buwan at sumasang-ayon sa taong solar ayon sa mga utos na itinatag sa Kasulatan.",
+        about_months: "Mga Buwan ng Kalendaryo ng ELOHIM",
+        about_months_text: "Ang Kalendaryo ng ELOHIM ay binubuo ng 12 buwan sa regular na taon at 13 buwan sa leap years. Bawat buwan ay nagsisimula sa pagmamasid ng bagong buwan at may 29 o 30 araw. Ang mga buwang ito ay itinakda ng ELOHIM mismo upang markahan ang Kanyang mga itinakdang panahon.",
+        about_festivals_title: "Mga Kapistahan na Iniutos ng ELOHIM",
+        about_festivals_text: "Ang mga kapistahan na iniutos ng ELOHIM para sa buong sangkatauhan ay kinabibilangan ng: Paskua, Tinapay na Walang Lebadura, Mga Unang Bunga, Pentecostes (Shavuot), Pista ng mga Trumpeta (Yom Teruah), Araw ng Pagtubos (Yom Kippur), Mga Tabernakulo (Sukkot) at ang Huling Dakila na Araw. Ang mga ito ay hindi \"Hudyo\" na mga kapistahan kundi mga utos ng ELOHIM para sa lahat ng Kanyang mga anak.",
+        about_app: "Tungkol sa Aplikasyon na Ito",
+        about_app_text: "Ang aplikasyon na ito ay nagpapahintulot sa iyo na makita ang Kalendaryo ng ELOHIM, ang Kanyang mga itinakdang panahon, at magdagdag ng iyong sariling mahahalagang kaganapan. Ang data ay naka-save nang lokal sa iyong browser. Tandaan na ito ay responsibilidad ng bawat tao na maging alerto sa mga panahon ng ELOHIM.",
+        current_year: "Kasalukuyang Taon",
+        year_start: "Simula:",
+        year_end: "Wakas:",
+        total_months: "Kabuuang mga buwan:",
+        twelve_tribes_title: "Ang Labindalawang Tribu ng Israel",
+
+        // Mga titulo ng seksyon
+        month_phase_title: "Kasalukuyang Yugto ng Buwan",
+        close: "Isara",
+        festival_details: "Mga Detalye ng Kapistahan"
     },
     // Traducciones en hebreo
     he: {
@@ -801,7 +918,46 @@ CalendarData.translations = {
         no_events_to_export: "אין אירועים לייצוא",
         sample_events_exist: "אירועי דוגמה כבר קיימים",
         sample_events_added: "אירועי דוגמה נוספו בהצלחה",
-        no_preparation_steps: "אין צעדי הכנה ספציפיים"
+        no_preparation_steps: "אין צעדי הכנה ספציפיים",
+
+        // ימות השבוע
+        sunday: "ראשון",
+        monday: "שני",
+        tuesday: "שלישי",
+        wednesday: "רביעי",
+        thursday: "חמישי",
+        friday: "שישי",
+        saturday: "שבת",
+
+        // מקרא לוח השנה
+        legend: "מקרא:",
+        legend_saturday: "שבת",
+        legend_current_day: "יום נוכחי",
+        legend_new_moon: "ירח חדש",
+        legend_festival: "חג",
+        legend_important_festival: "חג חשוב",
+        legend_personal_event: "אירוע אישי",
+
+        // תצוגת אודות
+        about_title: "אודות לוח אלוהים",
+        about_what_is: "מה זה לוח אלוהים?",
+        about_what_is_text: "לוח אלוהים הוא לוח שנה ירחי-שמשי שנצטווה על ידי אלוהים לכל האנושות. זה לא בלעדי לעם אחד, אלא זה הלוח הקדוש שאלוהים קבע לכל הבריאה לקיים את מועדיו. הוא מבוסס על המחזור הירחי ומתיישר עם השנה השמשית על פי המצוות שנקבעו בכתובים.",
+        about_months: "חודשי לוח אלוהים",
+        about_months_text: "לוח אלוהים מורכב מ-12 חודשים בשנים רגילות ו-13 חודשים בשנים מעוברות. כל חודש מתחיל עם התצפית על הירח החדש ויש בו 29 או 30 יום. חודשים אלה נקבעו על ידי אלוהים עצמו כדי לסמן את מועדיו.",
+        about_festivals_title: "חגים שנצטוו על ידי אלוהים",
+        about_festivals_text: "החגים שנצטוו על ידי אלוהים לכל האנושות כוללים: פסח, מצות, ביכורים, שבועות, יום תרועה, יום כיפור, סוכות והשמיני עצרת. אלה אינם חגים \"יהודיים\" אלא מצוות של אלוהים לכל ילדיו.",
+        about_app: "אודות יישום זה",
+        about_app_text: "יישום זה מאפשר לך להציג את לוח אלוהים, מועדיו, ולהוסיף אירועים חשובים משלך. הנתונים נשמרים מקומית בדפדפן שלך. זכור שזו אחריות של כל אדם להיות קשוב למועדי אלוהים.",
+        current_year: "שנה נוכחית",
+        year_start: "התחלה:",
+        year_end: "סיום:",
+        total_months: "סך הכל חודשים:",
+        twelve_tribes_title: "שנים עשר שבטי ישראל",
+
+        // כותרות מדורים
+        month_phase_title: "שלב הירח הנוכחי",
+        close: "סגור",
+        festival_details: "פרטי החג"
     }
 };
 
