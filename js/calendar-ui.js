@@ -1374,11 +1374,6 @@ if (calendarTitle) {
             OmerCounter.updateDisplay(firstfruitsFestival.start_date, currentLanguage, 'omerCounterContainer');
         }
     }
-
-    // Actualizar notificaciones si existe
-    if (typeof Notifications !== 'undefined' && Notifications.checkAndDisplay) {
-        Notifications.checkAndDisplay(CalendarData.festivals, currentLanguage);
-    }
 }
 
 /**
@@ -1650,25 +1645,44 @@ function setupDayEvents() {
         });
     });
 }
-// Añadir al final de js/calendar-ui.js
+/**
+ * Configura el botón de cambio de tema claro/oscuro
+ */
 function setupThemeToggle() {
+    // Crear el botón de tema
     const themeBtn = document.createElement('button');
     themeBtn.className = 'btn btn-outline-light ms-2';
-    themeBtn.innerHTML = '<i class="fas fa-adjust"></i>';
-    themeBtn.title = 'Cambiar tema claro/oscuro';
-    
-    themeBtn.addEventListener('click', function() {
-        document.body.classList.toggle('light-theme');
-        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-    });
-    
-    // Añadir botón al navbar
-    document.querySelector('.dropdown').before(themeBtn);
-    
-    // Cargar tema guardado
-    if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light-theme');
+    themeBtn.id = 'themeToggleBtn';
+
+    // Función para actualizar el ícono del botón
+    function updateThemeIcon() {
+        const isDark = document.body.classList.contains('dark-theme');
+        themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        themeBtn.title = isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
     }
+
+    // Evento de clic para cambiar el tema
+    themeBtn.addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+        const isDark = document.body.classList.contains('dark-theme');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeIcon();
+    });
+
+    // Añadir botón al navbar (antes del dropdown de idioma)
+    const dropdown = document.querySelector('.dropdown');
+    if (dropdown) {
+        dropdown.parentNode.insertBefore(themeBtn, dropdown);
+    }
+
+    // Cargar tema guardado al iniciar
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+
+    // Actualizar el ícono inicial
+    updateThemeIcon();
 }
 
 
