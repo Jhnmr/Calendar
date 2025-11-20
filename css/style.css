@@ -2,29 +2,30 @@
  * Estilos personalizados para el Calendario de ELOHIM - Versión mejorada
  */
 
-/* Variables globales de colores - Paleta Tierra y Cielo (Profesional) */
+/* Variables globales de colores - Paleta Sobria y Profesional */
 :root {
-  --primary-color: #2C5F7F; /* Azul profundo - cielo/agua */
-  --primary-dark: #1A3A4F; /* Azul muy oscuro */
-  --secondary-color: #8B6F47; /* Tierra/arena */
-  --accent-color: #7FA650; /* Verde oliva - naturaleza */
-  --accent-dark: #6A8F42; /* Verde oliva oscuro */
-  --accent-gold: #D4AF37; /* Oro - divinidad */
-  --warning-color: #E8A838; /* Ámbar */
-  --warning-dark: #D4941F; /* Ámbar oscuro */
-  --danger-color: #C85A54; /* Rojo tierra */
-  --danger-dark: #A84842; /* Rojo tierra oscuro */
-  --light-color: #F5F5F0; /* Blanco hueso cálido */
-  --gray-color: #E0DDD6; /* Gris cálido */
-  --dark-color: #3E3E3E; /* Gris muy oscuro */
-  --text-color: #2A2A2A; /* Negro suave */
-  --shadow-color: rgba(0, 0, 0, 0.15);
+  --primary-color: #1a365d; /* Azul oscuro profundo */
+  --primary-dark: #0f2942; /* Azul muy oscuro */
+  --secondary-color: #4a5568; /* Gris carbón */
+  --accent-color: #d4af37; /* Oro viejo (divino) */
+  --accent-dark: #b8962e; /* Oro oscuro */
+  --accent-gold: #d4af37; /* Oro - divinidad */
+  --warning-color: #b8962e; /* Oro apagado para advertencias */
+  --warning-dark: #9a7d25; /* Oro más oscuro */
+  --danger-color: #8b5a5a; /* Rojo apagado */
+  --danger-dark: #6d4444; /* Rojo muy apagado */
+  --light-color: #f7fafc; /* Blanco frío */
+  --gray-color: #e2e8f0; /* Gris frío claro */
+  --dark-color: #2d3748; /* Gris oscuro */
+  --text-color: #2d3748; /* Texto principal */
+  --text-secondary: #718096; /* Texto secundario */
+  --shadow-color: rgba(0, 0, 0, 0.1);
 
   /* Colores para tema oscuro */
-  --dark-bg: #1E1E1E;
-  --dark-card-bg: #2A2A2A;
-  --dark-text: #E8E8E8;
-  --dark-border: #404040;
+  --dark-bg: #1a202c;
+  --dark-card-bg: #2d3748;
+  --dark-text: #e2e8f0;
+  --dark-border: #4a5568;
 }
 
 /* Estilos generales */
@@ -67,13 +68,10 @@ body {
 .month-header {
   text-align: center;
   padding: 1.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-dark)
-  );
+  background: var(--primary-color);
   color: white;
   border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom: 3px solid var(--accent-gold);
 }
 
 .month-header .month-name {
@@ -84,7 +82,7 @@ body {
 }
 
 .month-header .hebrew-name {
-  color: var(--warning-color);
+  color: var(--accent-gold);
   font-weight: 700;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
@@ -104,8 +102,8 @@ body {
 }
 
 .weekdays {
-  background: linear-gradient(to right, var(--light-color), var(--gray-color));
-  border-bottom: 1px solid var(--gray-color);
+  background: var(--light-color);
+  border-bottom: 2px solid var(--gray-color);
   font-weight: 600;
   text-align: center;
   margin: 0;
@@ -153,16 +151,18 @@ body {
 }
 
 .day.sabbath {
-  background-color: #D6E8F5;
-  border-left: 3px solid var(--accent-gold);
+  background-color: #e8f2f7;
+  border-left: 4px solid var(--accent-gold);
 }
 
 .day.festival {
-  background-color: var(--warning-color);
+  background-color: #faf5e4;
+  border-left: 3px solid var(--accent-gold);
 }
 
 .day.high-importance {
-  background-color: var(--danger-color);
+  background-color: #f5e8e8;
+  border-left: 3px solid var(--danger-color);
 }
 
 .day.new-moon {
@@ -302,13 +302,10 @@ body {
 
 /* Navegación y menús */
 .navbar {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-dark)
-  ) !important;
-  box-shadow: 0 2px 8px var(--shadow-color);
+  background: var(--primary-color) !important;
+  box-shadow: 0 2px 4px var(--shadow-color);
   margin-bottom: 2rem;
+  border-bottom: 2px solid var(--accent-gold);
 }
 
 .nav-item .active {
@@ -328,8 +325,8 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px var(--shadow-color);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .card-header {
@@ -340,12 +337,9 @@ body {
 }
 
 .card-header.bg-primary {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-dark)
-  ) !important;
+  background: var(--primary-color) !important;
   color: white;
+  border-bottom: 2px solid var(--accent-gold);
 }
 
 .card-body {
@@ -494,13 +488,13 @@ body {
 
 /* Alerta fecha actual */
 #currentDateDisplay {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  background: #e8f2f7;
   border: none;
-  border-left: 4px solid var(--primary-color);
+  border-left: 4px solid var(--accent-gold);
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 6px var(--shadow-color);
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px var(--shadow-color);
 }
 
 /* Tribus en la vista About */
@@ -883,65 +877,12 @@ body {
 }
 
 /* ====================================
-   SISTEMA DE NOTIFICACIONES
+   SISTEMA DE NOTIFICACIONES - ELIMINADO
    ==================================== */
-
-#notificationsContainer {
-  margin-bottom: 1.5rem;
-}
-
-.notification-item {
-  border-left: 4px solid;
-  box-shadow: 0 2px 8px var(--shadow-color);
-  margin-bottom: 1rem;
-  animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.notification-item .notification-icon {
-  font-size: 2rem;
-  line-height: 1;
-}
-
-.notification-item.alert-danger {
-  border-left-color: var(--danger-dark);
-  background: linear-gradient(135deg, #fff5f5, #ffe5e5);
-}
-
-.notification-item.alert-warning {
-  border-left-color: var(--warning-dark);
-  background: linear-gradient(135deg, #fffef5, #fff9e5);
-}
-
-.notification-item.alert-info {
-  border-left-color: var(--primary-dark);
-  background: linear-gradient(135deg, #f5f9ff, #e5f0ff);
-}
-
-.notification-item .alert-heading {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .notification-item .notification-icon {
-    font-size: 1.5rem;
-  }
-
-  .notification-item .alert-heading {
-    font-size: 1rem;
-  }
-}
+/*
+  El sistema de notificaciones ha sido eliminado.
+  Cada persona debe estar atenta por sí misma a los tiempos de ELOHIM.
+*/
 
 /* ====================================
    TEMA OSCURO

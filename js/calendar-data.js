@@ -1,5 +1,5 @@
 /**
- * Datos del Calendario Hebreo 2025-2026
+ * Datos del Calendario de ELOHIM 2025-2026
  */
 
 // Objeto global para el calendario
@@ -446,7 +446,7 @@ CalendarData.translations = {
     es: {
         // Interfaz general
         calendar: "Calendario de ELOHIM",
-        festivals: "Festividades",
+        festivals: "Festividades Sagradas",
         custom_events: "Mis Eventos",
         about: "Acerca de",
         month_info: "Información del Mes",
@@ -515,7 +515,7 @@ CalendarData.translations = {
         start_day: "Día inicial",
         featured_location: "Ubicación destacada",
         lunar_calendar: "Calendario de ELOHIM",
-        biblical_calendar: "Calendario Mandado por ELOHIM",
+        biblical_calendar: "Calendario de ELOHIM",
         twelve_tribes: "Doce Tribus de Israel",
         calendar_legend: "Leyenda del Calendario",
         sabbath_day: "Día de Reposo",
@@ -536,7 +536,7 @@ CalendarData.translations = {
     // Traducciones en inglés
     en: {
         calendar: "ELOHIM's Calendar",
-        festivals: "Festivals",
+        festivals: "Sacred Feasts",
         custom_events: "My Events",
         about: "About",
         month_info: "Month Information",
@@ -605,7 +605,7 @@ CalendarData.translations = {
         start_day: "Start Day",
         featured_location: "Featured Location",
         lunar_calendar: "ELOHIM's Calendar",
-        biblical_calendar: "Calendar Commanded by ELOHIM",
+        biblical_calendar: "Divine Calendar",
         twelve_tribes: "Twelve Tribes of Israel",
         calendar_legend: "Calendar Legend",
         sabbath_day: "Sabbath Day",
@@ -626,7 +626,7 @@ CalendarData.translations = {
     // Traducciones en tagalog
     tl: {
         calendar: "Kalendaryo ng ELOHIM",
-        festivals: "Mga Kapistahan",
+        festivals: "Mga Banal na Pista",
         custom_events: "Aking mga Kaganapan",
         about: "Tungkol sa",
         month_info: "Impormasyon ng Buwan",
@@ -695,7 +695,7 @@ CalendarData.translations = {
         start_day: "Araw ng Pagsisimula",
         featured_location: "Featured na Lokasyon",
         lunar_calendar: "Kalendaryo ng ELOHIM",
-        biblical_calendar: "Kalendaryo na Iniutos ng ELOHIM",
+        biblical_calendar: "Kalendaryo ng ELOHIM",
         twelve_tribes: "Labindalawang Tribu ng Israel",
         calendar_legend: "Leyenda ng Kalendaryo",
         sabbath_day: "Araw ng Sabbath",
@@ -715,8 +715,8 @@ CalendarData.translations = {
     },
     // Traducciones en hebreo
     he: {
-        calendar: "לוח השנה של אלוהים",
-        festivals: "חגים",
+        calendar: "לוח אלוהים",
+        festivals: "חגים קדושים",
         custom_events: "האירועים שלי",
         about: "אודות",
         month_info: "מידע על החודש",
@@ -784,8 +784,8 @@ CalendarData.translations = {
         day_count: "מספר ימים",
         start_day: "יום התחלה",
         featured_location: "מיקום מוצג",
-        lunar_calendar: "לוח השנה של אלוהים",
-        biblical_calendar: "לוח השנה שנצטווה על ידי אלוהים",
+        lunar_calendar: "לוח אלוהים",
+        biblical_calendar: "לוח אלוהים",
         twelve_tribes: "שנים עשר שבטי ישראל",
         calendar_legend: "מקרא לוח השנה",
         sabbath_day: "יום שבת",
