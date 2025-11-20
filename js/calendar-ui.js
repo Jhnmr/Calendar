@@ -1289,6 +1289,17 @@ if (calendarTitle) {
                         <span class="hebrew-date">${currentDate.getDate()}</span>
                     </div>
                 `;
+
+                // Añadir fase lunar del día
+                if (typeof MoonPhases !== 'undefined' && MoonPhases.calculatePhase) {
+                    const moonPhase = MoonPhases.calculatePhase(currentDate);
+                    const moonIcons = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+                    calendarGridHTML += `
+                        <div class="day-moon-phase" title="${MoonPhases.phaseNames[currentLanguage][moonPhase.phaseIndex]}">
+                            ${moonIcons[moonPhase.phaseIndex]}
+                        </div>
+                    `;
+                }
                 
                 // Indicador de luna nueva
                 if (isNewMoon) {
@@ -1353,6 +1364,20 @@ if (calendarTitle) {
     // Actualizar fase lunar actual
     if (typeof MoonPhases !== 'undefined' && MoonPhases.updateCurrentPhase) {
         MoonPhases.updateCurrentPhase(currentLanguage);
+    }
+
+    // Actualizar contador del Omer si existe
+    if (typeof OmerCounter !== 'undefined' && OmerCounter.updateDisplay) {
+        // Obtener fecha de Primicias del año actual
+        const firstfruitsFestival = CalendarData.festivals.find(f => f.id === 3);
+        if (firstfruitsFestival) {
+            OmerCounter.updateDisplay(firstfruitsFestival.start_date, currentLanguage, 'omerCounterContainer');
+        }
+    }
+
+    // Actualizar notificaciones si existe
+    if (typeof Notifications !== 'undefined' && Notifications.checkAndDisplay) {
+        Notifications.checkAndDisplay(CalendarData.festivals, currentLanguage);
     }
 }
 
