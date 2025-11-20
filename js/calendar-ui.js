@@ -1025,20 +1025,41 @@ function setupLanguageSelector() {
 // Añadir esta nueva función para actualizar todas las traducciones
 function updateAllTranslations() {
     const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
-    
+
     // Actualizar textos de navegación
-    document.getElementById('navCalendar').innerHTML = `<i class="fas fa-calendar-days me-1"></i> ${translations.calendar || 'Calendario'}`;
-    document.getElementById('navFestivals').innerHTML = `<i class="fas fa-menorah me-1"></i> ${translations.festivals || 'Festividades'}`;
-    
+    const navCalendar = document.getElementById('navCalendar');
+    const navFestivals = document.getElementById('navFestivals');
+    const navAbout = document.getElementById('navAbout');
+
+    if (navCalendar) navCalendar.innerHTML = `<i class="fas fa-calendar-days me-1"></i> ${translations.calendar || 'Calendario'}`;
+    if (navFestivals) navFestivals.innerHTML = `<i class="fas fa-menorah me-1"></i> ${translations.festivals || 'Festividades'}`;
+    if (navAbout) navAbout.innerHTML = `<i class="fas fa-info-circle me-1"></i> ${translations.about || 'Acerca de'}`;
+
     // Actualizar título del calendario
-    document.getElementById('calendarTitle').innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario'}`;
-    
+    const calendarTitle = document.getElementById('calendarTitle');
+    if (calendarTitle) calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario'}`;
+
     // Actualizar botones
-    document.getElementById('todayBtn').innerHTML = `<i class="fas fa-calendar-day"></i> ${translations.today || 'Hoy'}`;
-    document.getElementById('prevMonthBtn').textContent = translations.previous || 'Anterior';
-    document.getElementById('nextMonthBtn').textContent = translations.next || 'Siguiente';
-    
-    // Actualizar más elementos según sea necesario
+    const todayBtn = document.getElementById('todayBtn');
+    const prevMonthBtn = document.getElementById('prevMonthBtn');
+    const nextMonthBtn = document.getElementById('nextMonthBtn');
+    const exportBtn = document.getElementById('exportBtn');
+    const printBtn = document.getElementById('printBtn');
+
+    if (todayBtn) todayBtn.innerHTML = `<i class="fas fa-calendar-day"></i> ${translations.today || 'Hoy'}`;
+    if (prevMonthBtn) prevMonthBtn.innerHTML = `<i class="fas fa-chevron-left"></i> ${translations.previous || 'Anterior'}`;
+    if (nextMonthBtn) nextMonthBtn.innerHTML = `${translations.next || 'Siguiente'} <i class="fas fa-chevron-right"></i>`;
+    if (exportBtn) exportBtn.innerHTML = `<i class="fas fa-download"></i> ${translations.export || 'Exportar'} PDF`;
+    if (printBtn) printBtn.innerHTML = `<i class="fas fa-print"></i> ${translations.print || 'Imprimir'}`;
+
+    // Actualizar dirección de texto para hebreo
+    if (currentLanguage === 'he') {
+        document.body.setAttribute('dir', 'rtl');
+    } else {
+        document.body.setAttribute('dir', 'ltr');
+    }
+
+    // Actualizar fecha actual
     updateCurrentDateDisplay();
 }
 
@@ -1171,7 +1192,7 @@ function loadCalendar() {
 const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 const calendarTitle = document.getElementById('calendarTitle');
 if (calendarTitle) {
-    calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario Hebreo'}`;
+    calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario de ELOHIM'}`;
 }
     
     // Actualizar el contenedor del calendario
