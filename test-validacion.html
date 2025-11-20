@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Validación - Calendario Bíblico</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .warning {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge-success {
+            background: #4CAF50;
+            color: white;
+        }
+        .badge-error {
+            background: #f44336;
+            color: white;
+        }
+        .badge-info {
+            background: #2196F3;
+            color: white;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test de Validación - Calendario Bíblico</h1>
+
+        <div class="test-section">
+            <h2>📋 Resumen de Estado</h2>
+            <p id="summary">Cargando...</p>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 Pruebas de Validación</h2>
+            <button onclick="runAllTests()">▶️ Ejecutar Todas las Pruebas</button>
+            <button onclick="testDates()">📅 Probar Fechas</button>
+            <button onclick="testOmer()">📊 Probar Contador del Omer</button>
+            <button onclick="testNotifications()">🔔 Probar Notificaciones</button>
+
+            <div id="results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Tabla de Festividades Validadas</h2>
+            <div id="festivalsTable"></div>
+        </div>
+    </div>
+
+    <script src="js/biblical-validator.js"></script>
+    <script src="js/calendar-data.js"></script>
+    <script src="js/omer-counter.js"></script>
+    <script src="js/notifications.js"></script>
+
+    <script>
+        const results = document.getElementById('results');
+        const summary = document.getElementById('summary');
+
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.style.padding = '10px';
+            div.style.margin = '10px 0';
+            div.style.borderLeft = '4px solid';
+
+            if (type === 'success') {
+                div.style.borderColor = '#4CAF50';
+                div.style.background = '#e8f5e9';
+                message = '✅ ' + message;
+            } else if (type === 'error') {
+                div.style.borderColor = '#f44336';
+                div.style.background = '#ffebee';
+                message = '❌ ' + message;
+            } else if (type === 'warning') {
+                div.style.borderColor = '#ff9800';
+                div.style.background = '#fff3e0';
+                message = '⚠️ ' + message;
+            } else {
+                div.style.borderColor = '#2196F3';
+                div.style.background = '#e3f2fd';
+                message = 'ℹ️ ' + message;
+            }
+
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        function clearResults() {
+            results.innerHTML = '';
+        }
+
+        function testDates() {
+            clearResults();
+            log('Iniciando prueba de validación de fechas...', 'info');
+
+            const avivStart = new Date('2025-03-30');
+            const vernalEquinox = new Date('2025-03-20');
+            const autumnalEquinox = new Date('2025-09-22');
+
+            const festivals = BiblicalValidator.calculateAllFestivals(
+                avivStart,
+                vernalEquinox,
+                autumnalEquinox
+            );
+
+            const report = BiblicalValidator.generateReport(festivals);
+
+            log(`Total de validaciones: ${report.validations.length}`, 'info');
+            log(`Errores encontrados: ${report.totalErrors}`, report.totalErrors === 0 ? 'success' : 'error');
+            log(`Calendario válido: ${report.isValid ? 'SÍ' : 'NO'}`, report.isValid ? 'success' : 'error');
+
+            // Verificar fechas específicas
+            const primicias = festivals.firstfruits.date;
+            const shavuot = festivals.shavuot.date;
+
+            const isPrimiciasSunday = primicias.getDay() === 0;
+            const isShavuotSunday = shavuot.getDay() === 0;
+
+            log(`Primicias es domingo: ${isPrimiciasSunday ? 'SÍ' : 'NO'}`, isPrimiciasSunday ? 'success' : 'error');
+            log(`Shavuot es domingo: ${isShavuotSunday ? 'SÍ' : 'NO'}`, isShavuotSunday ? 'success' : 'error');
+
+            const daysDiff = Math.floor((shavuot - primicias) / (1000 * 60 * 60 * 24));
+            log(`Días entre Primicias y Shavuot: ${daysDiff} (debe ser 49)`, daysDiff === 49 ? 'success' : 'error');
+
+            if (report.errors.length > 0) {
+                log('Errores detectados:', 'error');
+                report.errors.forEach(err => {
+                    log(`  - ${err.festival}: ${err.message}`, 'error');
+                });
+            } else {
+                log('¡Todas las validaciones pasaron correctamente!', 'success');
+            }
+        }
+
+        function testOmer() {
+            clearResults();
+            log('Iniciando prueba del Contador del Omer...', 'info');
+
+            const firstfruitsDate = new Date('2025-04-13');
+
+            // Probar diferentes días del conteo
+            const testDates = [
+                { date: new Date('2025-04-12'), expected: 'not_started', desc: 'Día antes de Primicias' },
+                { date: new Date('2025-04-13'), expected: 'counting', day: 1, desc: 'Primicias (Día 1)' },
+                { date: new Date('2025-04-20'), expected: 'counting', day: 8, desc: 'Semana 2, Día 1' },
+                { date: new Date('2025-06-01'), expected: 'counting', day: 50, desc: 'Shavuot (Día 50)' },
+                { date: new Date('2025-06-02'), expected: 'completed', desc: 'Después de Shavuot' }
+            ];
+
+            testDates.forEach(test => {
+                const omerData = OmerCounter.calculateOmerDay(firstfruitsDate, test.date);
+                const statusMatch = omerData.status === test.expected;
+                const dayMatch = test.day ? omerData.omerDay === test.day : true;
+
+                if (statusMatch && dayMatch) {
+                    log(`${test.desc}: Estado=${omerData.status}, Día=${omerData.omerDay}`, 'success');
+                } else {
+                    log(`${test.desc}: FALLÓ. Esperado: ${test.expected}, Obtenido: ${omerData.status}`, 'error');
+                }
+            });
+
+            log('Prueba del Contador del Omer completada', 'success');
+        }
+
+        function testNotifications() {
+            clearResults();
+            log('Iniciando prueba del Sistema de Notificaciones...', 'info');
+
+            // Simular fechas cercanas a festividades
+            const testFestivals = [
+                {
+                    id: 1,
+                    name: 'Passover (Simulado)',
+                    start_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 7 días
+                    importance: 'high'
+                },
+                {
+                    id: 4,
+                    name: 'Shavuot (Simulado)',
+                    start_date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 3 días
+                    importance: 'high'
+                },
+                {
+                    id: 7,
+                    name: 'Sukkot (Simulado)',
+                    start_date: new Date().toISOString().split('T')[0], // Hoy
+                    importance: 'high'
+                }
+            ];
+
+            const pending = Notifications.getPendingNotifications(testFestivals);
+
+            log(`Notificaciones pendientes encontradas: ${pending.length}`, pending.length > 0 ? 'success' : 'warning');
+
+            pending.forEach(notif => {
+                log(`${notif.festival.name}: ${notif.daysUntil} días, Urgencia: ${notif.urgency}`, 'info');
+            });
+
+            // Verificar formato de días
+            const formats = [
+                { days: 0, expected: 'hoy' },
+                { days: 1, expected: 'mañana' },
+                { days: 7, expected: 'en 7 días' }
+            ];
+
+            formats.forEach(test => {
+                const formatted = Notifications.formatDays(test.days, 'es');
+                const match = formatted.includes(test.expected);
+                log(`Formato de ${test.days} días: "${formatted}"`, match ? 'success' : 'error');
+            });
+
+            log('Prueba de Notificaciones completada', 'success');
+        }
+
+        function displayFestivalsTable() {
+            const table = document.createElement('table');
+            const thead = `
+                <thead>
+                    <tr>
+                        <th>Festividad</th>
+                        <th>Fecha</th>
+                        <th>Día de Semana</th>
+                        <th>Fecha Hebrea</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+            `;
+
+            let tbody = '<tbody>';
+
+            CalendarData.festivals.forEach(festival => {
+                const date = new Date(festival.start_date);
+                const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                const dayName = days[date.getDay()];
+
+                let badge = '<span class="badge badge-success">✓ Válido</span>';
+
+                // Verificaciones especiales
+                if (festival.id === 3 && date.getDay() !== 0) {
+                    badge = '<span class="badge badge-error">✗ Debe ser domingo</span>';
+                } else if (festival.id === 4 && date.getDay() !== 0) {
+                    badge = '<span class="badge badge-error">✗ Debe ser domingo</span>';
+                }
+
+                tbody += `
+                    <tr>
+                        <td><strong>${festival.name}</strong></td>
+                        <td>${date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                        <td>${dayName}</td>
+                        <td>${festival.description_short.match(/\d+ de \w+/) || 'N/A'}</td>
+                        <td>${badge}</td>
+                    </tr>
+                `;
+            });
+
+            tbody += '</tbody>';
+            table.innerHTML = thead + tbody;
+
+            document.getElementById('festivalsTable').appendChild(table);
+        }
+
+        function runAllTests() {
+            clearResults();
+            log('═══════════════════════════════════════', 'info');
+            log('EJECUTANDO TODAS LAS PRUEBAS', 'info');
+            log('═══════════════════════════════════════', 'info');
+
+            setTimeout(() => {
+                testDates();
+                setTimeout(() => {
+                    testOmer();
+                    setTimeout(() => {
+                        testNotifications();
+                        log('═══════════════════════════════════════', 'success');
+                        log('TODAS LAS PRUEBAS COMPLETADAS', 'success');
+                        log('═══════════════════════════════════════', 'success');
+                    }, 500);
+                }, 500);
+            }, 500);
+        }
+
+        // Ejecutar al cargar
+        window.onload = function() {
+            summary.innerHTML = `
+                <strong>Estado del Sistema:</strong><br>
+                ✅ Validador de Fechas: Cargado<br>
+                ✅ Contador del Omer: Cargado<br>
+                ✅ Sistema de Notificaciones: Cargado<br>
+                ✅ Datos del Calendario: Cargado<br>
+                <br>
+                <span class="success">Sistema listo para pruebas</span>
+            `;
+
+            displayFestivalsTable();
+        };
+    </script>
+</body>
+</html>

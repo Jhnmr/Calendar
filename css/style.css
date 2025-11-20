@@ -717,3 +717,220 @@ body {
     border: 1px solid var(--gray-color);
   }
 }
+
+/* ====================================
+   CONTADOR DEL OMER (CONTEO A SHAVUOT)
+   ==================================== */
+
+.omer-counter {
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 3px 10px var(--shadow-color);
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--accent-color);
+}
+
+.omer-counter.not-started {
+  border-color: var(--gray-color);
+  text-align: center;
+  opacity: 0.7;
+}
+
+.omer-counter.completed {
+  border-color: var(--primary-color);
+  text-align: center;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.omer-counter.shavuot {
+  border-color: var(--warning-color);
+  background: linear-gradient(135deg, #fff9e6, #fffbf0);
+  text-align: center;
+}
+
+.omer-counter.counting {
+  border-color: var(--accent-color);
+  background: linear-gradient(135deg, #ffffff, #f8fff0);
+}
+
+.omer-icon {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.omer-icon.celebration {
+  color: var(--warning-color);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.omer-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.omer-title {
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.omer-body {
+  text-align: center;
+}
+
+.omer-day-display {
+  margin-bottom: 1rem;
+}
+
+.omer-day-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.omer-day-label {
+  font-size: 1rem;
+  color: var(--dark-color);
+  font-weight: 500;
+}
+
+.omer-progress {
+  margin: 1.5rem 0;
+}
+
+.omer-weeks {
+  margin: 1rem 0;
+}
+
+.omer-weeks .badge {
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+}
+
+.omer-remaining {
+  font-size: 1rem;
+  color: var(--dark-color);
+  margin-top: 1rem;
+}
+
+.omer-message {
+  font-size: 1rem;
+  color: var(--dark-color);
+  font-style: italic;
+}
+
+/* Responsive para Omer Counter */
+@media (max-width: 768px) {
+  .omer-counter {
+    padding: 1rem;
+  }
+
+  .omer-day-number {
+    font-size: 2.5rem;
+  }
+
+  .omer-title {
+    font-size: 1rem;
+  }
+
+  .omer-icon {
+    font-size: 2rem;
+  }
+}
+
+/* ====================================
+   FASE LUNAR POR DÍA EN CALENDARIO
+   ==================================== */
+
+.day-moon-phase {
+  font-size: 1.2rem;
+  margin: 0.25rem 0;
+  text-align: center;
+  cursor: help;
+  transition: transform 0.2s ease;
+}
+
+.day-moon-phase:hover {
+  transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+  .day-moon-phase {
+    font-size: 1rem;
+  }
+}
+
+/* ====================================
+   SISTEMA DE NOTIFICACIONES
+   ==================================== */
+
+#notificationsContainer {
+  margin-bottom: 1.5rem;
+}
+
+.notification-item {
+  border-left: 4px solid;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  margin-bottom: 1rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notification-item .notification-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.notification-item.alert-danger {
+  border-left-color: var(--danger-dark);
+  background: linear-gradient(135deg, #fff5f5, #ffe5e5);
+}
+
+.notification-item.alert-warning {
+  border-left-color: var(--warning-dark);
+  background: linear-gradient(135deg, #fffef5, #fff9e5);
+}
+
+.notification-item.alert-info {
+  border-left-color: var(--primary-dark);
+  background: linear-gradient(135deg, #f5f9ff, #e5f0ff);
+}
+
+.notification-item .alert-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .notification-item .notification-icon {
+    font-size: 1.5rem;
+  }
+
+  .notification-item .alert-heading {
+    font-size: 1rem;
+  }
+}
