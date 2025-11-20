@@ -1,23 +1,30 @@
 /**
- * Estilos personalizados para el Calendario Hebreo - Versión mejorada
+ * Estilos personalizados para el Calendario de ELOHIM - Versión mejorada
  */
 
-/* Variables globales de colores en paleta pastel */
+/* Variables globales de colores - Paleta Tierra y Cielo (Profesional) */
 :root {
-  --primary-color: #78a9d1; /* Azul pastel */
-  --primary-dark: #5d8cb6; /* Azul pastel oscuro */
-  --secondary-color: #f6c0a9; /* Durazno/melocotón pastel */
-  --accent-color: #badc98; /* Verde pastel */
-  --accent-dark: #9fc382; /* Verde pastel oscuro */
-  --warning-color: #f9e6a8; /* Amarillo pastel */
-  --warning-dark: #f1d787; /* Amarillo pastel oscuro */
-  --danger-color: #eda5a5; /* Rojo pastel */
-  --danger-dark: #e27777; /* Rojo pastel oscuro */
-  --light-color: #f8f9fa; /* Blanco hueso */
-  --gray-color: #e9ecef; /* Gris muy claro */
-  --dark-color: #495057; /* Gris oscuro */
-  --text-color: #343a40; /* Casi negro */
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --primary-color: #2C5F7F; /* Azul profundo - cielo/agua */
+  --primary-dark: #1A3A4F; /* Azul muy oscuro */
+  --secondary-color: #8B6F47; /* Tierra/arena */
+  --accent-color: #7FA650; /* Verde oliva - naturaleza */
+  --accent-dark: #6A8F42; /* Verde oliva oscuro */
+  --accent-gold: #D4AF37; /* Oro - divinidad */
+  --warning-color: #E8A838; /* Ámbar */
+  --warning-dark: #D4941F; /* Ámbar oscuro */
+  --danger-color: #C85A54; /* Rojo tierra */
+  --danger-dark: #A84842; /* Rojo tierra oscuro */
+  --light-color: #F5F5F0; /* Blanco hueso cálido */
+  --gray-color: #E0DDD6; /* Gris cálido */
+  --dark-color: #3E3E3E; /* Gris muy oscuro */
+  --text-color: #2A2A2A; /* Negro suave */
+  --shadow-color: rgba(0, 0, 0, 0.15);
+
+  /* Colores para tema oscuro */
+  --dark-bg: #1E1E1E;
+  --dark-card-bg: #2A2A2A;
+  --dark-text: #E8E8E8;
+  --dark-border: #404040;
 }
 
 /* Estilos generales */
@@ -146,7 +153,8 @@ body {
 }
 
 .day.sabbath {
-  background-color: #e6f3ff;
+  background-color: #D6E8F5;
+  border-left: 3px solid var(--accent-gold);
 }
 
 .day.festival {
@@ -933,4 +941,115 @@ body {
   .notification-item .alert-heading {
     font-size: 1rem;
   }
+}
+
+/* ====================================
+   TEMA OSCURO
+   ==================================== */
+
+body.dark-theme {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+body.dark-theme .navbar {
+  background: linear-gradient(135deg, #1A3A4F, #0F2433) !important;
+}
+
+body.dark-theme .card,
+body.dark-theme .calendar-month,
+body.dark-theme .calendar-grid {
+  background-color: var(--dark-card-bg);
+  color: var(--dark-text);
+  border-color: var(--dark-border);
+}
+
+body.dark-theme .day {
+  background-color: var(--dark-card-bg);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-theme .day.empty {
+  background-color: var(--dark-bg);
+}
+
+body.dark-theme .day.sabbath {
+  background-color: #2C4A5F;
+}
+
+body.dark-theme .day.current-day {
+  background-color: #2C5F7F;
+  box-shadow: inset 0 0 0 2px var(--accent-gold);
+}
+
+body.dark-theme .day.festival {
+  background-color: #7A6A2F;
+}
+
+body.dark-theme .day.high-importance {
+  background-color: #8B4842;
+}
+
+body.dark-theme .day:hover {
+  background-color: #3A3A3A;
+}
+
+body.dark-theme .weekdays {
+  background: linear-gradient(to right, var(--dark-card-bg), var(--dark-bg));
+  border-bottom-color: var(--dark-border);
+}
+
+body.dark-theme .month-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+body.dark-theme .scripture-container {
+  background-color: var(--dark-card-bg);
+  border-left-color: var(--accent-gold);
+}
+
+body.dark-theme #currentDateDisplay {
+  background: linear-gradient(135deg, #2C4A5F, #1A3A4F);
+  border-left-color: var(--accent-gold);
+}
+
+body.dark-theme .list-group-item {
+  background-color: var(--dark-card-bg);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+body.dark-theme .tribe-card {
+  background-color: var(--dark-card-bg);
+  color: var(--dark-text);
+}
+
+body.dark-theme .festival-card {
+  background-color: var(--dark-card-bg);
+  color: var(--dark-text);
+}
+
+body.dark-theme .custom-event-item:hover {
+  background-color: #3A3A3A;
+}
+
+body.dark-theme .btn-outline-primary {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+body.dark-theme .btn-outline-primary:hover {
+  background-color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: var(--dark-color);
+}
+
+/* Transiciones suaves entre temas */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card, .calendar-month, .day, .scripture-container, .list-group-item, .tribe-card, .festival-card {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
