@@ -764,25 +764,28 @@ function getCustomEventsForMonth(startDateStr, endDateStr) {
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar el idioma guardado en localStorage (si existe)
     loadLanguagePreference();
-    
+
     // Inicializar la interfaz
     initializeUI();
-    
+
+    // Actualizar todas las traducciones ANTES de cargar el calendario
+    updateAllTranslations();
+
     // Cargar el calendario
     loadCalendar();
-    
+
     // Configurar eventos de navegación
     setupNavigationEvents();
-    
+
     // Configurar eventos de exportación/impresión
     setupExportEvents();
-    
+
     // Configurar selector de idioma
     setupLanguageSelector();
-    
+
     // Mostrar la fecha actual
     updateCurrentDateDisplay();
-    
+
     // Configurar el botón "Hoy"
     setupTodayButton();
     setupThemeToggle();
@@ -1052,15 +1055,22 @@ function updateAllTranslations() {
     if (exportBtn) exportBtn.innerHTML = `<i class="fas fa-download"></i> ${translations.export || 'Exportar'} PDF`;
     if (printBtn) printBtn.innerHTML = `<i class="fas fa-print"></i> ${translations.print || 'Imprimir'}`;
 
-    // Actualizar títulos de secciones
-    const monthInfoTitle = document.querySelector('#monthInfo')?.closest('.card')?.querySelector('.card-header h5');
-    if (monthInfoTitle) monthInfoTitle.innerHTML = `<i class="fas fa-info-circle me-2"></i>${translations.month_info || 'Información del Mes'}`;
+    // Actualizar títulos de secciones del sidebar
+    const monthInfoCard = document.querySelector('.card-header.bg-primary.text-white h5');
+    if (monthInfoCard && monthInfoCard.textContent.includes('Información')) {
+        monthInfoCard.innerHTML = `<i class="fas fa-info-circle me-2"></i>${translations.month_info || 'Información del Mes'}`;
+    }
 
-    const moonPhaseTitle = document.querySelector('#currentMoonPhase')?.closest('.card')?.querySelector('.card-header h5');
-    if (moonPhaseTitle) moonPhaseTitle.innerHTML = `<i class="fas fa-moon me-2"></i>${translations.month_phase_title || 'Fase Lunar Actual'}`;
-
-    const festivalsThisMonthTitle = document.querySelector('#festivalsList')?.closest('.card')?.querySelector('.card-header h5');
-    if (festivalsThisMonthTitle) festivalsThisMonthTitle.innerHTML = `<i class="fas fa-menorah me-2"></i>${translations.festivals_this_month || 'Festividades Este Mes'}`;
+    // Buscar y actualizar título de Fase Lunar
+    const cardHeaders = document.querySelectorAll('.card-header.bg-primary.text-white h5');
+    cardHeaders.forEach(header => {
+        if (header.textContent.includes('Fase Lunar') || header.textContent.includes('Moon Phase') || header.textContent.includes('Yugto ng Buwan') || header.textContent.includes('שלב הירח')) {
+            header.innerHTML = `<i class="fas fa-moon me-2"></i>${translations.month_phase_title || 'Fase Lunar Actual'}`;
+        }
+        if (header.textContent.includes('Festividades Este Mes') || header.textContent.includes('Festivals This Month') || header.textContent.includes('Mga Kapistahan') || header.textContent.includes('חגים בחודש')) {
+            header.innerHTML = `<i class="fas fa-menorah me-2"></i>${translations.festivals_this_month || 'Festividades Este Mes'}`;
+        }
+    });
 
     // Actualizar título de escritura del mes
     const scriptureTitle = document.getElementById('scriptureTitle');
@@ -1083,6 +1093,9 @@ function updateAllTranslations() {
         document.body.setAttribute('dir', 'ltr');
     }
 
+    // Actualizar atributo lang del HTML
+    document.documentElement.lang = currentLanguage;
+
     // Actualizar fecha actual
     updateCurrentDateDisplay();
 }
@@ -1091,22 +1104,27 @@ function updateAllTranslations() {
 function updateCalendarLegend() {
     const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 
-    // Buscar el contenedor de la leyenda
-    const legendCard = document.querySelector('.card .card-body h6.card-title.mb-3');
-    if (legendCard && legendCard.textContent === 'Leyenda:') {
-        legendCard.textContent = translations.legend || 'Leyenda:';
+    // Buscar todas las tarjetas con título h6
+    const allH6Titles = document.querySelectorAll('.card .card-body h6.card-title.mb-3');
 
-        // Actualizar los textos de la leyenda
-        const legendItems = legendCard.parentElement.querySelectorAll('.d-flex.align-items-center span.ms-2');
-        if (legendItems.length >= 6) {
-            legendItems[0].textContent = translations.legend_saturday || 'Sábado';
-            legendItems[1].textContent = translations.legend_current_day || 'Día actual';
-            legendItems[2].textContent = translations.legend_new_moon || 'Luna nueva';
-            legendItems[3].textContent = translations.legend_festival || 'Festividad';
-            legendItems[4].textContent = translations.legend_important_festival || 'Festividad importante';
-            legendItems[5].textContent = translations.legend_personal_event || 'Evento personal';
+    allH6Titles.forEach(legendCard => {
+        // Verificar si es la leyenda buscando por palabras clave en varios idiomas
+        const text = legendCard.textContent.trim();
+        if (text === 'Leyenda:' || text === 'Legend:' || text === 'Leyenda:' || text === 'מקרא:') {
+            legendCard.textContent = translations.legend || 'Leyenda:';
+
+            // Actualizar los textos de la leyenda
+            const legendItems = legendCard.parentElement.querySelectorAll('.d-flex.align-items-center span.ms-2');
+            if (legendItems.length >= 6) {
+                legendItems[0].textContent = translations.legend_saturday || 'Sábado';
+                legendItems[1].textContent = translations.legend_current_day || 'Día actual';
+                legendItems[2].textContent = translations.legend_new_moon || 'Luna nueva';
+                legendItems[3].textContent = translations.legend_festival || 'Festividad';
+                legendItems[4].textContent = translations.legend_important_festival || 'Festividad importante';
+                legendItems[5].textContent = translations.legend_personal_event || 'Evento personal';
+            }
         }
-    }
+    });
 }
 
 // Función para actualizar las traducciones de la vista Acerca de
@@ -1120,38 +1138,57 @@ function updateAboutViewTranslations() {
     // Actualizar secciones de texto
     const aboutView = document.getElementById('aboutView');
     if (aboutView) {
-        const headers = aboutView.querySelectorAll('h5');
-        const paragraphs = aboutView.querySelectorAll('p');
+        // Buscar específicamente los h5 dentro de la primera tarjeta
+        const mainCard = aboutView.querySelector('.card.shadow .card-body');
+        if (mainCard) {
+            const headers = mainCard.querySelectorAll('h5');
+            const paragraphs = mainCard.querySelectorAll('p');
 
-        if (headers.length >= 4 && paragraphs.length >= 5) {
-            headers[0].textContent = translations.about_what_is || '¿Qué es el Calendario de ELOHIM?';
-            paragraphs[0].textContent = translations.about_what_is_text || '';
+            if (headers.length >= 4 && paragraphs.length >= 4) {
+                headers[0].textContent = translations.about_what_is || '¿Qué es el Calendario de ELOHIM?';
+                paragraphs[0].textContent = translations.about_what_is_text || '';
 
-            headers[1].textContent = translations.about_months || 'Meses del Calendario de ELOHIM';
-            paragraphs[1].textContent = translations.about_months_text || '';
+                headers[1].textContent = translations.about_months || 'Meses del Calendario de ELOHIM';
+                paragraphs[1].textContent = translations.about_months_text || '';
 
-            headers[2].textContent = translations.about_festivals_title || 'Festividades Mandadas por ELOHIM';
-            paragraphs[2].textContent = translations.about_festivals_text || '';
+                headers[2].textContent = translations.about_festivals_title || 'Festividades Mandadas por ELOHIM';
+                paragraphs[2].textContent = translations.about_festivals_text || '';
 
-            headers[3].textContent = translations.about_app || 'Sobre Esta Aplicación';
-            paragraphs[3].textContent = translations.about_app_text || '';
+                headers[3].textContent = translations.about_app || 'Sobre Esta Aplicación';
+                paragraphs[3].textContent = translations.about_app_text || '';
+            }
         }
 
-        // Actualizar tarjeta de año actual
-        const yearCardHeader = aboutView.querySelector('.card-header h5');
-        if (yearCardHeader) yearCardHeader.textContent = translations.current_year || 'Año Actual';
+        // Actualizar tarjeta de año actual (en el lado derecho)
+        const yearCard = aboutView.querySelector('.col-md-4 .card');
+        if (yearCard) {
+            const yearCardHeader = yearCard.querySelector('.card-header h5');
+            if (yearCardHeader) yearCardHeader.textContent = translations.current_year || 'Año Actual';
 
-        const yearLabels = aboutView.querySelectorAll('.card-body strong');
-        if (yearLabels.length >= 4) {
-            yearLabels[0].textContent = translations.year || 'Año:';
-            yearLabels[1].textContent = translations.year_start || 'Inicio:';
-            yearLabels[2].textContent = translations.year_end || 'Fin:';
-            yearLabels[3].textContent = translations.total_months || 'Total de meses:';
+            const yearCardBody = yearCard.querySelector('.card-body');
+            if (yearCardBody) {
+                const paragraphs = yearCardBody.querySelectorAll('p');
+                if (paragraphs.length >= 4) {
+                    // Actualizar los textos pero mantener los valores dinámicos
+                    const yearName = document.getElementById('aboutYearName')?.textContent || '';
+                    const yearStart = document.getElementById('aboutYearStart')?.textContent || '';
+                    const yearEnd = document.getElementById('aboutYearEnd')?.textContent || '';
+                    const monthsCount = document.getElementById('aboutMonthsCount')?.textContent || '';
+
+                    paragraphs[0].innerHTML = `<strong>${translations.year || 'Año'}:</strong> <span id="aboutYearName">${yearName}</span>`;
+                    paragraphs[1].innerHTML = `<strong>${translations.year_start || 'Inicio'}:</strong> <span id="aboutYearStart">${yearStart}</span>`;
+                    paragraphs[2].innerHTML = `<strong>${translations.year_end || 'Fin'}:</strong> <span id="aboutYearEnd">${yearEnd}</span>`;
+                    paragraphs[3].innerHTML = `<strong>${translations.total_months || 'Total de meses'}:</strong> <span id="aboutMonthsCount">${monthsCount}</span>`;
+                }
+            }
         }
 
         // Actualizar título de las 12 tribus
-        const tribesCardHeader = aboutView.querySelectorAll('.card-header h5')[1];
-        if (tribesCardHeader) tribesCardHeader.textContent = translations.twelve_tribes_title || 'Las Doce Tribus de Israel';
+        const tribesCard = aboutView.querySelectorAll('.card.shadow')[1];
+        if (tribesCard) {
+            const tribesCardHeader = tribesCard.querySelector('.card-header h5');
+            if (tribesCardHeader) tribesCardHeader.textContent = translations.twelve_tribes_title || 'Las Doce Tribus de Israel';
+        }
     }
 }
 
@@ -1216,14 +1253,14 @@ function setupTodayButton() {
 function updateCurrentDateDisplay() {
     const currentDateText = document.getElementById('currentDateText');
     const currentHebrewDate = document.getElementById('currentHebrewDate');
-    
+
     if (currentDateText && currentHebrewDate) {
         const today = new Date();
-        
+
         // Formatear la fecha actual en el idioma seleccionado
         let dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         let locale;
-        
+
         switch (currentLanguage) {
             case 'en':
                 locale = 'en-US';
@@ -1237,35 +1274,36 @@ function updateCurrentDateDisplay() {
             default:
                 locale = 'es-ES';
         }
-        
+
         const formattedDate = today.toLocaleDateString(locale, dateOptions);
-        
+
         // Obtener texto según el idioma
-        const currentDatePrefix = CalendarData.translations[currentLanguage].current_date || 'Fecha actual:';
-        
+        const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
+        const currentDatePrefix = translations.current_date || 'Fecha actual';
+
         // Actualizar el texto
         currentDateText.innerHTML = `<i class="fas fa-calendar-day me-2"></i><strong>${currentDatePrefix}:</strong> ${formattedDate}`;
-        
+
         // Encontrar la fecha hebrea correspondiente
         let hebrewDate = '';
         for (const month of CalendarData.months) {
             const startDate = new Date(month.start_date);
             const endDate = new Date(month.end_date);
-            
+
             if (today >= startDate && today <= endDate) {
                 // Calcular el día del mes hebreo
                 const diffTime = Math.abs(today - startDate);
                 const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                
+
                 // El día hebreo + 1 (porque los meses hebreos empiezan en 1)
                 const hebrewDay = diffDays + 1;
-                
+
                 // Obtener el nombre del mes
                 hebrewDate = `${hebrewDay} ${month.hebrew_name}`;
                 break;
             }
         }
-        
+
         // Actualizar la fecha hebrea
         currentHebrewDate.textContent = hebrewDate;
     }
@@ -1488,21 +1526,31 @@ if (calendarTitle) {
 function updateMonthInfo(month) {
     const monthInfoContainer = document.getElementById('monthInfo');
     if (!monthInfoContainer) return;
-    
-    const translations = CalendarData.translations[currentLanguage];
-    
+
+    const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
+
+    // Determinar el locale según el idioma
+    let locale;
+    switch (currentLanguage) {
+        case 'en':
+            locale = 'en-US';
+            break;
+        case 'tl':
+            locale = 'fil-PH';
+            break;
+        case 'he':
+            locale = 'he-IL';
+            break;
+        default:
+            locale = 'es-ES';
+    }
+
     // Formatear la fecha de luna nueva
     const newMoonDate = new Date(month.new_moon_date);
-    const newMoonFormatted = newMoonDate.toLocaleDateString(
-        currentLanguage === 'en' ? 'en-US' : (currentLanguage === 'tl' ? 'fil-PH' : 'es-ES'),
-        { year: 'numeric', month: 'long', day: 'numeric' }
-    );
-    
+    const newMoonFormatted = newMoonDate.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
+
     // Formatear la hora de la luna nueva
-    const newMoonTime = newMoonDate.toLocaleTimeString(
-        currentLanguage === 'en' ? 'en-US' : (currentLanguage === 'tl' ? 'fil-PH' : 'es-ES'),
-        { hour: '2-digit', minute: '2-digit' }
-    );
+    const newMoonTime = newMoonDate.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
     
     // Obtener el nombre del día de inicio según el idioma
     const dayNameKey = getDayNameFromIndex(month.start_weekday);
