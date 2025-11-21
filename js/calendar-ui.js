@@ -1052,6 +1052,30 @@ function updateAllTranslations() {
     if (exportBtn) exportBtn.innerHTML = `<i class="fas fa-download"></i> ${translations.export || 'Exportar'} PDF`;
     if (printBtn) printBtn.innerHTML = `<i class="fas fa-print"></i> ${translations.print || 'Imprimir'}`;
 
+    // Actualizar títulos de secciones
+    const monthInfoTitle = document.querySelector('#monthInfo')?.closest('.card')?.querySelector('.card-header h5');
+    if (monthInfoTitle) monthInfoTitle.innerHTML = `<i class="fas fa-info-circle me-2"></i>${translations.month_info || 'Información del Mes'}`;
+
+    const moonPhaseTitle = document.querySelector('#currentMoonPhase')?.closest('.card')?.querySelector('.card-header h5');
+    if (moonPhaseTitle) moonPhaseTitle.innerHTML = `<i class="fas fa-moon me-2"></i>${translations.month_phase_title || 'Fase Lunar Actual'}`;
+
+    const festivalsThisMonthTitle = document.querySelector('#festivalsList')?.closest('.card')?.querySelector('.card-header h5');
+    if (festivalsThisMonthTitle) festivalsThisMonthTitle.innerHTML = `<i class="fas fa-menorah me-2"></i>${translations.festivals_this_month || 'Festividades Este Mes'}`;
+
+    // Actualizar título de escritura del mes
+    const scriptureTitle = document.getElementById('scriptureTitle');
+    if (scriptureTitle) scriptureTitle.textContent = translations.scripture_of_month || 'Escritura del Mes';
+
+    // Actualizar leyenda del calendario
+    updateCalendarLegend();
+
+    // Actualizar vista de festividades
+    const festivalsViewTitle = document.querySelector('#festivalsView h1');
+    if (festivalsViewTitle) festivalsViewTitle.innerHTML = `<i class="fas fa-menorah me-2"></i>${translations.festivals || 'Festividades Sagradas'}`;
+
+    // Actualizar vista Acerca de
+    updateAboutViewTranslations();
+
     // Actualizar dirección de texto para hebreo
     if (currentLanguage === 'he') {
         document.body.setAttribute('dir', 'rtl');
@@ -1061,6 +1085,74 @@ function updateAllTranslations() {
 
     // Actualizar fecha actual
     updateCurrentDateDisplay();
+}
+
+// Función para actualizar la leyenda del calendario
+function updateCalendarLegend() {
+    const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
+
+    // Buscar el contenedor de la leyenda
+    const legendCard = document.querySelector('.card .card-body h6.card-title.mb-3');
+    if (legendCard && legendCard.textContent === 'Leyenda:') {
+        legendCard.textContent = translations.legend || 'Leyenda:';
+
+        // Actualizar los textos de la leyenda
+        const legendItems = legendCard.parentElement.querySelectorAll('.d-flex.align-items-center span.ms-2');
+        if (legendItems.length >= 6) {
+            legendItems[0].textContent = translations.legend_saturday || 'Sábado';
+            legendItems[1].textContent = translations.legend_current_day || 'Día actual';
+            legendItems[2].textContent = translations.legend_new_moon || 'Luna nueva';
+            legendItems[3].textContent = translations.legend_festival || 'Festividad';
+            legendItems[4].textContent = translations.legend_important_festival || 'Festividad importante';
+            legendItems[5].textContent = translations.legend_personal_event || 'Evento personal';
+        }
+    }
+}
+
+// Función para actualizar las traducciones de la vista Acerca de
+function updateAboutViewTranslations() {
+    const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
+
+    // Actualizar título principal
+    const aboutTitle = document.querySelector('#aboutView h1');
+    if (aboutTitle) aboutTitle.innerHTML = `<i class="fas fa-info-circle me-2"></i>${translations.about_title || 'Acerca del Calendario de ELOHIM'}`;
+
+    // Actualizar secciones de texto
+    const aboutView = document.getElementById('aboutView');
+    if (aboutView) {
+        const headers = aboutView.querySelectorAll('h5');
+        const paragraphs = aboutView.querySelectorAll('p');
+
+        if (headers.length >= 4 && paragraphs.length >= 5) {
+            headers[0].textContent = translations.about_what_is || '¿Qué es el Calendario de ELOHIM?';
+            paragraphs[0].textContent = translations.about_what_is_text || '';
+
+            headers[1].textContent = translations.about_months || 'Meses del Calendario de ELOHIM';
+            paragraphs[1].textContent = translations.about_months_text || '';
+
+            headers[2].textContent = translations.about_festivals_title || 'Festividades Mandadas por ELOHIM';
+            paragraphs[2].textContent = translations.about_festivals_text || '';
+
+            headers[3].textContent = translations.about_app || 'Sobre Esta Aplicación';
+            paragraphs[3].textContent = translations.about_app_text || '';
+        }
+
+        // Actualizar tarjeta de año actual
+        const yearCardHeader = aboutView.querySelector('.card-header h5');
+        if (yearCardHeader) yearCardHeader.textContent = translations.current_year || 'Año Actual';
+
+        const yearLabels = aboutView.querySelectorAll('.card-body strong');
+        if (yearLabels.length >= 4) {
+            yearLabels[0].textContent = translations.year || 'Año:';
+            yearLabels[1].textContent = translations.year_start || 'Inicio:';
+            yearLabels[2].textContent = translations.year_end || 'Fin:';
+            yearLabels[3].textContent = translations.total_months || 'Total de meses:';
+        }
+
+        // Actualizar título de las 12 tribus
+        const tribesCardHeader = aboutView.querySelectorAll('.card-header h5')[1];
+        if (tribesCardHeader) tribesCardHeader.textContent = translations.twelve_tribes_title || 'Las Doce Tribus de Israel';
+    }
 }
 
 /**
@@ -1218,15 +1310,7 @@ if (calendarTitle) {
     let calendarGridHTML = '<div class="calendar-grid">';
     
     // Nombres de los días de la semana según el idioma
-    const weekdays = [
-        translations.sunday || 'Domingo',
-        translations.monday || 'Lunes',
-        translations.tuesday || 'Martes',
-        translations.wednesday || 'Miércoles',
-        translations.thursday || 'Jueves',
-        translations.friday || 'Viernes',
-        translations.saturday || 'Sábado'
-    ];
+    const weekdays = CalendarData.translations.common.days[currentLanguage] || CalendarData.translations.common.days.es;
     
     // Añadir fila de días de la semana
     calendarGridHTML += '<div class="row weekdays g-0">';
