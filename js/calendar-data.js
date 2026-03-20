@@ -7,9 +7,9 @@ const CalendarData = {};
 
 // Datos del año del calendario
 CalendarData.year = {
-    name: "2025-2026",
-    start_date: "2025-03-30",
-    end_date: "2026-03-20"
+    name: "2026-2027",
+    start_date: "2026-03-20",
+    end_date: "2027-03-08"
 };
 
 // Meses del calendario
@@ -21,15 +21,15 @@ CalendarData.months = [
         transliteration: "Reuben",
         tribe_name: "Rubén",
         tribe_hebrew_name: "ןבואר",
-        start_date: "2025-03-30",
-        end_date: "2025-04-28",
+        start_date: "2026-03-20",
+        end_date: "2026-04-18",
         days_count: 30,
-        start_weekday: 0, // 0=Domingo
+        start_weekday: 5, // 5=Viernes
         featured_image: "img/months/jerusalem.jpg",
         featured_location: "Jerusalén",
         scripture_ref: "Apocalipsis 1:5-6",
         scripture_text: "De parte de Jesucristo, el testigo fiel, el primogénito de entre los muertos y el soberano de los reyes de la tierra. Al que nos ama y nos ha librado de nuestros pecados con su sangre, y nos ha constituido en un reino, sacerdotes al servicio de Dios su Padre, a él sea la gloria y el poder por los siglos de los siglos. Amén.",
-        new_moon_date: "2025-04-28 22:31:00",
+        new_moon_date: "2026-04-18 12:00:00",
         month_order: 1
     },
     {
@@ -39,15 +39,15 @@ CalendarData.months = [
         transliteration: "Simeon",
         tribe_name: "Simeón",
         tribe_hebrew_name: "ןועמש",
-        start_date: "2025-04-29",
-        end_date: "2025-05-27",
+        start_date: "2026-04-19",
+        end_date: "2026-05-17",
         days_count: 29,
-        start_weekday: 2, // 2=Martes
+        start_weekday: 0, // 0=Domingo
         featured_image: "img/months/dead_sea.jpg",
         featured_location: "Mar Muerto",
         scripture_ref: "Isaías 43:7",
         scripture_text: "Todos los llamados de mi nombre; para gloria mía los he creado, los formé y los hice.",
-        new_moon_date: "2025-05-27 06:02:00",
+        new_moon_date: "2026-05-17 12:00:00",
         month_order: 2
     },
     {
@@ -57,15 +57,15 @@ CalendarData.months = [
         transliteration: "Levi",
         tribe_name: "Leví",
         tribe_hebrew_name: "יול",
-        start_date: "2025-05-28",
-        end_date: "2025-06-25",
+        start_date: "2026-05-18",
+        end_date: "2026-06-15",
         days_count: 29,
-        start_weekday: 3, // 3=Miércoles
+        start_weekday: 1, // 1=Lunes
         featured_image: "img/months/sea_of_galilee.jpg",
         featured_location: "Mar de Galilea",
         scripture_ref: "Efesios 2:10",
         scripture_text: "Porque somos hechura suya, creados en Cristo Jesús para buenas obras, las cuales Dios preparó de antemano para que anduviésemos en ellas.",
-        new_moon_date: "2025-06-25 13:31:00",
+        new_moon_date: "2026-06-15 12:00:00",
         month_order: 3
     },
     {
@@ -75,15 +75,15 @@ CalendarData.months = [
         transliteration: "Judah",
         tribe_name: "Judá",
         tribe_hebrew_name: "הדוהי",
-        start_date: "2025-06-26",
-        end_date: "2025-07-25",
-        days_count: 30,
-        start_weekday: 4, // 4=Jueves
+        start_date: "2026-06-16",
+        end_date: "2026-07-14",
+        days_count: 29,
+        start_weekday: 2, // 2=Martes
         featured_image: "img/months/qumran.jpg",
         featured_location: "Qumrán",
         scripture_ref: "Marcos 4:26-28",
         scripture_text: "Y dijo: Así es el reino de Dios como cuando un hombre echa la semilla en la tierra; y duerme y se levanta, de noche y de día, y la semilla brota y crece sin que él sepa cómo. Porque de suyo lleva fruto la tierra, primero hierba, luego espiga, después grano lleno en la espiga.",
-        new_moon_date: "2025-07-25 22:11:00",
+        new_moon_date: "2026-07-14 12:00:00",
         month_order: 4
     },
     {
@@ -93,15 +93,15 @@ CalendarData.months = [
         transliteration: "Dan",
         tribe_name: "Dan",
         tribe_hebrew_name: "ןד",
-        start_date: "2025-07-26",
-        end_date: "2025-08-23",
-        days_count: 29,
-        start_weekday: 6, // 6=Sábado
+        start_date: "2026-07-15",
+        end_date: "2026-08-13",
+        days_count: 30,
+        start_weekday: 3, // 3=Miércoles
         featured_image: "img/months/masada.jpg",
         featured_location: "Masada",
         scripture_ref: "Éxodo 19:5-6",
         scripture_text: "Ahora, pues, si diereis oído a mi voz, y guardareis mi pacto, vosotros seréis mi especial tesoro sobre todos los pueblos; porque mía es toda la tierra. Y vosotros me seréis un reino de sacerdotes, y gente santa. Estas son las palabras que dirás a los hijos de Israel.",
-        new_moon_date: "2025-08-23 09:06:00",
+        new_moon_date: "2026-08-13 12:00:00",
         month_order: 5
     },
     {
@@ -111,15 +111,15 @@ CalendarData.months = [
         transliteration: "Naphtali",
         tribe_name: "Neftalí",
         tribe_hebrew_name: "ילתפנ",
-        start_date: "2025-08-24",
-        end_date: "2025-09-22",
-        days_count: 30,
-        start_weekday: 0, // 0=Domingo
+        start_date: "2026-08-14",
+        end_date: "2026-09-11",
+        days_count: 29,
+        start_weekday: 5, // 5=Viernes
         featured_image: "img/months/shiloh.jpg",
         featured_location: "Shiloh",
         scripture_ref: "Salmo 8:1-4",
         scripture_text: "Oh Jehová, Señor nuestro, ¡Cuán glorioso es tu nombre en toda la tierra! Has puesto tu gloria sobre los cielos. De la boca de los niños y de los que maman, fundaste la fortaleza, a causa de tus enemigos, para hacer callar al enemigo y al vengador. Cuando veo tus cielos, obra de tus dedos, la luna y las estrellas que tú formaste, digo: ¿Qué es el hombre, para que tengas de él memoria, y el hijo del hombre, para que lo visites?",
-        new_moon_date: "2025-09-22 22:54:00",
+        new_moon_date: "2026-09-11 12:00:00",
         month_order: 6
     },
     {
@@ -129,15 +129,15 @@ CalendarData.months = [
         transliteration: "Gad",
         tribe_name: "Gad",
         tribe_hebrew_name: "דג",
-        start_date: "2025-09-23",
-        end_date: "2025-10-21",
+        start_date: "2026-09-12",
+        end_date: "2026-10-10",
         days_count: 29,
-        start_weekday: 2, // 2=Martes
+        start_weekday: 6, // 6=Sábado
         featured_image: "img/months/jerusalem_temple.jpg",
         featured_location: "Jerusalén",
         scripture_ref: "Mateo 6:9-10",
         scripture_text: "Vosotros, pues, oraréis así: Padre nuestro que estás en los cielos, santificado sea tu nombre. Venga tu reino. Hágase tu voluntad, como en el cielo, así también en la tierra.",
-        new_moon_date: "2025-10-21 15:25:00",
+        new_moon_date: "2026-10-10 12:00:00",
         month_order: 7
     },
     {
@@ -147,15 +147,15 @@ CalendarData.months = [
         transliteration: "Asher",
         tribe_name: "Aser",
         tribe_hebrew_name: "רשא",
-        start_date: "2025-10-22",
-        end_date: "2025-11-20",
-        days_count: 30,
-        start_weekday: 3, // 3=Miércoles
+        start_date: "2026-10-11",
+        end_date: "2026-11-08",
+        days_count: 29,
+        start_weekday: 0, // 0=Domingo
         featured_image: "img/months/jordan_river.jpg",
         featured_location: "Sitio Bautismal del Jordán",
         scripture_ref: "Apocalipsis 4:11",
         scripture_text: "Señor, digno eres de recibir la gloria y la honra y el poder; porque tú creaste todas las cosas, y por tu voluntad existen y fueron creadas.",
-        new_moon_date: "2025-11-20 08:47:00",
+        new_moon_date: "2026-11-08 12:00:00",
         month_order: 8
     },
     {
@@ -165,15 +165,15 @@ CalendarData.months = [
         transliteration: "Issachar",
         tribe_name: "Isacar",
         tribe_hebrew_name: "רכששי",
-        start_date: "2025-11-21",
-        end_date: "2025-12-20",
+        start_date: "2026-11-09",
+        end_date: "2026-12-08",
         days_count: 30,
-        start_weekday: 5, // 5=Viernes
+        start_weekday: 1, // 1=Lunes
         featured_image: "img/months/mukawer.jpg",
         featured_location: "Mukawer, Jordania",
         scripture_ref: "Romanos 8:14-16",
         scripture_text: "Porque todos los que son guiados por el Espíritu de Dios, éstos son hijos de Dios. Pues no habéis recibido el espíritu de esclavitud para estar otra vez en temor, sino que habéis recibido el espíritu de adopción, por el cual clamamos: ¡Abba, Padre! El Espíritu mismo da testimonio a nuestro espíritu, de que somos hijos de Dios.",
-        new_moon_date: "2025-12-20 03:43:00",
+        new_moon_date: "2026-12-08 12:00:00",
         month_order: 9
     },
     {
@@ -183,15 +183,15 @@ CalendarData.months = [
         transliteration: "Zebulun",
         tribe_name: "Zabulón",
         tribe_hebrew_name: "ןולובז",
-        start_date: "2025-12-21",
-        end_date: "2026-01-18",
+        start_date: "2026-12-09",
+        end_date: "2027-01-06",
         days_count: 29,
-        start_weekday: 0, // 0=Domingo
+        start_weekday: 3, // 3=Miércoles
         featured_image: "img/months/wadi_rum.jpg",
         featured_location: "Wadi Rum, Jordania",
         scripture_ref: "Colosenses 1:5-6",
         scripture_text: "A causa de la esperanza que os está guardada en los cielos, de la cual ya habéis oído por la palabra verdadera del evangelio, que ha llegado a vosotros, así como a todo el mundo, y lleva fruto y crece también en vosotros, desde el día que oísteis y conocisteis la gracia de Dios en verdad.",
-        new_moon_date: "2026-01-18 21:52:00",
+        new_moon_date: "2027-01-06 12:00:00",
         month_order: 10
     },
     {
@@ -201,33 +201,33 @@ CalendarData.months = [
         transliteration: "Ephraim",
         tribe_name: "Efraín",
         tribe_hebrew_name: "םירפא",
-        start_date: "2026-01-19",
-        end_date: "2026-02-17",
+        start_date: "2027-01-07",
+        end_date: "2027-02-05",
         days_count: 30,
-        start_weekday: 1, // 1=Lunes
+        start_weekday: 4, // 4=Jueves
         featured_image: "img/months/red_sea.jpg",
         featured_location: "Cruce del Mar Rojo, Egipto",
         scripture_ref: "2 Timoteo 4:2",
         scripture_text: "Que prediques la palabra; que instes a tiempo y fuera de tiempo; redarguye, reprende, exhorta con toda paciencia y doctrina.",
-        new_moon_date: "2026-02-17 14:01:00",
+        new_moon_date: "2027-02-05 12:00:00",
         month_order: 11
     },
     {
         id: 12,
         name: "Adar",
-        hebrew_name: "םירפא",
-        transliteration: "Ephraim",
-        tribe_name: "Efraín",
-        tribe_hebrew_name: "םירפא",
-        start_date: "2026-02-18",
-        end_date: "2026-03-20",
-        days_count: 31, // Mes largo para ajustar al año solar
-        start_weekday: 3, // 3=Miércoles
+        hebrew_name: "ןמינב",
+        transliteration: "Benjamin",
+        tribe_name: "Benjamín",
+        tribe_hebrew_name: "ןמינב",
+        start_date: "2027-02-06",
+        end_date: "2027-03-08",
+        days_count: 30, // Mes para completar el año solar
+        start_weekday: 6, // 6=Sábado
         featured_image: "img/months/mount_horeb.jpg",
         featured_location: "Roca Partida, Monte Horeb",
         scripture_ref: "Deuteronomio 14:2",
         scripture_text: "Porque eres pueblo santo a Jehová tu Dios, y Jehová te ha escogido para que le seas un pueblo único de entre todos los pueblos que están sobre la tierra.",
-        new_moon_date: "2026-03-19 03:23:00",
+        new_moon_date: "2027-03-08 12:00:00",
         month_order: 12
     }
 ];
@@ -239,16 +239,17 @@ CalendarData.festivals = [
         name: "Pascua",
         hebrew_name: "פסח",
         festival_type: "biblical",
-        start_date: "2025-04-12",
-        end_date: null, // Un solo día
+        start_date: "2026-04-01",
+        end_date: null, // Un solo día (14 Aviv: atardecer 1 abril → atardecer 2 abril)
         start_at_sunset: true,
-        description_short: "Conmemoración de la liberación de la esclavitud - Día del Cordero de ELOHIM (14 de Aviv)",
-        description_long: "La Pascua es una de las festividades más importantes mandadas por ELOHIM para toda la humanidad. Conmemora la liberación de la esclavitud en Egipto mediante el sacrificio del cordero, según se relata en el libro de Éxodo. Durante esta festividad se recuerda cómo la muerte 'pasó' sobre las casas que tenían la sangre del cordero en sus dinteles, prefigurando el sacrificio del Mesías. IMPORTANTE: No es un día de celebración alegre, sino de sacrificio solemne y recuerdo. La celebración alegre comienza al día siguiente con la Fiesta de Panes sin Levadura. Este mandamiento es para todos los hijos de ELOHIM, no solo para un pueblo específico.",
+        description_short: "Conmemoración de la liberación de la esclavitud - Los símbolos se toman la noche del 1 de abril; el 2 de abril es el día de Pascua hasta las 6 pm (14 de Aviv)",
+        description_long: "La Pascua es una de las festividades más importantes mandadas por ELOHIM para toda la humanidad. Conmemora la liberación de la esclavitud en Egipto mediante el sacrificio del cordero. En 2026, los símbolos de la Pascua se toman en la noche del 1 de abril (al comenzar el 14 de Aviv al atardecer), y el 2 de abril es el día de Pascua hasta las 6 pm (puesta del sol). Durante esta festividad se recuerda cómo la muerte 'pasó' sobre las casas que tenían la sangre del cordero en sus dinteles, prefigurando el sacrificio del Mesías. IMPORTANTE: No es un día de celebración alegre, sino de sacrificio solemne y recuerdo. La celebración alegre comienza al día siguiente con la Fiesta de Panes sin Levadura. Este mandamiento es para todos los hijos de ELOHIM, no solo para un pueblo específico.",
         preparations: [
             "Preparar el cordero pascual",
-            "Retirar toda levadura de la casa",
+            "Retirar toda levadura de la casa antes del 1 de abril al atardecer",
             "Preparar hierbas amargas",
-            "Preparar pan sin levadura"
+            "Preparar pan sin levadura",
+            "Reunirse al atardecer del 1 de abril para la celebración"
         ],
         biblical_refs: "Éxodo 12:1-28, Levítico 23:5, Números 28:16, Deuteronomio 16:1-8",
         importance: "high",
@@ -259,14 +260,14 @@ CalendarData.festivals = [
         name: "Fiesta de los Panes Sin Levadura",
         hebrew_name: "חג המצות",
         festival_type: "biblical",
-        start_date: "2025-04-13",
-        end_date: "2025-04-19",
+        start_date: "2026-04-03",
+        end_date: "2026-04-09",
         start_at_sunset: true,
-        description_short: "Festividad de siete días donde se come pan sin levadura - Salida de la esclavitud del pecado (15-21 de Aviv)",
-        description_long: "La Fiesta de los Panes Sin Levadura es una festividad mandada por ELOHIM que comienza el día después de la Pascua y dura siete días. Durante este tiempo, todos los que observan este mandamiento no deben comer ni tener levadura en el hogar. Esta festividad simboliza la pureza y la eliminación del pecado (representado por la levadura) de nuestras vidas. Es una festividad alegre que celebra la liberación de la esclavitud - tanto física como espiritual. ELOHIM ordenó esto para toda Su creación como recordatorio perpetuo de Su poder liberador.",
+        description_short: "Festividad de siete días donde se come pan sin levadura (3 al 9 de abril) - Salida de la esclavitud del pecado (15-21 de Aviv)",
+        description_long: "La Fiesta de los Panes Sin Levadura es una festividad mandada por ELOHIM que comienza el día después de la Pascua y dura siete días (del 3 al 9 de abril en 2026). Durante este tiempo, todos los que observan este mandamiento no deben comer ni tener levadura en el hogar. Esta festividad simboliza la pureza y la eliminación del pecado (representado por la levadura) de nuestras vidas. Es una festividad alegre que celebra la liberación de la esclavitud - tanto física como espiritual. ELOHIM ordenó esto para toda Su creación como recordatorio perpetuo de Su poder liberador.",
         preparations: [
             "Retirar toda levadura de la casa",
-            "Preparar pan sin levadura para 7 días",
+            "Preparar pan sin levadura para 7 días (3-9 de abril)",
             "Planificar comidas sin productos fermentados"
         ],
         biblical_refs: "Éxodo 12:15-20, Levítico 23:6-8, Números 28:17-25",
@@ -278,15 +279,15 @@ CalendarData.festivals = [
         name: "Fiesta de los Primeros Frutos (Resurrección)",
         hebrew_name: "ביכורים",
         festival_type: "biblical",
-        start_date: "2025-04-13",
+        start_date: "2026-04-05",
         end_date: null,
         start_at_sunset: false,
-        description_short: "Ofrenda de las primicias de la cosecha - Día de la Resurrección, SIEMPRE en domingo (16 de Aviv)",
-        description_long: "La Fiesta de los Primeros Frutos es un mandamiento de ELOHIM que se celebra el primer día después del sábado durante la semana de los Panes sin Levadura, lo que significa que SIEMPRE cae en domingo. Esta festividad marca el comienzo de la cosecha de cebada y simboliza la consagración de toda la cosecha a ELOHIM. Proféticamente representa la resurrección del Mesías, quien resucitó en domingo cumpliendo esta festividad. Este día marca el inicio del conteo del Omer - 50 días hasta Shavuot (Pentecostés). Este mandamiento es para todos los que siguen a ELOHIM.",
+        description_short: "Ofrenda de las primicias de la cosecha - Día de la Resurrección, SIEMPRE en domingo (5 de abril 2026, dentro de la semana de Panes sin Levadura)",
+        description_long: "La Fiesta de los Primeros Frutos es un mandamiento de ELOHIM que se celebra el primer domingo durante la semana de los Panes sin Levadura. En 2026 cae el 5 de abril (domingo). Esta festividad marca el comienzo de la cosecha de cebada y simboliza la consagración de toda la cosecha a ELOHIM. Proféticamente representa la resurrección del Mesías, quien resucitó en domingo cumpliendo esta festividad. Este día marca el inicio del conteo del Omer - 50 días hasta Shavuot (Pentecostés). Este mandamiento es para todos los que siguen a ELOHIM.",
         preparations: [
             "Preparar las primicias de la cosecha",
             "Llevar la ofrenda al templo",
-            "Comenzar el conteo del Omer (50 días hasta Shavuot)"
+            "Comenzar el conteo del Omer (50 días hasta Shavuot, que cae el 24 de mayo)"
         ],
         biblical_refs: "Levítico 23:9-14, 1 Corintios 15:20-23",
         importance: "high",
@@ -297,16 +298,16 @@ CalendarData.festivals = [
         name: "Shavuot (Pentecostés)",
         hebrew_name: "שבועות",
         festival_type: "biblical",
-        start_date: "2025-06-01",
+        start_date: "2026-05-24",
         end_date: null,
         start_at_sunset: true,
-        description_short: "Celebración de la entrega de la Instrucción de ELOHIM - Pentecostés, SIEMPRE en domingo (50 días después de Primicias)",
-        description_long: "Shavuot, también conocido como la Fiesta de las Semanas o Pentecostés, es un mandamiento de ELOHIM que se celebra exactamente 50 días después de la Fiesta de los Primeros Frutos (contando Primicias como día 1). Como Primicias siempre es domingo, Shavuot también SIEMPRE cae en domingo. Conmemora la entrega de la Instrucción (Torah) de ELOHIM en el Monte Sinaí para toda la humanidad, y marca el final de la cosecha de cebada y el comienzo de la cosecha de trigo. Proféticamente, esta festividad también marca el derramamiento del Espíritu Santo. Este mandamiento es para todos los hijos de ELOHIM en todas las generaciones.",
+        description_short: "Celebración de la entrega de la Instrucción de ELOHIM - Pentecostés, SIEMPRE en domingo (24 de mayo 2026, 50 días después de Primicias)",
+        description_long: "Shavuot, también conocido como la Fiesta de las Semanas o Pentecostés, es un mandamiento de ELOHIM que se celebra exactamente 50 días después de la Fiesta de los Primeros Frutos (contando Primicias como día 1). En 2026 cae el 24 de mayo (domingo), exactamente 49 días después del 5 de abril. Como Primicias siempre es domingo, Shavuot también SIEMPRE cae en domingo. Conmemora la entrega de la Instrucción (Torah) de ELOHIM en el Monte Sinaí para toda la humanidad, y marca el final de la cosecha de cebada y el comienzo de la cosecha de trigo. Proféticamente, esta festividad también marca el derramamiento del Espíritu Santo. Este mandamiento es para todos los hijos de ELOHIM en todas las generaciones.",
         preparations: [
             "Decorar con flores y plantas",
             "Preparar alimentos a base de lácteos",
             "Estudiar la Torah durante toda la noche",
-            "Completar el conteo del Omer (49 días)"
+            "Completar el conteo del Omer (49 días desde el 5 de abril)"
         ],
         biblical_refs: "Éxodo 34:22, Levítico 23:15-22, Deuteronomio 16:9-12, Hechos 2:1-4",
         importance: "high",
@@ -317,16 +318,16 @@ CalendarData.festivals = [
         name: "Yom Teruah (Fiesta de las Trompetas)",
         hebrew_name: "יום תרועה",
         festival_type: "biblical",
-        start_date: "2025-09-23",
+        start_date: "2026-09-12",
         end_date: null,
         start_at_sunset: true,
-        description_short: "Día de tocar el shofar - Llamado al arrepentimiento y preparación, 1º del mes 7º",
-        description_long: "Yom Teruah es un mandamiento de ELOHIM que marca el inicio del séptimo mes (Tishri) del calendario de ELOHIM. Es un día señalado por ELOHIM para el toque de trompetas (shofar), anunciando un tiempo de reflexión espiritual y preparación para los Días de Arrepentimiento que culminan con Yom Kippur. El sonido del shofar es un llamado de ELOHIM para que todos Sus hijos se preparen y examinen sus vidas. Aunque algunos lo conocen como 'Rosh Hashaná', su verdadero significado es 'Día de Trompetas'. Este mandamiento es para toda la humanidad que busca seguir a ELOHIM.",
+        description_short: "Día de tocar el shofar - Llamado al arrepentimiento y preparación (12 de septiembre 2026, 1º del mes 7º - Tishri)",
+        description_long: "Yom Teruah es un mandamiento de ELOHIM que marca el inicio del séptimo mes (Tishri) del calendario de ELOHIM. En 2026 cae el 12 de septiembre. Es un día señalado por ELOHIM para el toque de trompetas (shofar), anunciando un tiempo de reflexión espiritual y preparación para los Días de Arrepentimiento que culminan con Yom Kippur. El sonido del shofar es un llamado de ELOHIM para que todos Sus hijos se preparen y examinen sus vidas. Aunque algunos lo conocen como 'Rosh Hashaná', su verdadero significado es 'Día de Trompetas'. Este mandamiento es para toda la humanidad que busca seguir a ELOHIM.",
         preparations: [
             "Preparar el shofar",
             "Realizar oraciones especiales",
             "Prepararse para un tiempo de reflexión",
-            "Prepararse para los 10 días de arrepentimiento"
+            "Prepararse para los 10 días de arrepentimiento (hasta el 21 de septiembre)"
         ],
         biblical_refs: "Levítico 23:23-25, Números 29:1-6",
         importance: "high",
@@ -337,14 +338,14 @@ CalendarData.festivals = [
         name: "Yom Kippur (Día de Expiación)",
         hebrew_name: "יום כיפור",
         festival_type: "biblical",
-        start_date: "2025-10-02",
+        start_date: "2026-09-21",
         end_date: null,
         start_at_sunset: true,
-        description_short: "Día más solemne del año - Día de Expiación y Arrepentimiento, 10º del mes 7º",
-        description_long: "Yom Kippur es el día más solemne mandado por ELOHIM para toda la humanidad. Es un día de ayuno total, oración profunda y arrepentimiento que ocurre exactamente diez días después de Yom Teruah (contando Yom Teruah como día 1). En el Tabernáculo, era el único día del año en que el Sumo Sacerdote podía entrar al Lugar Santísimo para ofrecer expiación por los pecados del pueblo, prefigurando el sacrificio del Mesías. Es un Sabbat sagrado con descanso absoluto obligatorio. ELOHIM ordenó este día para que todos Sus hijos se reconcilien con Él - no es exclusivo de un pueblo sino para todos los que le aman.",
+        description_short: "Día más solemne del año - Día de Expiación y Arrepentimiento (21 de septiembre 2026, 10º del mes 7º)",
+        description_long: "Yom Kippur es el día más solemne mandado por ELOHIM para toda la humanidad. En 2026 cae el 21 de septiembre, exactamente diez días después de Yom Teruah (12 de septiembre). Es un día de ayuno total, oración profunda y arrepentimiento. En el Tabernáculo, era el único día del año en que el Sumo Sacerdote podía entrar al Lugar Santísimo para ofrecer expiación por los pecados del pueblo, prefigurando el sacrificio del Mesías. Es un Sabbat sagrado con descanso absoluto obligatorio. ELOHIM ordenó este día para que todos Sus hijos se reconcilien con Él - no es exclusivo de un pueblo sino para todos los que le aman.",
         preparations: [
             "Prepararse para el ayuno total (sin comida ni agua)",
-            "Reconciliarse con los demás antes del día",
+            "Reconciliarse con los demás antes del 21 de septiembre al atardecer",
             "Realizar oraciones de arrepentimiento",
             "Preparar ropa blanca"
         ],
@@ -357,16 +358,16 @@ CalendarData.festivals = [
         name: "Sukkot (Fiesta de los Tabernáculos)",
         hebrew_name: "סוכות",
         festival_type: "biblical",
-        start_date: "2025-10-07",
-        end_date: "2025-10-13",
+        start_date: "2026-09-26",
+        end_date: "2026-10-02",
         start_at_sunset: true,
-        description_short: "Fiesta de las Cabañas - Celebración de la protección y provisión de ELOHIM, 15-21 del mes 7º",
-        description_long: "Sukkot es una festividad de siete días mandada por ELOHIM que comienza cinco días después de Yom Kippur (el día 15 del mes 7º). Conmemora cómo ELOHIM protegió y proveyó durante los 40 años en el desierto, cuando Su pueblo vivió en cabañas temporales (sukkot). Es un tiempo de regocijo y celebración por la protección y provisión divina - un recordatorio de que ELOHIM cuida de todos Sus hijos. También conocida como la Fiesta de las Cabañas o Fiesta de la Cosecha. IMPORTANTE: Debe ocurrir después del equinoccio otoñal para que haya frutas de cosecha disponibles (dátiles, granadas, higos, vino, olivas). Este mandamiento es para todos los que siguen a ELOHIM, y proféticamente, en el milenio TODAS las naciones subirán a celebrar Sukkot.",
+        description_short: "Fiesta de las Cabañas - Celebración de la protección y provisión de ELOHIM (26 sep al 2 oct 2026, 15-21 del mes 7º)",
+        description_long: "Sukkot es una festividad de siete días mandada por ELOHIM que comienza cinco días después de Yom Kippur (el día 15 del mes 7º). En 2026 va del 26 de septiembre al 2 de octubre. Conmemora cómo ELOHIM protegió y proveyó durante los 40 años en el desierto, cuando Su pueblo vivió en cabañas temporales (sukkot). Es un tiempo de regocijo y celebración por la protección y provisión divina - un recordatorio de que ELOHIM cuida de todos Sus hijos. IMPORTANTE: Debe ocurrir después del equinoccio otoñal (22 de septiembre) para que haya frutas de cosecha disponibles (dátiles, granadas, higos, vino, olivas). Este mandamiento es para todos los que siguen a ELOHIM, y proféticamente, en el milenio TODAS las naciones subirán a celebrar Sukkot.",
         preparations: [
             "Construir una sukkah (cabaña temporal)",
             "Preparar las cuatro especies (lulav y etrog)",
             "Decorar la sukkah con frutas de la cosecha",
-            "Planificar comidas para compartir en la sukkah durante 7 días"
+            "Planificar comidas para compartir en la sukkah del 26 sep al 2 oct"
         ],
         biblical_refs: "Levítico 23:33-43, Números 29:12-40, Deuteronomio 16:13-17, Zacarías 14:16-19",
         importance: "high",
@@ -377,11 +378,11 @@ CalendarData.festivals = [
         name: "Último Gran Día",
         hebrew_name: "שמיני עצרת",
         festival_type: "biblical",
-        start_date: "2025-10-14",
+        start_date: "2026-10-03",
         end_date: null,
         start_at_sunset: true,
-        description_short: "Último Gran Día - Octavo día solemne, culminación del ciclo anual, 22º del mes 7º",
-        description_long: "El Último Gran Día, también conocido como Shemini Atzeret, es un día santo mandado por ELOHIM que sigue inmediatamente después de los siete días de Sukkot. Es considerado el 'octavo día' - un número que simboliza nuevos comienzos y eternidad. Aunque técnicamente es una celebración separada de Sukkot, representa la culminación y el clímax del ciclo anual completo de festividades de ELOHIM. Proféticamente, representa el juicio final y la culminación del plan de salvación para TODA la humanidad - el momento cuando ELOHIM será todo en todos. Este mandamiento es para todos los hijos de ELOHIM.",
+        description_short: "Último Gran Día - Octavo día solemne, culminación del ciclo anual (3 de octubre 2026, 22º del mes 7º)",
+        description_long: "El Último Gran Día, también conocido como Shemini Atzeret, es un día santo mandado por ELOHIM que sigue inmediatamente después de los siete días de Sukkot. En 2026 cae el 3 de octubre. Es considerado el 'octavo día' - un número que simboliza nuevos comienzos y eternidad. Aunque técnicamente es una celebración separada de Sukkot, representa la culminación y el clímax del ciclo anual completo de festividades de ELOHIM. Proféticamente, representa el juicio final y la culminación del plan de salvación para TODA la humanidad - el momento cuando ELOHIM será todo en todos. Este mandamiento es para todos los hijos de ELOHIM.",
         preparations: [
             "Continuar en oración y reflexión",
             "Estudiar las Escrituras relacionadas",
@@ -399,32 +400,32 @@ CalendarData.astronomical_events = [
     {
         id: 1,
         name: "Equinoccio de Primavera",
-        event_date: "2025-03-20 16:46:00",
-        description: "Inicio de la primavera. El día y la noche tienen aproximadamente la misma duración."
+        event_date: "2026-03-20 10:31:00",
+        description: "Inicio de la primavera. El día y la noche tienen aproximadamente la misma duración. Marca el inicio del nuevo año bíblico."
     },
     {
         id: 2,
         name: "Solsticio de Verano",
-        event_date: "2025-06-20 05:42:00",
+        event_date: "2026-06-21 08:24:00",
         description: "Día más largo del año. Marca el inicio del verano."
     },
     {
         id: 3,
         name: "Equinoccio de Otoño",
-        event_date: "2025-09-22 21:19:00",
-        description: "Inicio del otoño. El día y la noche tienen aproximadamente la misma duración."
+        event_date: "2026-09-22 19:05:00",
+        description: "Inicio del otoño. El día y la noche tienen aproximadamente la misma duración. Precede a Sukkot."
     },
     {
         id: 4,
         name: "Solsticio de Invierno",
-        event_date: "2025-12-21 17:03:00",
+        event_date: "2026-12-21 23:00:00",
         description: "Día más corto del año. Marca el inicio del invierno."
     },
     {
         id: 5,
         name: "Equinoccio de Primavera",
-        event_date: "2026-03-20 10:31:00",
-        description: "Inicio de la primavera. El día y la noche tienen aproximadamente la misma duración."
+        event_date: "2027-03-20 16:24:00",
+        description: "Inicio de la primavera 2027. El día y la noche tienen aproximadamente la misma duración."
     }
 ];
 
