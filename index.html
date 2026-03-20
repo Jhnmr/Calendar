@@ -65,19 +65,19 @@
     <main class="container mt-4">
         <!-- Vista del calendario (página principal) -->
         <div id="calendarView" class="view-section">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 id="calendarTitle" class="d-flex align-items-center">
-                    <i class="fas fa-calendar-alt me-2"></i> Calendario de ELOHIM
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h1 id="calendarTitle" class="d-flex align-items-center mb-0">
+                    <i class="fas fa-calendar-alt me-2"></i> <span class="d-none d-sm-inline">Calendario de ELOHIM</span><span class="d-sm-none">Calendario</span>
                 </h1>
-                <div class="btn-group">
-                    <button id="todayBtn" class="btn btn-primary">
-                        <i class="fas fa-calendar-day"></i> Hoy
+                <div class="btn-group flex-wrap">
+                    <button id="todayBtn" class="btn btn-primary btn-sm btn-sm-normal">
+                        <i class="fas fa-calendar-day"></i> <span class="btn-text d-none d-sm-inline">Hoy</span><span class="d-sm-none">Hoy</span>
                     </button>
-                    <button id="exportBtn" class="btn btn-outline-primary">
-                        <i class="fas fa-download"></i> Exportar PDF
+                    <button id="exportBtn" class="btn btn-outline-primary btn-sm btn-sm-normal">
+                        <i class="fas fa-download"></i> <span class="btn-text d-none d-md-inline">Exportar PDF</span>
                     </button>
-                    <button id="printBtn" class="btn btn-outline-secondary">
-                        <i class="fas fa-print"></i> Imprimir
+                    <button id="printBtn" class="btn btn-outline-secondary btn-sm btn-sm-normal">
+                        <i class="fas fa-print"></i> <span class="btn-text d-none d-md-inline">Imprimir</span>
                     </button>
                 </div>
             </div>
@@ -124,31 +124,31 @@
                     <!-- Leyenda del calendario -->
                     <div class="card mt-3 shadow-sm">
                         <div class="card-body">
-                            <h6 class="card-title mb-3">Leyenda:</h6>
+                            <h6 class="card-title mb-3" id="calendarLegendTitle">Leyenda:</h6>
                             <div class="d-flex flex-wrap gap-3">
                                 <div class="d-flex align-items-center">
                                     <div class="calendar-legend-item sabbath"></div>
-                                    <span class="ms-2">Sábado</span>
+                                    <span class="ms-2" id="legendSaturday">Sábado</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="calendar-legend-item current-day"></div>
-                                    <span class="ms-2">Día actual</span>
+                                    <span class="ms-2" id="legendCurrentDay">Día actual</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="calendar-legend-item new-moon"></div>
-                                    <span class="ms-2">Luna nueva</span>
+                                    <span class="ms-2" id="legendNewMoon">Luna nueva</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="calendar-legend-item festival"></div>
-                                    <span class="ms-2">Festividad</span>
+                                    <span class="ms-2" id="legendFestival">Festividad</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="calendar-legend-item high-importance"></div>
-                                    <span class="ms-2">Festividad importante</span>
+                                    <span class="ms-2" id="legendImportant">Festividad importante</span>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="calendar-legend-item custom-event"></div>
-                                    <span class="ms-2">Evento personal</span>
+                                    <span class="ms-2" id="legendPersonal">Evento personal</span>
                                 </div>
                             </div>
                         </div>
@@ -285,6 +285,9 @@
     </div>
     
     
+    <!-- Sección de impresión (solo visible al imprimir) -->
+    <div id="printFlyerSection"></div>
+
     <!-- Scripts -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="lib/jquery/jquery-3.6.0.min.js"></script>

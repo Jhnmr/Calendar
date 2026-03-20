@@ -447,8 +447,12 @@ function showFestivalDetails(festivalId) {
         (translations.day || 'día') : 
         (translations.days || 'días');
     
-    // Actualizar el título del modal
+    // Actualizar el título del modal y el botón de cerrar
     document.getElementById('festivalModalTitle').textContent = festival.name;
+    const festivalModalCloseBtn = document.querySelector('#festivalModal .modal-footer .btn-secondary');
+    if (festivalModalCloseBtn) {
+        festivalModalCloseBtn.textContent = translations.close || 'Cerrar';
+    }
     
     // Preparar el contenido del modal
     const modalContent = `
@@ -764,28 +768,38 @@ function getCustomEventsForMonth(startDateStr, endDateStr) {
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar el idioma guardado en localStorage (si existe)
     loadLanguagePreference();
-    
+
     // Inicializar la interfaz
     initializeUI();
-    
+
     // Cargar el calendario
     loadCalendar();
-    
+
     // Configurar eventos de navegación
     setupNavigationEvents();
-    
+
     // Configurar eventos de exportación/impresión
     setupExportEvents();
-    
+
     // Configurar selector de idioma
     setupLanguageSelector();
-    
+
     // Mostrar la fecha actual
     updateCurrentDateDisplay();
-    
+
     // Configurar el botón "Hoy"
     setupTodayButton();
     setupThemeToggle();
+
+    // Fix: evitar aria-hidden warning al cerrar el modal con foco en su interior
+    const festivalModalEl = document.getElementById('festivalModal');
+    if (festivalModalEl) {
+        festivalModalEl.addEventListener('hide.bs.modal', function() {
+            if (document.activeElement && festivalModalEl.contains(document.activeElement)) {
+                document.activeElement.blur();
+            }
+        });
+    }
 });
 
 /**
@@ -939,6 +953,7 @@ function setupExportEvents() {
     const printBtn = document.getElementById('printBtn');
     if (printBtn) {
         printBtn.addEventListener('click', function() {
+            generatePrintFlyer();
             window.print();
         });
     }
@@ -1035,9 +1050,12 @@ function updateAllTranslations() {
     if (navFestivals) navFestivals.innerHTML = `<i class="fas fa-menorah me-1"></i> ${translations.festivals || 'Festividades'}`;
     if (navAbout) navAbout.innerHTML = `<i class="fas fa-info-circle me-1"></i> ${translations.about || 'Acerca de'}`;
 
-    // Actualizar título del calendario
+    // Actualizar título del calendario (respetando los spans para responsive)
     const calendarTitle = document.getElementById('calendarTitle');
-    if (calendarTitle) calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario'}`;
+    if (calendarTitle) {
+        const titleText = translations.calendar || 'Calendario de ELOHIM';
+        calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> <span class="d-none d-sm-inline">${titleText}</span><span class="d-sm-none">${titleText.split(' ')[0]}</span>`;
+    }
 
     // Actualizar botones
     const todayBtn = document.getElementById('todayBtn');
@@ -1085,28 +1103,45 @@ function updateAllTranslations() {
 
     // Actualizar fecha actual
     updateCurrentDateDisplay();
+
+    // Actualizar botón cerrar del modal de festividades
+    const festivalModalCloseBtn = document.querySelector('#festivalModal .modal-footer .btn-secondary');
+    if (festivalModalCloseBtn) {
+        festivalModalCloseBtn.textContent = translations.close || 'Cerrar';
+    }
+
+    // Actualizar título del modal de festividades
+    const festivalModalTitle = document.getElementById('festivalModalTitle');
+    if (festivalModalTitle && festivalModalTitle.textContent === 'Detalles de Festividad') {
+        festivalModalTitle.textContent = translations.festival_details || 'Detalles de Festividad';
+    }
 }
 
 // Función para actualizar la leyenda del calendario
 function updateCalendarLegend() {
     const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 
-    // Buscar el contenedor de la leyenda
-    const legendCard = document.querySelector('.card .card-body h6.card-title.mb-3');
-    if (legendCard && legendCard.textContent === 'Leyenda:') {
+    // Buscar el contenedor de la leyenda por ID o por atributo data
+    const legendCard = document.getElementById('calendarLegendTitle') ||
+                       document.querySelector('[data-legend-title]');
+    if (legendCard) {
         legendCard.textContent = translations.legend || 'Leyenda:';
-
-        // Actualizar los textos de la leyenda
-        const legendItems = legendCard.parentElement.querySelectorAll('.d-flex.align-items-center span.ms-2');
-        if (legendItems.length >= 6) {
-            legendItems[0].textContent = translations.legend_saturday || 'Sábado';
-            legendItems[1].textContent = translations.legend_current_day || 'Día actual';
-            legendItems[2].textContent = translations.legend_new_moon || 'Luna nueva';
-            legendItems[3].textContent = translations.legend_festival || 'Festividad';
-            legendItems[4].textContent = translations.legend_important_festival || 'Festividad importante';
-            legendItems[5].textContent = translations.legend_personal_event || 'Evento personal';
-        }
     }
+
+    // Actualizar los textos de la leyenda por data-attributes
+    const legendSpanSat = document.getElementById('legendSaturday');
+    const legendSpanCurrent = document.getElementById('legendCurrentDay');
+    const legendSpanNewMoon = document.getElementById('legendNewMoon');
+    const legendSpanFestival = document.getElementById('legendFestival');
+    const legendSpanImportant = document.getElementById('legendImportant');
+    const legendSpanPersonal = document.getElementById('legendPersonal');
+
+    if (legendSpanSat) legendSpanSat.textContent = translations.legend_saturday || 'Sábado';
+    if (legendSpanCurrent) legendSpanCurrent.textContent = translations.legend_current_day || 'Día actual';
+    if (legendSpanNewMoon) legendSpanNewMoon.textContent = translations.legend_new_moon || 'Luna nueva';
+    if (legendSpanFestival) legendSpanFestival.textContent = translations.legend_festival || 'Festividad';
+    if (legendSpanImportant) legendSpanImportant.textContent = translations.legend_important_festival || 'Festividad importante';
+    if (legendSpanPersonal) legendSpanPersonal.textContent = translations.legend_personal_event || 'Evento personal';
 }
 
 // Función para actualizar las traducciones de la vista Acerca de
@@ -1284,7 +1319,8 @@ function loadCalendar() {
 const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 const calendarTitle = document.getElementById('calendarTitle');
 if (calendarTitle) {
-    calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario de ELOHIM'}`;
+    const titleText = translations.calendar || 'Calendario de ELOHIM';
+    calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> <span class="d-none d-sm-inline">${titleText}</span><span class="d-sm-none">${titleText.split(' ')[0]}</span>`;
 }
     
     // Actualizar el contenedor del calendario
@@ -1790,5 +1826,50 @@ function setupThemeToggle() {
     updateThemeIcon();
 }
 
+/**
+ * Genera el volante de días de fiesta para impresión
+ */
+function generatePrintFlyer() {
+    const section = document.getElementById('printFlyerSection');
+    if (!section) return;
 
+    const lang = currentLanguage;
+    const localeStr = lang === 'en' ? 'en-US' : (lang === 'tl' ? 'fil-PH' : (lang === 'he' ? 'he-IL' : 'es-ES'));
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const titles = {
+        es: { main: 'DÍAS DE FIESTA DE YAHWEH', sub: 'Tiempos Señalados Sagrados', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        en: { main: "YAHWEH'S FEAST DAYS", sub: 'Sacred Appointed Times', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        tl: { main: 'MGA PISTA NG YAHWEH', sub: 'Mga Banal na Itinakdang Panahon', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        he: { main: 'מועדי יהוה', sub: 'מועדים קדושים', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' }
+    };
+    const t = titles[lang] || titles.es;
+
+    let rows = '';
+    CalendarData.festivals.forEach(function(f) {
+        const start = new Date(f.start_date + 'T12:00:00');
+        const end = f.end_date ? new Date(f.end_date + 'T12:00:00') : null;
+        const startStr = start.toLocaleDateString(localeStr, dateOptions);
+        const endStr = end ? end.toLocaleDateString(localeStr, dateOptions) : null;
+        const dateStr = endStr ? (startStr + ' \u2013 ' + endStr) : startStr;
+        rows += '<tr>' +
+            '<td class="pf-date">' + dateStr + '</td>' +
+            '<td class="pf-name">' + f.name + '</td>' +
+            '<td class="pf-hebrew">' + f.hebrew_name + '</td>' +
+            '</tr>';
+    });
+
+    section.innerHTML =
+        '<div class="pf-wrapper">' +
+            '<div class="pf-header">' +
+                '<div class="pf-logo">&#9654;</div>' +
+                '<h1 class="pf-title">' + t.main + '</h1>' +
+                '<p class="pf-subtitle">' + t.sub + ' &bull; ' + t.year + '</p>' +
+            '</div>' +
+            '<table class="pf-table">' +
+                '<tbody>' + rows + '</tbody>' +
+            '</table>' +
+            '<div class="pf-footer">' + t.site + '</div>' +
+        '</div>';
+}
 
