@@ -816,30 +816,107 @@ body {
   }
 }
 
+/* Sección de impresión: oculta en pantalla, visible solo al imprimir */
+#printFlyerSection {
+  display: none;
+}
+
 /* Estilos para impresión */
 @media print {
-  .no-print {
+  /* Ocultar toda la UI, mostrar solo el volante */
+  nav.navbar,
+  main,
+  .modal,
+  .modal-backdrop {
     display: none !important;
   }
 
-  .container {
+  #printFlyerSection {
+    display: block !important;
+  }
+
+  /* Estilos del volante de fiestas */
+  .pf-wrapper {
+    font-family: Georgia, 'Times New Roman', serif;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #000;
+  }
+
+  .pf-header {
+    text-align: center;
+    border-bottom: 3px solid #000;
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+  }
+
+  .pf-logo {
+    font-size: 28px;
+    color: #b8962e;
+    margin-bottom: 6px;
+  }
+
+  .pf-title {
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+  }
+
+  .pf-subtitle {
+    font-size: 13px;
+    color: #444;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .pf-table {
     width: 100%;
-    max-width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
   }
 
-  .calendar-grid {
-    width: 100%;
-    page-break-inside: avoid;
+  .pf-table tr {
+    border-bottom: 1px solid #ccc;
   }
 
-  .day {
-    border: 1px solid var(--gray-color) !important;
-    min-height: auto;
+  .pf-table tr:first-child {
+    border-top: 1px solid #ccc;
   }
 
-  .scripture-container {
-    page-break-inside: avoid;
-    border: 1px solid var(--gray-color);
+  .pf-date {
+    padding: 7px 10px;
+    font-size: 12px;
+    width: 220px;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+
+  .pf-name {
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+
+  .pf-hebrew {
+    padding: 7px 10px;
+    font-size: 16px;
+    font-family: 'David Libre', 'Times New Roman', serif;
+    direction: rtl;
+    text-align: right;
+    color: #333;
+    vertical-align: middle;
+  }
+
+  .pf-footer {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
   }
 }
 

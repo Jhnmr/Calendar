@@ -768,28 +768,38 @@ function getCustomEventsForMonth(startDateStr, endDateStr) {
 document.addEventListener('DOMContentLoaded', function() {
     // Cargar el idioma guardado en localStorage (si existe)
     loadLanguagePreference();
-    
+
     // Inicializar la interfaz
     initializeUI();
-    
+
     // Cargar el calendario
     loadCalendar();
-    
+
     // Configurar eventos de navegación
     setupNavigationEvents();
-    
+
     // Configurar eventos de exportación/impresión
     setupExportEvents();
-    
+
     // Configurar selector de idioma
     setupLanguageSelector();
-    
+
     // Mostrar la fecha actual
     updateCurrentDateDisplay();
-    
+
     // Configurar el botón "Hoy"
     setupTodayButton();
     setupThemeToggle();
+
+    // Fix: evitar aria-hidden warning al cerrar el modal con foco en su interior
+    const festivalModalEl = document.getElementById('festivalModal');
+    if (festivalModalEl) {
+        festivalModalEl.addEventListener('hide.bs.modal', function() {
+            if (document.activeElement && festivalModalEl.contains(document.activeElement)) {
+                document.activeElement.blur();
+            }
+        });
+    }
 });
 
 /**
@@ -943,6 +953,7 @@ function setupExportEvents() {
     const printBtn = document.getElementById('printBtn');
     if (printBtn) {
         printBtn.addEventListener('click', function() {
+            generatePrintFlyer();
             window.print();
         });
     }
@@ -1815,5 +1826,50 @@ function setupThemeToggle() {
     updateThemeIcon();
 }
 
+/**
+ * Genera el volante de días de fiesta para impresión
+ */
+function generatePrintFlyer() {
+    const section = document.getElementById('printFlyerSection');
+    if (!section) return;
 
+    const lang = currentLanguage;
+    const localeStr = lang === 'en' ? 'en-US' : (lang === 'tl' ? 'fil-PH' : (lang === 'he' ? 'he-IL' : 'es-ES'));
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const titles = {
+        es: { main: 'DÍAS DE FIESTA DE YAHWEH', sub: 'Tiempos Señalados Sagrados', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        en: { main: "YAHWEH'S FEAST DAYS", sub: 'Sacred Appointed Times', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        tl: { main: 'MGA PISTA NG YAHWEH', sub: 'Mga Banal na Itinakdang Panahon', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        he: { main: 'מועדי יהוה', sub: 'מועדים קדושים', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' }
+    };
+    const t = titles[lang] || titles.es;
+
+    let rows = '';
+    CalendarData.festivals.forEach(function(f) {
+        const start = new Date(f.start_date + 'T12:00:00');
+        const end = f.end_date ? new Date(f.end_date + 'T12:00:00') : null;
+        const startStr = start.toLocaleDateString(localeStr, dateOptions);
+        const endStr = end ? end.toLocaleDateString(localeStr, dateOptions) : null;
+        const dateStr = endStr ? (startStr + ' \u2013 ' + endStr) : startStr;
+        rows += '<tr>' +
+            '<td class="pf-date">' + dateStr + '</td>' +
+            '<td class="pf-name">' + f.name + '</td>' +
+            '<td class="pf-hebrew">' + f.hebrew_name + '</td>' +
+            '</tr>';
+    });
+
+    section.innerHTML =
+        '<div class="pf-wrapper">' +
+            '<div class="pf-header">' +
+                '<div class="pf-logo">&#9654;</div>' +
+                '<h1 class="pf-title">' + t.main + '</h1>' +
+                '<p class="pf-subtitle">' + t.sub + ' &bull; ' + t.year + '</p>' +
+            '</div>' +
+            '<table class="pf-table">' +
+                '<tbody>' + rows + '</tbody>' +
+            '</table>' +
+            '<div class="pf-footer">' + t.site + '</div>' +
+        '</div>';
+}
 
