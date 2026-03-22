@@ -1,82 +1,6 @@
 
 
 /**
- * Carga la lista completa de eventos personalizados para la vista de Eventos
- */
-function loadCustomEventsList() {
-    const customEventsTable = document.getElementById('customEventsTable');
-    if (!customEventsTable) return;
-    
-    const translations = CalendarData.translations[currentLanguage];
-    
-    // Obtener todos los eventos
-    const events = loadCustomEvents();
-    
-    // Ordenar eventos por fecha
-    events.sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-    // Generar filas de la tabla
-    let tableHTML = '';
-    
-    if (events.length === 0) {
-        tableHTML = `<tr><td colspan="4" class="text-center text-muted">${translations.no_events || 'No hay eventos personalizados'}</td></tr>`;
-    } else {
-        events.forEach(event => {
-            // Formatear fecha
-            const eventDate = new Date(event.date);
-            const dateFormatted = eventDate.toLocaleDateString(
-                currentLanguage === 'en' ? 'en-US' : (currentLanguage === 'tl' ? 'fil-PH' : 'es-ES'),
-                { year: 'numeric', month: 'long', day: 'numeric' }
-            );
-            
-            // Traducir tipo de evento
-            const eventTypeText = translations[event.type] || event.type;
-            
-            // Crear fila
-            tableHTML += `
-                <tr>
-                    <td>${event.title}</td>
-                    <td>${dateFormatted}</td>
-                    <td><span class="custom-event-type ${event.type}">${eventTypeText}</span></td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-outline-primary edit-event-btn" data-event-id="${event.id}">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-outline-danger delete-event-btn" data-event-id="${event.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `;
-        });
-    }
-    
-    customEventsTable.innerHTML = tableHTML;
-    
-    // Configurar botones de editar y eliminar
-    document.querySelectorAll('.edit-event-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const eventId = this.getAttribute('data-event-id');
-            editEvent(eventId);
-        });
-    });
-    
-    document.querySelectorAll('.delete-event-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const eventId = this.getAttribute('data-event-id');
-            if (confirm(translations.confirm_delete || '¿Está seguro de que desea eliminar este evento?')) {
-                deleteEvent(eventId);
-                
-                // Recargar la tabla
-                loadCustomEventsList();
-            }
-        });
-    });
-}
-
-/**
  * Carga la información para la vista Acerca de
  */
 function loadAboutInfo() {
@@ -127,237 +51,6 @@ function loadAboutInfo() {
         
         tribesContainer.innerHTML = tribesHTML;
     }
-}
-
-/**
- * Añade un nuevo evento personalizado
- * @param {string} dateStr - Fecha para el evento (formato YYYY-MM-DD)
- */
-function addEvent(dateStr = null) {
-    // Limpiar el formulario
-    const eventForm = document.getElementById('eventForm');
-    if (eventForm) {
-        eventForm.reset();
-    }
-    
-    const eventIdInput = document.getElementById('eventId');
-    if (eventIdInput) {
-        eventIdInput.value = '';
-    }
-    
-    // Establecer fecha si se proporciona
-    const eventDateInput = document.getElementById('eventDate');
-    if (eventDateInput) {
-        if (dateStr) {
-            eventDateInput.value = dateStr;
-        } else {
-            // Usar fecha actual si no se proporciona
-            const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0];
-            eventDateInput.value = formattedDate;
-        }
-    }
-    
-    // Actualizar título del modal según el idioma
-    const translations = CalendarData.translations[currentLanguage];
-    const eventModalTitle = document.getElementById('eventModalTitle');
-    if (eventModalTitle) {
-        eventModalTitle.textContent = translations.add_event_modal_title || 'Añadir Evento';
-    }
-    
-    // Ocultar botón de eliminar
-    const deleteEventBtn = document.getElementById('deleteEventBtn');
-    if (deleteEventBtn) {
-        deleteEventBtn.classList.add('d-none');
-    }
-    
-    // Mostrar el modal
-    const eventModal = document.getElementById('eventModal');
-    if (eventModal) {
-        const bsModal = new bootstrap.Modal(eventModal);
-        bsModal.show();
-    }
-    
-    // Configurar botón de guardar
-    const saveEventBtn = document.getElementById('saveEventBtn');
-    if (saveEventBtn) {
-        saveEventBtn.onclick = function() {
-            saveNewEvent();
-        };
-    }
-}
-
-/**
- * Edita un evento existente
- * @param {string} eventId - ID del evento a editar
- */
-function editEvent(eventId) {
-    // Obtener todos los eventos
-    const events = loadCustomEvents();
-    
-    // Buscar el evento por ID
-    const event = events.find(e => e.id === eventId);
-    if (!event) return;
-    
-    // Llenar el formulario con los datos del evento
-    document.getElementById('eventId').value = event.id;
-    document.getElementById('eventTitle').value = event.title;
-    document.getElementById('eventDate').value = event.date;
-    document.getElementById('eventType').value = event.type;
-    document.getElementById('eventNotes').value = event.notes || '';
-    document.getElementById('eventRepeatYearly').checked = event.repeatYearly || false;
-    
-    // Actualizar título del modal según el idioma
-    const translations = CalendarData.translations[currentLanguage];
-    document.getElementById('eventModalTitle').textContent = translations.edit_event_modal_title || 'Editar Evento';
-    
-    // Mostrar botón de eliminar
-    document.getElementById('deleteEventBtn').classList.remove('d-none');
-    
-    // Configurar botón de eliminar
-    document.getElementById('deleteEventBtn').onclick = function() {
-        if (confirm(translations.confirm_delete || '¿Está seguro de que desea eliminar este evento?')) {
-            deleteEvent(eventId);
-            
-            // Cerrar modal
-            const eventModal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
-            eventModal.hide();
-        }
-    };
-    
-    // Mostrar el modal
-    const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
-    eventModal.show();
-    
-    // Configurar botón de guardar
-    document.getElementById('saveEventBtn').onclick = function() {
-        updateExistingEvent(eventId);
-    };
-}
-
-/**
- * Guarda un nuevo evento personalizado
- */
-function saveNewEvent() {
-    // Obtener valores del formulario
-    const title = document.getElementById('eventTitle').value.trim();
-    const date = document.getElementById('eventDate').value;
-    const type = document.getElementById('eventType').value;
-    const notes = document.getElementById('eventNotes').value.trim();
-    const repeatYearly = document.getElementById('eventRepeatYearly').checked;
-    
-    // Validar campos obligatorios
-    if (!title || !date) {
-        alert(CalendarData.translations[currentLanguage].required_fields || 'Los campos Título y Fecha son obligatorios');
-        return;
-    }
-    
-    // Crear ID único
-    const eventId = 'event_' + Date.now();
-    
-    // Crear objeto del evento
-    const newEvent = {
-        id: eventId,
-        title: title,
-        date: date,
-        type: type,
-        notes: notes,
-        repeatYearly: repeatYearly
-    };
-    
-    // Obtener eventos existentes
-    const events = loadCustomEvents();
-    
-    // Añadir nuevo evento
-    events.push(newEvent);
-    
-    // Guardar eventos actualizados
-    saveCustomEvents(events);
-    
-    // Cerrar modal
-    const eventModal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
-    eventModal.hide();
-    
-    // Recargar calendario
-    loadCalendar();
-    
-    // Mostrar mensaje de éxito
-    alert(CalendarData.translations[currentLanguage].event_added || 'Evento añadido correctamente');
-}
-
-/**
- * Actualiza un evento existente
- * @param {string} eventId - ID del evento a actualizar
- */
-function updateExistingEvent(eventId) {
-    // Obtener valores del formulario
-    const title = document.getElementById('eventTitle').value.trim();
-    const date = document.getElementById('eventDate').value;
-    const type = document.getElementById('eventType').value;
-    const notes = document.getElementById('eventNotes').value.trim();
-    const repeatYearly = document.getElementById('eventRepeatYearly').checked;
-    
-    // Validar campos obligatorios
-    if (!title || !date) {
-        alert(CalendarData.translations[currentLanguage].required_fields || 'Los campos Título y Fecha son obligatorios');
-        return;
-    }
-    
-    // Obtener eventos existentes
-    const events = loadCustomEvents();
-    
-    // Encontrar el índice del evento a actualizar
-    const eventIndex = events.findIndex(e => e.id === eventId);
-    if (eventIndex === -1) return;
-    
-    // Actualizar el evento
-    events[eventIndex] = {
-        id: eventId,
-        title: title,
-        date: date,
-        type: type,
-        notes: notes,
-        repeatYearly: repeatYearly
-    };
-    
-    // Guardar eventos actualizados
-    saveCustomEvents(events);
-    
-    // Cerrar modal
-    const eventModal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
-    eventModal.hide();
-    
-    // Recargar calendario
-    loadCalendar();
-    
-    // Recargar lista de eventos si estamos en esa vista
-    if (!document.getElementById('customEventsView').classList.contains('d-none')) {
-        loadCustomEventsList();
-    }
-    
-    // Mostrar mensaje de éxito
-    alert(CalendarData.translations[currentLanguage].event_updated || 'Evento actualizado correctamente');
-}
-
-/**
- * Elimina un evento existente
- * @param {string} eventId - ID del evento a eliminar
- */
-function deleteEvent(eventId) {
-    // Obtener eventos existentes
-    const events = loadCustomEvents();
-    
-    // Filtrar el evento a eliminar
-    const updatedEvents = events.filter(e => e.id !== eventId);
-    
-    // Guardar eventos actualizados
-    saveCustomEvents(updatedEvents);
-    
-    // Recargar calendario
-    loadCalendar();
-    
-    // Mostrar mensaje de éxito
-    alert(CalendarData.translations[currentLanguage].event_deleted || 'Evento eliminado correctamente');
 }
 
 /**
@@ -539,78 +232,6 @@ function showFestivalDetails(festivalId) {
 }
 
 /**
- * Exporta el calendario a PDF
- */
-function exportCalendarToPDF() {
-    // Verificar si las librerías jsPDF y html2canvas están disponibles
-    if (typeof jspdf === 'undefined' || typeof html2canvas === 'undefined') {
-        alert('Error: No se pudieron cargar las librerías necesarias para exportar a PDF');
-        return;
-    }
-    
-    // Crear título para el PDF
-    const currentMonth = CalendarData.months.find(month => month.id === currentMonthId);
-    const pdfTitle = `Calendario_${currentMonth.name}_${new Date().getFullYear()}`;
-    
-    // Obtener el elemento a exportar
-    const element = document.getElementById('calendarContainer');
-    
-    // Mostrar mensaje de carga
-    const loadingMsg = document.createElement('div');
-    loadingMsg.className = 'alert alert-info position-fixed top-50 start-50 translate-middle';
-    loadingMsg.style.zIndex = '9999';
-    loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Generando PDF...';
-    document.body.appendChild(loadingMsg);
-    
-    // Utilizar html2canvas para convertir el elemento a imagen
-    html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        logging: false
-    }).then(canvas => {
-        // Crear PDF con la imagen del canvas
-        const imgData = canvas.toDataURL('image/png');
-        
-        // Determinar orientación según el tamaño del canvas
-        const orientation = canvas.width > canvas.height ? 'l' : 'p';
-        
-        // Crear documento PDF
-        const pdf = new jspdf.jsPDF(orientation, 'mm', 'a4');
-        
-        // Calcular dimensiones para ajustar la imagen al PDF
-        const pdfWidth = orientation === 'l' ? 297 : 210;
-        const pdfHeight = orientation === 'l' ? 210 : 297;
-        
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
-        
-        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight) * 0.9;
-        
-        const newWidth = imgWidth * ratio;
-        const newHeight = imgHeight * ratio;
-        
-        // Centrar la imagen en el PDF
-        const x = (pdfWidth - newWidth) / 2;
-        const y = (pdfHeight - newHeight) / 2;
-        
-        // Añadir la imagen al PDF
-        pdf.addImage(imgData, 'PNG', x, y, newWidth, newHeight);
-        
-        // Guardar el PDF
-        pdf.save(pdfTitle + '.pdf');
-        
-        // Eliminar mensaje de carga
-        document.body.removeChild(loadingMsg);
-    }).catch(error => {
-        console.error('Error al generar el PDF:', error);
-        alert('Error al generar el PDF');
-        
-        // Eliminar mensaje de carga en caso de error
-        document.body.removeChild(loadingMsg);
-    });
-}
-
-/**
  * Carga la lista completa de festividades para la vista de Festividades
  */
 function loadFestivalsList() {
@@ -676,91 +297,6 @@ function loadFestivalsList() {
             const festivalId = parseInt(this.getAttribute('data-festival-id'));
             showFestivalDetails(festivalId);
         });
-    });
-}
-
-function loadCustomEvents() {
-    const eventsJSON = localStorage.getItem('custom_events');
-    return eventsJSON ? JSON.parse(eventsJSON) : [];
-}
-
-/**
- * Guarda eventos personalizados en localStorage
- * @param {Array} events - Lista de eventos a guardar
- */
-function saveCustomEvents(events) {
-    localStorage.setItem('custom_events', JSON.stringify(events));
-}
-
-/**
- * Obtiene eventos personalizados para una fecha específica
- * @param {string} dateStr - Fecha en formato ISO (YYYY-MM-DD)
- * @returns {Array} - Lista de eventos para la fecha
- */
-function getCustomEventsForDate(dateStr) {
-    // Obtener todos los eventos
-    const events = loadCustomEvents();
-    
-    // Obtener año actual
-    const currentYear = new Date().getFullYear();
-    
-    // Filtrar eventos para la fecha específica
-    return events.filter(event => {
-        // Verificar coincidencia exacta de fecha
-        if (event.date === dateStr) {
-            return true;
-        }
-        
-        // Verificar eventos anuales
-        if (event.repeatYearly) {
-            const eventDate = new Date(event.date);
-            const targetDate = new Date(dateStr);
-            
-            // Comparar mes y día (ignorando el año)
-            return eventDate.getMonth() === targetDate.getMonth() && eventDate.getDate() === targetDate.getDate();
-        }
-        
-        return false;
-    });
-}
-
-/**
- * Obtiene eventos personalizados para un rango de fechas
- * @param {string} startDateStr - Fecha de inicio en formato ISO (YYYY-MM-DD)
- * @param {string} endDateStr - Fecha de fin en formato ISO (YYYY-MM-DD)
- * @returns {Array} - Lista de eventos para el rango de fechas
- */
-function getCustomEventsForMonth(startDateStr, endDateStr) {
-    // Obtener fechas como objetos Date
-    const startDate = new Date(startDateStr);
-    const endDate = new Date(endDateStr);
-    
-    // Obtener todos los eventos
-    const events = loadCustomEvents();
-    
-    // Filtrar eventos para el rango de fechas
-    return events.filter(event => {
-        const eventDate = new Date(event.date);
-        
-        // Eventos con fecha dentro del rango
-        if (eventDate >= startDate && eventDate <= endDate) {
-            return true;
-        }
-        
-        // Eventos anuales que coinciden con el mes
-        if (event.repeatYearly) {
-            // Extraer mes y día del evento
-            const eventMonth = eventDate.getMonth();
-            const eventDay = eventDate.getDate();
-            
-            // Verificar si el mes actual contiene esta fecha
-            // Crear una fecha con el año del mes actual para comparar
-            const compareDate = new Date(startDate.getFullYear(), eventMonth, eventDay);
-            
-            return compareDate >= startDate && compareDate <= endDate;
-        }
-        
-        return false;
     });
 }
 
@@ -893,35 +429,32 @@ function setupViewNavigation() {
     const navItems = {
         'navCalendar': 'calendarView',
         'navFestivals': 'festivalsView',
-        'navCustomEvents': 'customEventsView',
         'navAbout': 'aboutView'
     };
-    
+
     Object.keys(navItems).forEach(navId => {
         const navItem = document.getElementById(navId);
         if (navItem) {
             navItem.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 // Ocultar todas las vistas
                 document.querySelectorAll('.view-section').forEach(section => {
                     section.classList.add('d-none');
                 });
-                
+
                 // Mostrar la vista seleccionada
                 document.getElementById(navItems[navId]).classList.remove('d-none');
-                
+
                 // Actualizar la navegación activa
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
                 });
                 this.classList.add('active');
-                
+
                 // Cargar el contenido específico de la vista si es necesario
                 if (navId === 'navFestivals') {
                     loadFestivalsList();
-                } else if (navId === 'navCustomEvents') {
-                    loadCustomEventsList();
                 } else if (navId === 'navAbout') {
                     loadAboutInfo();
                 }
@@ -938,58 +471,14 @@ function setupNavigationEvents() {
 }
 
 /**
- * Configura los eventos de exportación e impresión
+ * Configura los eventos de impresión
  */
 function setupExportEvents() {
-    // Botón de exportar PDF
-    const exportBtn = document.getElementById('exportBtn');
-    if (exportBtn) {
-        exportBtn.addEventListener('click', function() {
-            exportCalendarToPDF();
-        });
-    }
-    
-    // Botón de imprimir
     const printBtn = document.getElementById('printBtn');
     if (printBtn) {
         printBtn.addEventListener('click', function() {
             generatePrintFlyer();
             window.print();
-        });
-    }
-    
-    // Botón de exportar eventos
-    const exportEventsBtn = document.getElementById('exportEventsBtn');
-    if (exportEventsBtn) {
-        exportEventsBtn.addEventListener('click', function() {
-            exportEvents();
-        });
-    }
-    
-    // Botón de importar eventos
-    const importEventsBtn = document.getElementById('importEventsBtn');
-    if (importEventsBtn) {
-        importEventsBtn.addEventListener('click', function() {
-            const importModal = new bootstrap.Modal(document.getElementById('importModal'));
-            importModal.show();
-        });
-    }
-    
-    // Configurar el botón de envío de importación
-    const importSubmitBtn = document.getElementById('importSubmitBtn');
-    if (importSubmitBtn) {
-        importSubmitBtn.addEventListener('click', function() {
-            const fileInput = document.getElementById('importFile');
-            if (fileInput.files.length > 0) {
-                const overwrite = document.getElementById('overwriteEvents').checked;
-                importEvents(fileInput.files[0], overwrite);
-                
-                // Cerrar modal después de importar
-                const importModal = bootstrap.Modal.getInstance(document.getElementById('importModal'));
-                importModal.hide();
-            } else {
-                alert(CalendarData.translations[currentLanguage].no_file_selected || 'No se ha seleccionado ningún archivo');
-            }
         });
     }
 }
@@ -1061,13 +550,11 @@ function updateAllTranslations() {
     const todayBtn = document.getElementById('todayBtn');
     const prevMonthBtn = document.getElementById('prevMonthBtn');
     const nextMonthBtn = document.getElementById('nextMonthBtn');
-    const exportBtn = document.getElementById('exportBtn');
     const printBtn = document.getElementById('printBtn');
 
     if (todayBtn) todayBtn.innerHTML = `<i class="fas fa-calendar-day"></i> ${translations.today || 'Hoy'}`;
     if (prevMonthBtn) prevMonthBtn.innerHTML = `<i class="fas fa-chevron-left"></i> ${translations.previous || 'Anterior'}`;
     if (nextMonthBtn) nextMonthBtn.innerHTML = `${translations.next || 'Siguiente'} <i class="fas fa-chevron-right"></i>`;
-    if (exportBtn) exportBtn.innerHTML = `<i class="fas fa-download"></i> ${translations.export || 'Exportar'} PDF`;
     if (printBtn) printBtn.innerHTML = `<i class="fas fa-print"></i> ${translations.print || 'Imprimir'}`;
 
     // Actualizar títulos de secciones
@@ -1134,14 +621,12 @@ function updateCalendarLegend() {
     const legendSpanNewMoon = document.getElementById('legendNewMoon');
     const legendSpanFestival = document.getElementById('legendFestival');
     const legendSpanImportant = document.getElementById('legendImportant');
-    const legendSpanPersonal = document.getElementById('legendPersonal');
 
     if (legendSpanSat) legendSpanSat.textContent = translations.legend_saturday || 'Sábado';
     if (legendSpanCurrent) legendSpanCurrent.textContent = translations.legend_current_day || 'Día actual';
     if (legendSpanNewMoon) legendSpanNewMoon.textContent = translations.legend_new_moon || 'Luna nueva';
     if (legendSpanFestival) legendSpanFestival.textContent = translations.legend_festival || 'Festividad';
     if (legendSpanImportant) legendSpanImportant.textContent = translations.legend_important_festival || 'Festividad importante';
-    if (legendSpanPersonal) legendSpanPersonal.textContent = translations.legend_personal_event || 'Evento personal';
 }
 
 // Función para actualizar las traducciones de la vista Acerca de
@@ -1416,10 +901,6 @@ if (calendarTitle) {
                 if (hasHighImportanceFestival) dayClass += ' high-importance';
                 else if (festivals.length > 0) dayClass += ' festival';
                 
-                // Buscar eventos personalizados para este día
-                const customEvents = getCustomEventsForDate(currentDateISO);
-                if (customEvents.length > 0) dayClass += ' custom-event';
-                
                 // Generar HTML para el día
                 calendarGridHTML += `<div class="${dayClass}" data-date="${currentDateISO}">`;
                 
@@ -1464,15 +945,6 @@ if (calendarTitle) {
                     `;
                 });
                 
-                // Mostrar eventos personalizados
-                customEvents.forEach(event => {
-                    calendarGridHTML += `
-                        <div class="custom-event-indicator" data-event-id="${event.id}">
-                            <i class="fas fa-bookmark"></i> ${event.title}
-                        </div>
-                    `;
-                });
-                
                 calendarGridHTML += '</div>';
                 dayCounter++;
             } else {
@@ -1489,8 +961,7 @@ if (calendarTitle) {
     // Actualizar el contenedor del calendario
     calendarContainer.innerHTML = monthHeaderHTML + calendarGridHTML;
     
-    // Configurar eventos para los días y festividades
-    setupDayEvents();
+    // Configurar eventos para los indicadores de festividades
     setupFestivalIndicators();
     
     // Actualizar la información del mes
@@ -1679,81 +1150,6 @@ function updateFestivalsList(month) {
 }
 
 /**
- * Actualiza la lista de eventos personalizados para el mes actual
- * @param {Object} month - Objeto con la información del mes
- */
-function updateCustomEventsList(month) {
-    const customEventsListContainer = document.getElementById('customEventsList');
-    if (!customEventsListContainer) return;
-    
-    const translations = CalendarData.translations[currentLanguage];
-    
-    // Obtener fechas de inicio y fin del mes
-    const startDate = new Date(month.start_date);
-    const endDate = new Date(month.end_date);
-    const startISO = startDate.toISOString().split('T')[0];
-    const endISO = endDate.toISOString().split('T')[0];
-    
-    // Obtener eventos personalizados para el mes
-    const monthEvents = getCustomEventsForMonth(startISO, endISO);
-    
-    // Generar HTML para la lista de eventos
-    if (monthEvents.length === 0) {
-        customEventsListContainer.innerHTML = `<p class="text-muted mb-0">${translations.no_events || 'No hay eventos personalizados'}</p>`;
-        return;
-    }
-    
-    let eventsHTML = '';
-    
-    monthEvents.forEach(event => {
-        // Formatear fecha
-        const eventDate = new Date(event.date);
-        const dateFormatted = eventDate.toLocaleDateString(
-            currentLanguage === 'en' ? 'en-US' : (currentLanguage === 'tl' ? 'fil-PH' : 'es-ES'),
-            { year: 'numeric', month: 'long', day: 'numeric' }
-        );
-        
-        // Traducir tipo de evento
-        const eventTypeText = translations[event.type] || event.type;
-        
-        // Generar elemento
-        eventsHTML += `
-            <div class="custom-event-item" data-event-id="${event.id}">
-                <div>
-                    <div class="event-title">${event.title}</div>
-                    <div class="event-date">${dateFormatted}</div>
-                </div>
-                <div class="d-flex align-items-center">
-                    <span class="custom-event-type ${event.type} me-2">${eventTypeText}</span>
-                    <button class="btn btn-sm btn-outline-primary edit-event-btn">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-    });
-    
-    customEventsListContainer.innerHTML = eventsHTML;
-    
-    // Configurar eventos para editar
-    document.querySelectorAll('.edit-event-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const eventId = this.closest('.custom-event-item').getAttribute('data-event-id');
-            editEvent(eventId);
-        });
-    });
-    
-    // Configurar eventos para hacer clic en el evento
-    document.querySelectorAll('.custom-event-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const eventId = this.getAttribute('data-event-id');
-            editEvent(eventId);
-        });
-    });
-}
-
-/**
  * Actualiza la cita bíblica según el mes actual
  * @param {Object} month - Objeto con la información del mes
  */
@@ -1772,20 +1168,6 @@ function updateScripture(month) {
     }
 }
 
-/**
- * Configura eventos al hacer clic en los días del calendario
- */
-function setupDayEvents() {
-    document.querySelectorAll('.day:not(.empty)').forEach(day => {
-        day.addEventListener('click', function() {
-            const dateStr = this.getAttribute('data-date');
-            if (dateStr) {
-                // Abrir modal para añadir evento
-                addEvent(dateStr);
-            }
-        });
-    });
-}
 /**
  * Configura el botón de cambio de tema claro/oscuro
  */
