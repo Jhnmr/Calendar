@@ -57,10 +57,24 @@
                         <li><a class="dropdown-item" href="#" data-lang="he">עברית</a></li>
                     </ul>
                 </div>
+
+                <!-- Enlace externo a la congregación (solo ícono) -->
+                <a href="https://coyhwh.com/enter.php" target="_blank" rel="noopener noreferrer"
+                   id="navCongregationLink" class="nav-congregation-link ms-2"
+                   title="Visitar sitio">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
         </div>
     </nav>
     
+    <!-- Banner hero de la congregación (oculto en móvil) -->
+    <div id="congregationBanner" class="congregation-banner d-none d-md-flex">
+        <span id="bannerCongregationName">Congregación de YAHWEH[יהוה]</span>
+        <span class="banner-sep">&bull;</span>
+        <a href="https://coyhwh.com/enter.php" target="_blank" rel="noopener noreferrer" id="bannerLink">Visitar sitio</a>
+    </div>
+
     <!-- Contenedor principal -->
     <main class="container mt-4">
         <!-- Vista del calendario (página principal) -->
@@ -256,9 +270,47 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Card de la congregación -->
+            <div class="card mt-4 shadow" id="congregationCard">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0" id="congregationCardTitle">
+                        <i class="fas fa-users me-2"></i>Congregación de YAHWEH[יהוה]
+                    </h5>
+                </div>
+                <div class="card-body text-center py-4">
+                    <p class="mb-3" id="congregationCardAbout">Comunidad que sigue los tiempos señalados de YAHWEH[יהוה]</p>
+                    <a href="https://coyhwh.com/enter.php" target="_blank" rel="noopener noreferrer"
+                       id="congregationCardBtn" class="btn congregation-btn">
+                        <i class="fas fa-external-link-alt me-1"></i>
+                        <span id="congregationCardBtnLabel">Visitar sitio</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
     
+    <!-- Footer -->
+    <footer id="appFooter" class="app-footer">
+        <div class="container">
+            <div class="row footer-row align-items-center text-center">
+                <div class="col-md-4 footer-col footer-col-left mb-1 mb-md-0 text-md-start">
+                    <span id="footerAppName"></span>
+                    &copy; <span id="footerYear"></span>
+                </div>
+                <div class="col-md-4 footer-col footer-col-center mb-1 mb-md-0">
+                    <a href="https://coyhwh.com/enter.php" target="_blank" rel="noopener noreferrer">
+                        <span id="footerCongregationName"></span>
+                        <i class="fas fa-external-link-alt ms-1 small"></i>
+                    </a>
+                </div>
+                <div class="col-md-4 footer-col footer-col-right text-md-end">
+                    <span id="footerRights"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Modal para detalles de festividad -->
     <div class="modal fade" id="festivalModal" tabindex="-1">
         <div class="modal-dialog modal-lg">

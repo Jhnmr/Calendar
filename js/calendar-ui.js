@@ -635,6 +635,34 @@ function updateAllTranslations() {
             ? (translations.theme_toggle_light || 'Cambiar a tema claro')
             : (translations.theme_toggle_dark || 'Cambiar a tema oscuro');
     }
+
+    // ── Navbar: ícono de congregación ─────────────────────────────────────────
+    const navCongLink = document.getElementById('navCongregationLink');
+    if (navCongLink) navCongLink.title = translations.congregation_link_label || 'Visitar sitio';
+
+    // ── Banner hero de congregación ───────────────────────────────────────────
+    const bannerName = document.getElementById('bannerCongregationName');
+    const bannerLink = document.getElementById('bannerLink');
+    if (bannerName) bannerName.innerHTML = translations.congregation_name || 'Congregación';
+    if (bannerLink) bannerLink.textContent = translations.congregation_link_label || 'Visitar sitio';
+
+    // ── Card de congregación en Acerca de ─────────────────────────────────────
+    const congCardTitle = document.getElementById('congregationCardTitle');
+    const congCardAbout = document.getElementById('congregationCardAbout');
+    const congCardBtnLabel = document.getElementById('congregationCardBtnLabel');
+    if (congCardTitle) congCardTitle.innerHTML = `<i class="fas fa-users me-2"></i>${translations.congregation_name || 'Congregación'}`;
+    if (congCardAbout) congCardAbout.textContent = translations.congregation_about || '';
+    if (congCardBtnLabel) congCardBtnLabel.textContent = translations.congregation_link_label || 'Visitar sitio';
+
+    // ── Footer ────────────────────────────────────────────────────────────────
+    const footerAppName = document.getElementById('footerAppName');
+    const footerCongName = document.getElementById('footerCongregationName');
+    const footerRights = document.getElementById('footerRights');
+    const footerYear = document.getElementById('footerYear');
+    if (footerAppName) footerAppName.innerHTML = translations.footer_app_name || 'Calendario';
+    if (footerCongName) footerCongName.innerHTML = translations.congregation_name || 'Congregación';
+    if (footerRights) footerRights.textContent = translations.footer_rights || 'Todos los derechos reservados';
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
 }
 
 // Función para actualizar la leyenda del calendario
