@@ -50,6 +50,13 @@ body {
   unicode-bidi: embed;
 }
 
+.divine-name {
+  font-family: 'David Libre', serif;
+  color: var(--accent-gold);
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
 [dir="rtl"] {
   text-align: right;
 }

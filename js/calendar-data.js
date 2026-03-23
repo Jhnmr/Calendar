@@ -28,7 +28,7 @@ CalendarData.months = [
         featured_image: "img/months/jerusalem.jpg",
         featured_location: "Jerusalén",
         scripture_ref: "Apocalipsis 1:5-6",
-        scripture_text: "De parte de YAHSHUAH HaMashiach, el testigo fiel, el primogénito de entre los muertos y el soberano de los reyes de la tierra. Al que nos ama y nos ha librado de nuestros pecados con su sangre, y nos ha constituido en un reino, sacerdotes al servicio de YAHWEH su Padre, a él sea la gloria y el poder por los siglos de los siglos. Amén.",
+        scripture_text: "De parte de YAHSHUAH[<span class=\"divine-name\">יהשוע</span>] HaMashiach, el testigo fiel, el primogénito de entre los muertos y el soberano de los reyes de la tierra. Al que nos ama y nos ha librado de nuestros pecados con su sangre, y nos ha constituido en un reino, sacerdotes al servicio de YAHWEH[<span class=\"divine-name\">יהוה</span>] su Padre, a él sea la gloria y el poder por los siglos de los siglos. Amén.",
         new_moon_date: "2026-04-18 12:00:00",
         month_order: 1
     },
@@ -64,7 +64,7 @@ CalendarData.months = [
         featured_image: "img/months/sea_of_galilee.jpg",
         featured_location: "Mar de Galilea",
         scripture_ref: "Efesios 2:10",
-        scripture_text: "Porque somos hechura suya, creados en YAHSHUAH HaMashiach para buenas obras, las cuales YAHWEH preparó de antemano para que anduviésemos en ellas.",
+        scripture_text: "Porque somos hechura suya, creados en YAHSHUAH[<span class=\"divine-name\">יהשוע</span>] HaMashiach para buenas obras, las cuales YAHWEH[<span class=\"divine-name\">יהוה</span>] preparó de antemano para que anduviésemos en ellas.",
         new_moon_date: "2026-06-15 12:00:00",
         month_order: 3
     },
@@ -82,7 +82,7 @@ CalendarData.months = [
         featured_image: "img/months/qumran.jpg",
         featured_location: "Qumrán",
         scripture_ref: "Marcos 4:26-28",
-        scripture_text: "Y dijo: Así es el reino de YAHWEH como cuando un hombre echa la semilla en la tierra; y duerme y se levanta, de noche y de día, y la semilla brota y crece sin que él sepa cómo. Porque de suyo lleva fruto la tierra, primero hierba, luego espiga, después grano lleno en la espiga.",
+        scripture_text: "Y dijo: Así es el reino de YAHWEH[<span class=\"divine-name\">יהוה</span>] como cuando un hombre echa la semilla en la tierra; y duerme y se levanta, de noche y de día, y la semilla brota y crece sin que él sepa cómo. Porque de suyo lleva fruto la tierra, primero hierba, luego espiga, después grano lleno en la espiga.",
         new_moon_date: "2026-07-14 12:00:00",
         month_order: 4
     },
@@ -118,7 +118,7 @@ CalendarData.months = [
         featured_image: "img/months/shiloh.jpg",
         featured_location: "Shiloh",
         scripture_ref: "Salmo 8:1-4",
-        scripture_text: "¡Oh YAHWEH, Señor nuestro, cuán glorioso es tu nombre en toda la tierra! Has puesto tu gloria sobre los cielos. De la boca de los niños y de los que maman, fundaste la fortaleza, a causa de tus enemigos, para hacer callar al enemigo y al vengador. Cuando veo tus cielos, obra de tus dedos, la luna y las estrellas que tú formaste, digo: ¿Qué es el hombre, para que tengas de él memoria, y el hijo del hombre, para que lo visites?",
+        scripture_text: "¡Oh YAHWEH[<span class=\"divine-name\">יהוה</span>], Señor nuestro, cuán glorioso es tu nombre en toda la tierra! Has puesto tu gloria sobre los cielos. De la boca de los niños y de los que maman, fundaste la fortaleza, a causa de tus enemigos, para hacer callar al enemigo y al vengador. Cuando veo tus cielos, obra de tus dedos, la luna y las estrellas que tú formaste, digo: ¿Qué es el hombre, para que tengas de él memoria, y el hijo del hombre, para que lo visites?",
         new_moon_date: "2026-09-11 12:00:00",
         month_order: 6
     },
@@ -154,7 +154,7 @@ CalendarData.months = [
         featured_image: "img/months/jordan_river.jpg",
         featured_location: "Sitio Bautismal del Jordán",
         scripture_ref: "Apocalipsis 4:11",
-        scripture_text: "YAHWEH, digno eres de recibir la gloria y la honra y el poder; porque tú creaste todas las cosas, y por tu voluntad existen y fueron creadas.",
+        scripture_text: "YAHWEH[<span class=\"divine-name\">יהוה</span>], digno eres de recibir la gloria y la honra y el poder; porque tú creaste todas las cosas, y por tu voluntad existen y fueron creadas.",
         new_moon_date: "2026-11-08 12:00:00",
         month_order: 8
     },
@@ -172,7 +172,7 @@ CalendarData.months = [
         featured_image: "img/months/mukawer.jpg",
         featured_location: "Mukawer, Jordania",
         scripture_ref: "Romanos 8:14-16",
-        scripture_text: "Porque todos los que son guiados por el Espíritu de YAHWEH, éstos son hijos de YAHWEH. Pues no habéis recibido el espíritu de esclavitud para estar otra vez en temor, sino que habéis recibido el espíritu de adopción, por el cual clamamos: ¡Abba, Padre! El Espíritu mismo da testimonio a nuestro espíritu, de que somos hijos de YAHWEH.",
+        scripture_text: "Porque todos los que son guiados por el Espíritu de YAHWEH[<span class=\"divine-name\">יהוה</span>], éstos son hijos de YAHWEH[<span class=\"divine-name\">יהוה</span>]. Pues no habéis recibido el espíritu de esclavitud para estar otra vez en temor, sino que habéis recibido el espíritu de adopción, por el cual clamamos: ¡Abba, Padre! El Espíritu mismo da testimonio a nuestro espíritu, de que somos hijos de YAHWEH[<span class=\"divine-name\">יהוה</span>].",
         new_moon_date: "2026-12-08 12:00:00",
         month_order: 9
     },
@@ -190,7 +190,7 @@ CalendarData.months = [
         featured_image: "img/months/wadi_rum.jpg",
         featured_location: "Wadi Rum, Jordania",
         scripture_ref: "Colosenses 1:5-6",
-        scripture_text: "A causa de la esperanza que os está guardada en los cielos, de la cual ya habéis oído por la palabra verdadera del evangelio, que ha llegado a vosotros, así como a todo el mundo, y lleva fruto y crece también en vosotros, desde el día que oísteis y conocisteis la gracia de YAHWEH en verdad.",
+        scripture_text: "A causa de la esperanza que os está guardada en los cielos, de la cual ya habéis oído por la palabra verdadera del evangelio, que ha llegado a vosotros, así como a todo el mundo, y lleva fruto y crece también en vosotros, desde el día que oísteis y conocisteis la gracia de YAHWEH[<span class=\"divine-name\">יהוה</span>] en verdad.",
         new_moon_date: "2027-01-06 12:00:00",
         month_order: 10
     },
@@ -226,7 +226,7 @@ CalendarData.months = [
         featured_image: "img/months/mount_horeb.jpg",
         featured_location: "Roca Partida, Monte Horeb",
         scripture_ref: "Deuteronomio 14:2",
-        scripture_text: "Porque eres pueblo santo a YAHWEH tu Elohim, y YAHWEH te ha escogido para que le seas un pueblo único de entre todos los pueblos que están sobre la tierra.",
+        scripture_text: "Porque eres pueblo santo a YAHWEH[<span class=\"divine-name\">יהוה</span>] tu Elohim, y YAHWEH[<span class=\"divine-name\">יהוה</span>] te ha escogido para que le seas un pueblo único de entre todos los pueblos que están sobre la tierra.",
         new_moon_date: "2027-03-08 12:00:00",
         month_order: 12
     }
@@ -243,7 +243,7 @@ CalendarData.festivals = [
         end_date: null, // Un solo día (14 Aviv: atardecer 1 abril → atardecer 2 abril)
         start_at_sunset: true,
         description_short: "Conmemoración de la liberación de la esclavitud - Los símbolos se toman la noche del 1 de abril; el 2 de abril es el día de Pascua hasta las 6 pm (14 de Aviv)",
-        description_long: "La Pascua es una de las festividades más importantes mandadas por ELOHIM para toda la humanidad. Conmemora la liberación de la esclavitud en Egipto mediante el sacrificio del cordero. En 2026, los símbolos de la Pascua se toman en la noche del 1 de abril (al comenzar el 14 de Aviv al atardecer), y el 2 de abril es el día de Pascua hasta las 6 pm (puesta del sol). Durante esta festividad se recuerda cómo la muerte 'pasó' sobre las casas que tenían la sangre del cordero en sus dinteles, prefigurando el sacrificio de YAHSHUAH HaMashiach. IMPORTANTE: No es un día de celebración alegre, sino de sacrificio solemne y recuerdo. La celebración alegre comienza al día siguiente con la Fiesta de Panes sin Levadura. Este mandamiento es para todos los hijos de ELOHIM, no solo para un pueblo específico.",
+        description_long: "La Pascua es una de las festividades más importantes mandadas por ELOHIM para toda la humanidad. Conmemora la liberación de la esclavitud en Egipto mediante el sacrificio del cordero. En 2026, los símbolos de la Pascua se toman en la noche del 1 de abril (al comenzar el 14 de Aviv al atardecer), y el 2 de abril es el día de Pascua hasta las 6 pm (puesta del sol). Durante esta festividad se recuerda cómo la muerte 'pasó' sobre las casas que tenían la sangre del cordero en sus dinteles, prefigurando el sacrificio de YAHSHUAH[<span class=\"divine-name\">יהשוע</span>] HaMashiach. IMPORTANTE: No es un día de celebración alegre, sino de sacrificio solemne y recuerdo. La celebración alegre comienza al día siguiente con la Fiesta de Panes sin Levadura. Este mandamiento es para todos los hijos de ELOHIM, no solo para un pueblo específico.",
         preparations: [
             "Preparar el cordero pascual",
             "Retirar toda levadura de la casa antes del 1 de abril al atardecer",
@@ -283,7 +283,7 @@ CalendarData.festivals = [
         end_date: null,
         start_at_sunset: false,
         description_short: "Ofrenda de las primicias de la cosecha - Día de la Resurrección, SIEMPRE en domingo (5 de abril 2026, dentro de la semana de Panes sin Levadura)",
-        description_long: "La Fiesta de los Primeros Frutos es un mandamiento de YAHWEH que se celebra el primer domingo durante la semana de los Panes sin Levadura. En 2026 cae el 5 de abril (domingo). Esta festividad marca el comienzo de la cosecha de cebada y simboliza la consagración de toda la cosecha a YAHWEH. Proféticamente representa la resurrección de YAHSHUAH HaMashiach, quien resucitó en domingo cumpliendo esta festividad. Este día marca el inicio del conteo del Omer - 50 días hasta Shavuot (Pentecostés). Este mandamiento es para todos los que siguen a ELOHIM.",
+        description_long: "La Fiesta de los Primeros Frutos es un mandamiento de YAHWEH[<span class=\"divine-name\">יהוה</span>] que se celebra el primer domingo durante la semana de los Panes sin Levadura. En 2026 cae el 5 de abril (domingo). Esta festividad marca el comienzo de la cosecha de cebada y simboliza la consagración de toda la cosecha a YAHWEH[<span class=\"divine-name\">יהוה</span>]. Proféticamente representa la resurrección de YAHSHUAH[<span class=\"divine-name\">יהשוע</span>] HaMashiach, quien resucitó en domingo cumpliendo esta festividad. Este día marca el inicio del conteo del Omer - 50 días hasta Shavuot (Pentecostés). Este mandamiento es para todos los que siguen a ELOHIM.",
         preparations: [
             "Preparar las primicias de la cosecha",
             "Llevar la ofrenda al templo",
@@ -302,7 +302,7 @@ CalendarData.festivals = [
         end_date: null,
         start_at_sunset: true,
         description_short: "Celebración de la entrega de la Instrucción de ELOHIM - Pentecostés, SIEMPRE en domingo (24 de mayo 2026, 50 días después de Primicias)",
-        description_long: "Shavuot, también conocido como la Fiesta de las Semanas o Pentecostés, es un mandamiento de YAHWEH que se celebra exactamente 50 días después de la Fiesta de los Primeros Frutos (contando Primicias como día 1). En 2026 cae el 24 de mayo (domingo), exactamente 49 días después del 5 de abril. Como Primicias siempre es domingo, Shavuot también SIEMPRE cae en domingo. Conmemora la entrega de la Instrucción (Torah) de YAHWEH en el Monte Sinaí para toda la humanidad, y marca el final de la cosecha de cebada y el comienzo de la cosecha de trigo. Proféticamente, esta festividad también marca el derramamiento del Espíritu de YAHWEH. Este mandamiento es para todos los hijos de ELOHIM en todas las generaciones.",
+        description_long: "Shavuot, también conocido como la Fiesta de las Semanas o Pentecostés, es un mandamiento de YAHWEH[<span class=\"divine-name\">יהוה</span>] que se celebra exactamente 50 días después de la Fiesta de los Primeros Frutos (contando Primicias como día 1). En 2026 cae el 24 de mayo (domingo), exactamente 49 días después del 5 de abril. Como Primicias siempre es domingo, Shavuot también SIEMPRE cae en domingo. Conmemora la entrega de la Instrucción (Torah) de YAHWEH[<span class=\"divine-name\">יהוה</span>] en el Monte Sinaí para toda la humanidad, y marca el final de la cosecha de cebada y el comienzo de la cosecha de trigo. Proféticamente, esta festividad también marca el derramamiento del Espíritu de YAHWEH[<span class=\"divine-name\">יהוה</span>]. Este mandamiento es para todos los hijos de ELOHIM en todas las generaciones.",
         preparations: [
             "Decorar con flores y plantas",
             "Preparar alimentos a base de lácteos",
@@ -342,7 +342,7 @@ CalendarData.festivals = [
         end_date: null,
         start_at_sunset: true,
         description_short: "Día más solemne del año - Día de Expiación y Arrepentimiento (21 de septiembre 2026, 10º del mes 7º)",
-        description_long: "Yom Kippur es el día más solemne mandado por ELOHIM para toda la humanidad. En 2026 cae el 21 de septiembre, exactamente diez días después de Yom Teruah (12 de septiembre). Es un día de ayuno total, oración profunda y arrepentimiento. En el Tabernáculo, era el único día del año en que el Sumo Sacerdote podía entrar al Lugar Santísimo para ofrecer expiación por los pecados del pueblo, prefigurando el sacrificio de YAHSHUAH HaMashiach. Es un Sabbat sagrado con descanso absoluto obligatorio. ELOHIM ordenó este día para que todos Sus hijos se reconcilien con Él - no es exclusivo de un pueblo sino para todos los que le aman.",
+        description_long: "Yom Kippur es el día más solemne mandado por ELOHIM para toda la humanidad. En 2026 cae el 21 de septiembre, exactamente diez días después de Yom Teruah (12 de septiembre). Es un día de ayuno total, oración profunda y arrepentimiento. En el Tabernáculo, era el único día del año en que el Sumo Sacerdote podía entrar al Lugar Santísimo para ofrecer expiación por los pecados del pueblo, prefigurando el sacrificio de YAHSHUAH[<span class=\"divine-name\">יהשוע</span>] HaMashiach. Es un Sabbat sagrado con descanso absoluto obligatorio. ELOHIM ordenó este día para que todos Sus hijos se reconcilien con Él - no es exclusivo de un pueblo sino para todos los que le aman.",
         preparations: [
             "Prepararse para el ayuno total (sin comida ni agua)",
             "Reconciliarse con los demás antes del 21 de septiembre al atardecer",
@@ -446,7 +446,7 @@ CalendarData.translations = {
     // Traducciones en español
     es: {
         // Interfaz general
-        calendar: "Calendario de YAHWEH",
+        calendar: "Calendario de YAHWEH[<span class=\"divine-name\">יהוה</span>]",
         festivals: "Festividades Sagradas",
         custom_events: "Mis Eventos",
         about: "Acerca de",
@@ -574,12 +574,12 @@ CalendarData.translations = {
         festival_details: "Detalles de Festividad",
 
         // Título de página, congregación y UI general
-        page_title: "Calendario de YAHWEH",
-        congregation_name: "Congregación de YAHWEH",
+        page_title: "Calendario de YAHWEH[יהוה]",
+        congregation_name: "Congregación de YAHWEH[יהוה]",
         congregation_link_label: "Visitar sitio",
-        congregation_about: "Comunidad que sigue los tiempos señalados de YAHWEH",
+        congregation_about: "Comunidad que sigue los tiempos señalados de YAHWEH[יהוה]",
         footer_rights: "Todos los derechos reservados",
-        footer_app_name: "Calendario de YAHWEH",
+        footer_app_name: "Calendario de YAHWEH[יהוה]",
         loading: "Cargando...",
         theme_toggle_dark: "Cambiar a tema oscuro",
         theme_toggle_light: "Cambiar a tema claro"
@@ -714,12 +714,12 @@ CalendarData.translations = {
         festival_details: "Festival Details",
 
         // Page title, congregation and general UI
-        page_title: "YAHWEH's Calendar",
-        congregation_name: "YAHWEH's Congregation",
+        page_title: "YAHWEH[יהוה]'s Calendar",
+        congregation_name: "YAHWEH[יהוה]'s Congregation",
         congregation_link_label: "Visit site",
-        congregation_about: "Community following YAHWEH's appointed times",
+        congregation_about: "Community following YAHWEH[יהוה]'s appointed times",
         footer_rights: "All rights reserved",
-        footer_app_name: "YAHWEH's Calendar",
+        footer_app_name: "YAHWEH[יהוה]'s Calendar",
         loading: "Loading...",
         theme_toggle_dark: "Switch to dark theme",
         theme_toggle_light: "Switch to light theme"
@@ -854,12 +854,12 @@ CalendarData.translations = {
         festival_details: "Mga Detalye ng Kapistahan",
 
         // Pamagat ng pahina, kongregasyon at pangkalahatang UI
-        page_title: "Kalendaryo ng YAHWEH",
-        congregation_name: "Kongregasyon ng YAHWEH",
+        page_title: "Kalendaryo ng YAHWEH[יהוה]",
+        congregation_name: "Kongregasyon ng YAHWEH[יהוה]",
         congregation_link_label: "Bisitahin ang site",
-        congregation_about: "Komunidad na sumusunod sa mga itinakdang panahon ng YAHWEH",
+        congregation_about: "Komunidad na sumusunod sa mga itinakdang panahon ng YAHWEH[יהוה]",
         footer_rights: "Lahat ng karapatan ay nakalaan",
-        footer_app_name: "Kalendaryo ng YAHWEH",
+        footer_app_name: "Kalendaryo ng YAHWEH[יהוה]",
         loading: "Naglo-load...",
         theme_toggle_dark: "Lumipat sa madilim na tema",
         theme_toggle_light: "Lumipat sa maliwanag na tema"

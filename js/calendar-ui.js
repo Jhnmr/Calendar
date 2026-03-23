@@ -543,7 +543,7 @@ function updateAllTranslations() {
     const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 
     // ── Título del documento ──────────────────────────────────────────────────
-    document.title = translations.page_title || 'Calendario de YAHWEH';
+    document.title = translations.page_title || 'Calendario de YAHWEH[יהוה]';
 
     // ── Dirección RTL/LTR en <html> ───────────────────────────────────────────
     document.documentElement.setAttribute('dir', currentLanguage === 'he' ? 'rtl' : 'ltr');
@@ -571,7 +571,7 @@ function updateAllTranslations() {
     // ── Título del calendario (responsive) ───────────────────────────────────
     const calendarTitle = document.getElementById('calendarTitle');
     if (calendarTitle) {
-        const titleText = translations.calendar || 'Calendario de YAHWEH';
+        const titleText = translations.calendar || 'Calendario de YAHWEH[<span class="divine-name">יהוה</span>]';
         calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> <span class="d-none d-sm-inline">${titleText}</span><span class="d-sm-none">${titleText.split(' ')[0]}</span>`;
     }
 
@@ -837,7 +837,7 @@ function loadCalendar() {
 const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 const calendarTitle = document.getElementById('calendarTitle');
 if (calendarTitle) {
-    const titleText = translations.calendar || 'Calendario de ELOHIM';
+    const titleText = translations.calendar || 'Calendario de YAHWEH[<span class="divine-name">יהוה</span>]';
     calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> <span class="d-none d-sm-inline">${titleText}</span><span class="d-sm-none">${titleText.split(' ')[0]}</span>`;
 }
     
@@ -1192,7 +1192,7 @@ function updateScripture(month) {
     const scriptureTitleEl = document.getElementById('scriptureTitle');
     
     if (scriptureTextEl && scriptureRefEl && scriptureTitleEl) {
-        scriptureTextEl.textContent = month.scripture_text;
+        scriptureTextEl.innerHTML = month.scripture_text;
         scriptureRefEl.textContent = month.scripture_ref;
         
         // Actualizar título según el idioma
@@ -1256,10 +1256,10 @@ function generatePrintFlyer() {
     const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
     const titles = {
-        es: { main: 'DÍAS DE FIESTA DE YAHWEH', sub: 'Tiempos Señalados Sagrados', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
-        en: { main: "YAHWEH'S FEAST DAYS", sub: 'Sacred Appointed Times', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
-        tl: { main: 'MGA PISTA NG YAHWEH', sub: 'Mga Banal na Itinakdang Panahon', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
-        he: { main: 'מועדי יהוה', sub: 'מועדים קדושים', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' }
+        es: { main: 'DÍAS DE FIESTA DE YAHWEH[<span class="divine-name">יהוה</span>]', sub: 'Tiempos Señalados Sagrados', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        en: { main: "YAHWEH[<span class=\"divine-name\">יהוה</span>]'S FEAST DAYS", sub: 'Sacred Appointed Times', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        tl: { main: 'MGA PISTA NG YAHWEH[<span class="divine-name">יהוה</span>]', sub: 'Mga Banal na Itinakdang Panahon', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' },
+        he: { main: '<span class="divine-name">מועדי יהוה</span>', sub: 'מועדים קדושים', year: CalendarData.year.name, site: 'jhnmr.github.io/Calendar' }
     };
     const t = titles[lang] || titles.es;
 
