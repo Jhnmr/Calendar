@@ -571,7 +571,18 @@ CalendarData.translations = {
         // Títulos de secciones
         month_phase_title: "Fase Lunar Actual",
         close: "Cerrar",
-        festival_details: "Detalles de Festividad"
+        festival_details: "Detalles de Festividad",
+
+        // Título de página, congregación y UI general
+        page_title: "Calendario de YAHWEH",
+        congregation_name: "Congregación de YAHWEH",
+        congregation_link_label: "Visitar sitio",
+        congregation_about: "Comunidad que sigue los tiempos señalados de YAHWEH",
+        footer_rights: "Todos los derechos reservados",
+        footer_app_name: "Calendario de YAHWEH",
+        loading: "Cargando...",
+        theme_toggle_dark: "Cambiar a tema oscuro",
+        theme_toggle_light: "Cambiar a tema claro"
     },
     // Traducciones en inglés
     en: {
@@ -700,7 +711,18 @@ CalendarData.translations = {
         // Section titles
         month_phase_title: "Current Moon Phase",
         close: "Close",
-        festival_details: "Festival Details"
+        festival_details: "Festival Details",
+
+        // Page title, congregation and general UI
+        page_title: "YAHWEH's Calendar",
+        congregation_name: "YAHWEH's Congregation",
+        congregation_link_label: "Visit site",
+        congregation_about: "Community following YAHWEH's appointed times",
+        footer_rights: "All rights reserved",
+        footer_app_name: "YAHWEH's Calendar",
+        loading: "Loading...",
+        theme_toggle_dark: "Switch to dark theme",
+        theme_toggle_light: "Switch to light theme"
     },
     // Traducciones en tagalog
     tl: {
@@ -829,7 +851,18 @@ CalendarData.translations = {
         // Mga titulo ng seksyon
         month_phase_title: "Kasalukuyang Yugto ng Buwan",
         close: "Isara",
-        festival_details: "Mga Detalye ng Kapistahan"
+        festival_details: "Mga Detalye ng Kapistahan",
+
+        // Pamagat ng pahina, kongregasyon at pangkalahatang UI
+        page_title: "Kalendaryo ng YAHWEH",
+        congregation_name: "Kongregasyon ng YAHWEH",
+        congregation_link_label: "Bisitahin ang site",
+        congregation_about: "Komunidad na sumusunod sa mga itinakdang panahon ng YAHWEH",
+        footer_rights: "Lahat ng karapatan ay nakalaan",
+        footer_app_name: "Kalendaryo ng YAHWEH",
+        loading: "Naglo-load...",
+        theme_toggle_dark: "Lumipat sa madilim na tema",
+        theme_toggle_light: "Lumipat sa maliwanag na tema"
     },
     // Traducciones en hebreo
     he: {
@@ -958,7 +991,18 @@ CalendarData.translations = {
         // כותרות מדורים
         month_phase_title: "שלב הירח הנוכחי",
         close: "סגור",
-        festival_details: "פרטי החג"
+        festival_details: "פרטי החג",
+
+        // כותרת דף, קהילה ו-UI כללי
+        page_title: "לוח יהוה",
+        congregation_name: "קהילת יהוה",
+        congregation_link_label: "בקר באתר",
+        congregation_about: "קהילה השומרת את מועדי יהוה",
+        footer_rights: "כל הזכויות שמורות",
+        footer_app_name: "לוח יהוה",
+        loading: "טוען...",
+        theme_toggle_dark: "עבור לנושא כהה",
+        theme_toggle_light: "עבור לנושא בהיר"
     }
 };
 

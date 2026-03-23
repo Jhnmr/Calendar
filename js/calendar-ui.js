@@ -327,6 +327,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupTodayButton();
     setupThemeToggle();
 
+    // Aplicar todas las traducciones al idioma guardado/actual
+    updateAllTranslations();
+
     // Fix: evitar aria-hidden warning al cerrar el modal con foco en su interior
     const festivalModalEl = document.getElementById('festivalModal');
     if (festivalModalEl) {
@@ -371,31 +374,37 @@ function loadLanguagePreference() {
             }
         });
         
-        // Actualizar dirección del texto para hebreo
-        if (currentLanguage === 'he') {
-            document.body.setAttribute('dir', 'rtl');
-        } else {
-            document.body.setAttribute('dir', 'ltr');
-        }
+        // Aplicar dirección RTL/LTR en el elemento <html>
+        document.documentElement.setAttribute('dir', currentLanguage === 'he' ? 'rtl' : 'ltr');
     }
 }
 
 /**
  * Inicializa la interfaz de usuario
  */
+/**
+ * Reconstruye las opciones del selector de meses con el idioma actual
+ */
+function rebuildMonthSelector() {
+    const monthSelector = document.getElementById('monthSelector');
+    if (!monthSelector) return;
+    const currentValue = parseInt(monthSelector.value) || currentMonthId;
+    monthSelector.innerHTML = '';
+    CalendarData.months.forEach(month => {
+        const option = document.createElement('option');
+        option.value = month.id;
+        option.textContent = `${month.name} (${CalendarData.utils.formatDate(month.start_date, currentLanguage)} - ${CalendarData.utils.formatDate(month.end_date, currentLanguage)})`;
+        monthSelector.appendChild(option);
+    });
+    monthSelector.value = currentValue;
+}
+
 function initializeUI() {
     // Poblar el selector de meses
     const monthSelector = document.getElementById('monthSelector');
     if (monthSelector) {
-        monthSelector.innerHTML = '';
-        
-        CalendarData.months.forEach(month => {
-            const option = document.createElement('option');
-            option.value = month.id;
-            option.textContent = `${month.name} (${CalendarData.utils.formatDate(month.start_date, currentLanguage)} - ${CalendarData.utils.formatDate(month.end_date, currentLanguage)})`;
-            monthSelector.appendChild(option);
-        });
-        
+        rebuildMonthSelector();
+
         // Configurar evento de cambio para el selector de meses
         monthSelector.addEventListener('change', function() {
             currentMonthId = parseInt(this.value);
@@ -526,38 +535,60 @@ function setupLanguageSelector() {
     });
 }
 
-// Añadir esta nueva función para actualizar todas las traducciones
+/**
+ * Actualiza el 100% de los textos visibles al idioma activo.
+ * Se llama en cada cambio de idioma Y al cargar la página.
+ */
 function updateAllTranslations() {
     const translations = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
 
-    // Actualizar textos de navegación
+    // ── Título del documento ──────────────────────────────────────────────────
+    document.title = translations.page_title || 'Calendario de YAHWEH';
+
+    // ── Dirección RTL/LTR en <html> ───────────────────────────────────────────
+    document.documentElement.setAttribute('dir', currentLanguage === 'he' ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', currentLanguage);
+
+    // ── Navbar: marca y links ─────────────────────────────────────────────────
+    const navbarBrand = document.getElementById('navbarBrand');
+    if (navbarBrand) navbarBrand.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> ${translations.calendar || 'Calendario'}`;
+
     const navCalendar = document.getElementById('navCalendar');
     const navFestivals = document.getElementById('navFestivals');
     const navAbout = document.getElementById('navAbout');
-
     if (navCalendar) navCalendar.innerHTML = `<i class="fas fa-calendar-days me-1"></i> ${translations.calendar || 'Calendario'}`;
     if (navFestivals) navFestivals.innerHTML = `<i class="fas fa-menorah me-1"></i> ${translations.festivals || 'Festividades'}`;
     if (navAbout) navAbout.innerHTML = `<i class="fas fa-info-circle me-1"></i> ${translations.about || 'Acerca de'}`;
 
-    // Actualizar título del calendario (respetando los spans para responsive)
+    // ── Botón de idioma activo ────────────────────────────────────────────────
+    const langLabels = { es: 'Español', en: 'English', tl: 'Tagalog', he: 'עברית' };
+    const langDropdown = document.getElementById('languageDropdown');
+    if (langDropdown) langDropdown.innerHTML = `<i class="fas fa-globe"></i> ${langLabels[currentLanguage] || 'Español'}`;
+    document.querySelectorAll('.dropdown-item[data-lang]').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-lang') === currentLanguage);
+    });
+
+    // ── Título del calendario (responsive) ───────────────────────────────────
     const calendarTitle = document.getElementById('calendarTitle');
     if (calendarTitle) {
-        const titleText = translations.calendar || 'Calendario de ELOHIM';
+        const titleText = translations.calendar || 'Calendario de YAHWEH';
         calendarTitle.innerHTML = `<i class="fas fa-calendar-alt me-2"></i> <span class="d-none d-sm-inline">${titleText}</span><span class="d-sm-none">${titleText.split(' ')[0]}</span>`;
     }
 
-    // Actualizar botones
+    // ── Botones de navegación del calendario ─────────────────────────────────
     const todayBtn = document.getElementById('todayBtn');
     const prevMonthBtn = document.getElementById('prevMonthBtn');
     const nextMonthBtn = document.getElementById('nextMonthBtn');
     const printBtn = document.getElementById('printBtn');
-
     if (todayBtn) todayBtn.innerHTML = `<i class="fas fa-calendar-day"></i> ${translations.today || 'Hoy'}`;
     if (prevMonthBtn) prevMonthBtn.innerHTML = `<i class="fas fa-chevron-left"></i> ${translations.previous || 'Anterior'}`;
     if (nextMonthBtn) nextMonthBtn.innerHTML = `${translations.next || 'Siguiente'} <i class="fas fa-chevron-right"></i>`;
     if (printBtn) printBtn.innerHTML = `<i class="fas fa-print"></i> ${translations.print || 'Imprimir'}`;
 
-    // Actualizar títulos de secciones
+    // ── Selector de meses (fechas en el idioma correcto) ──────────────────────
+    rebuildMonthSelector();
+
+    // ── Card-headers del sidebar ──────────────────────────────────────────────
     const monthInfoTitle = document.querySelector('#monthInfo')?.closest('.card')?.querySelector('.card-header h5');
     if (monthInfoTitle) monthInfoTitle.innerHTML = `<i class="fas fa-info-circle me-2"></i>${translations.month_info || 'Información del Mes'}`;
 
@@ -567,40 +598,42 @@ function updateAllTranslations() {
     const festivalsThisMonthTitle = document.querySelector('#festivalsList')?.closest('.card')?.querySelector('.card-header h5');
     if (festivalsThisMonthTitle) festivalsThisMonthTitle.innerHTML = `<i class="fas fa-menorah me-2"></i>${translations.festivals_this_month || 'Festividades Este Mes'}`;
 
-    // Actualizar título de escritura del mes
+    // ── Escritura del mes ─────────────────────────────────────────────────────
     const scriptureTitle = document.getElementById('scriptureTitle');
     if (scriptureTitle) scriptureTitle.textContent = translations.scripture_of_month || 'Escritura del Mes';
 
-    // Actualizar leyenda del calendario
+    // ── Leyenda del calendario ────────────────────────────────────────────────
     updateCalendarLegend();
 
-    // Actualizar vista de festividades
+    // ── Vista de festividades: título y tarjetas si está visible ──────────────
     const festivalsViewTitle = document.querySelector('#festivalsView h1');
     if (festivalsViewTitle) festivalsViewTitle.innerHTML = `<i class="fas fa-menorah me-2"></i>${translations.festivals || 'Festividades Sagradas'}`;
+    const festivalsView = document.getElementById('festivalsView');
+    if (festivalsView && !festivalsView.classList.contains('d-none')) {
+        loadFestivalsList();
+    }
 
-    // Actualizar vista Acerca de
+    // ── Vista Acerca de ───────────────────────────────────────────────────────
     updateAboutViewTranslations();
 
-    // Actualizar dirección de texto para hebreo
-    if (currentLanguage === 'he') {
-        document.body.setAttribute('dir', 'rtl');
-    } else {
-        document.body.setAttribute('dir', 'ltr');
-    }
-
-    // Actualizar fecha actual
+    // ── Fecha actual ──────────────────────────────────────────────────────────
     updateCurrentDateDisplay();
 
-    // Actualizar botón cerrar del modal de festividades
+    // ── Modal de festividad ───────────────────────────────────────────────────
     const festivalModalCloseBtn = document.querySelector('#festivalModal .modal-footer .btn-secondary');
-    if (festivalModalCloseBtn) {
-        festivalModalCloseBtn.textContent = translations.close || 'Cerrar';
-    }
+    if (festivalModalCloseBtn) festivalModalCloseBtn.textContent = translations.close || 'Cerrar';
 
-    // Actualizar título del modal de festividades
+    // Resetear el título del modal al valor traducido (showFestivalDetails lo sobreescribe al abrir)
     const festivalModalTitle = document.getElementById('festivalModalTitle');
-    if (festivalModalTitle && festivalModalTitle.textContent === 'Detalles de Festividad') {
-        festivalModalTitle.textContent = translations.festival_details || 'Detalles de Festividad';
+    if (festivalModalTitle) festivalModalTitle.textContent = translations.festival_details || 'Detalles de Festividad';
+
+    // ── Botón de tema claro/oscuro ────────────────────────────────────────────
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (themeToggleBtn) {
+        const isDark = document.body.classList.contains('dark-theme');
+        themeToggleBtn.title = isDark
+            ? (translations.theme_toggle_light || 'Cambiar a tema claro')
+            : (translations.theme_toggle_dark || 'Cambiar a tema oscuro');
     }
 }
 
@@ -1177,11 +1210,14 @@ function setupThemeToggle() {
     themeBtn.className = 'btn btn-outline-light ms-2';
     themeBtn.id = 'themeToggleBtn';
 
-    // Función para actualizar el ícono del botón
+    // Función para actualizar el ícono y tooltip del botón de tema
     function updateThemeIcon() {
         const isDark = document.body.classList.contains('dark-theme');
+        const t = CalendarData.translations[currentLanguage] || CalendarData.translations.es;
         themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        themeBtn.title = isDark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
+        themeBtn.title = isDark
+            ? (t.theme_toggle_light || 'Cambiar a tema claro')
+            : (t.theme_toggle_dark || 'Cambiar a tema oscuro');
     }
 
     // Evento de clic para cambiar el tema
